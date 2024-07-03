@@ -130,7 +130,20 @@
             <div>
             </div>
         </div>
+
+        <div class="container c-2 repo-list">
+            <div>
+                <h1 class="h-col">
+                    My Github Repositories
+                </h1>
+            </div>
+            <div class="box-contain flex wrap" id="repo-list">
+
+            </div>
+        </div>
     </section>
+
+
     <footer class="bg-v" width="100%">
         <div class="top-nav flex a-cen j-bet" style="width:80%; margin: auto;">
             <div class="flex a-aro a-cen res">
@@ -147,65 +160,6 @@
         </div>
     </footer>
 </body>
-
-</html>
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-<script>
-
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch('project.json')
-            .then(response => response.json())
-
-            .then(data => {
-                const projectContainer = document.getElementById('project-list');
-                data.project.forEach(project => {
-
-                    const courseElement = document.createElement('div');
-
-                    courseElement.innerHTML = `
-            <div class="box" onclick="navigateTo('')">
-                <img src="resources/site/${project.image}" alt="image">
-                    <div class="box-in">
-                                <h3>
-                                    ${project.title}
-                        </h3>
-                        <p>
-                            ${project.description}
-                        </p>
-                    </div>  
-                    <a href="${project.url}" target="_blank" class="btn-3 log-btn">
-                        Visit
-                    </a>
-
-                </div>  
-
-            `;
-                    projectContainer.appendChild(courseElement);
-                });
-            })
-            .catch(error => console.error('Error loading the projects:', error));
-    });
-
-    document.querySelectorAll('.cb').forEach(function(cb) {
-    cb.addEventListener('change', function() {
-        const html = document.documentElement;
-        const theme = cb.checked ? 'dark' : 'light';
-
-        html.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    });
-});
-
-    // Check local storage for theme
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-    }
-    var typed = new Typed(".autotype", {
-        strings: ["Designer.", "Web Devloper.", "Blogger."],
-        typeSpeed: 150,
-        backSpeed: 150,
-        loop: true
-    })
-
-</script>
+<script src="script.js"></script>
+</html>
