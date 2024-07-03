@@ -1,0 +1,37 @@
+{
+    "project": [
+      {
+        "title": "CodeWithGirdhar",
+        "image": "ss(1).png",
+        "description": "This is my personal blooging website, where i post blogs about coding..",
+        "url": "https://codewithgirdhar.great-site.net/"
+      },
+      {
+        "title": "Hotel BlueBird",
+        "image": "ss (2).png",
+        "description": "This is website for hotel management where customer can boo hotel rooms online.",
+        "url": "http://hotelbluebird.great-site.net/"
+      },{
+        "title": "E-Waste Seller",
+        "image": "ss (3).png",
+        "description": "This is website for sell and purchase E-waste (my college project).",
+        "url": "http://e-waste.great-site.net/"
+      },{
+        "title": "Code With Girdhar (blog)",
+        "image": "ss (4).png",
+        "description": "This is a blooging website developed using html css,js and mysql",
+        "url": "http://girdharpersonalblog.great-site.net/"
+      },{
+        "title": "Spotify Clone",
+        "image": "ss (5).png",
+        "description": "List and play songs with various controls",
+        "url": "http://spotify-girdhar.great-site.net/"
+      },{
+        "title": "CodeWithHarray (clone)",
+        "image": "ss (6).png",
+        "description": "Basic clone of CodeWithHarray website",
+        "url": ""
+      }    
+    ]
+  }
+  
