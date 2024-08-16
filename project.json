@@ -16,7 +16,7 @@
     {
       "title": "Online Exam Portal",
       "image": "onlineexam.jpg",
-      "description": "This is my Full Stack project for taking quiz based exams online, developed using ReactJs as frontend and Node.js as backend",
+      "description": "This is my Full Stack project for taking quiz based exams online, developed using ReactJs and Node.js",
       "url": "https://onlineexamgirdhar.netlify.app/"
     },
     {
