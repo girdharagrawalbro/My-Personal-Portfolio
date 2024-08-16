@@ -1,37 +1,74 @@
 {
-    "project": [
-      {
-        "title": "CodeWithGirdhar",
-        "image": "ss(1).png",
-        "description": "This is my personal blooging website, where i post blogs about coding..",
-        "url": "https://codewithgirdhar.great-site.net/"
-      },
-      {
-        "title": "Hotel BlueBird",
-        "image": "ss (2).png",
-        "description": "This is website for hotel management where customer can boo hotel rooms online.",
-        "url": "http://hotelbluebird.great-site.net/"
-      },{
-        "title": "E-Waste Seller",
-        "image": "ss (3).png",
-        "description": "This is website for sell and purchase E-waste (my college project).",
-        "url": "http://e-waste.great-site.net/"
-      },{
-        "title": "Code With Girdhar (blog)",
-        "image": "ss (4).png",
-        "description": "This is a blooging website developed using html css,js and mysql",
-        "url": "http://girdharpersonalblog.great-site.net/"
-      },{
-        "title": "Spotify Clone",
-        "image": "ss (5).png",
-        "description": "List and play songs with various controls",
-        "url": "http://spotify-girdhar.great-site.net/"
-      },{
-        "title": "CodeWithHarray (clone)",
-        "image": "ss (6).png",
-        "description": "Basic clone of CodeWithHarray website",
-        "url": ""
-      }    
-    ]
-  }
-  
+  "project": [
+    {
+      "title": "CodeWithGirdhar",
+      "image": "ss(1).png",
+      "description": "This is my personal blooging website, where i post blogs about coding..",
+      "url": "https://codewithgirdhar.great-site.net/"
+    },
+    {
+      "title": "Chat Box",
+      "image": "web.jpg",
+      "description": "Chatting Website and App",
+      "url": "http://chatbox-girdhar.great-site.net"
+    },
+    {
+      "title": "Todolist",
+      "image": "ss(9).jpeg",
+      "description": "This is website to manage work in daily life.",
+      "url": "https://todolist-girdhar.great-site.net/"
+    },
+    {
+      "title": "Wheather Forecast",
+      "image": "wheather.png",
+      "description": "This is website for seeing current wheather by searching your area city name with country (like = Raipur,In).",
+      "url": "https://wheather-forecast-ga.netlify.app/"
+    },
+    {
+            "title": "News Web",
+      "image": "news.png",
+      "description": "This is website for seeing top headlines of any category. The user can search the there intrest in search box.",
+      "url": "https://news-web-ga.netlify.app/"
+    },
+    
+    {
+            "title": "Hotel BlueBird",
+      "image": "ss (2).png",
+      "description": "This is website for hotel management where customer can boo hotel rooms online.",
+      "url": "http://hotelbluebird.great-site.net/"
+    },{
+      "title": "E-Waste Seller",
+      "image": "ss (3).png",
+      "description": "This is website for sell and purchase E-waste (my college project).",
+      "url": "http://e-waste.great-site.net/"
+    },{
+      "title": "Code With Girdhar (blog)",
+      "image": "ss (4).png",
+      "description": "This is a blooging website developed using html css,js and mysql",
+      "url": "http://girdharpersonalblog.great-site.net/"
+    },{
+      "title": "Spotify Clone",
+      "image": "ss (5).png",
+      "description": "List and play songs with various controls",
+      "url": "http://spotify-girdhar.great-site.net/"
+    },{
+      "title": "CodeWithHarray (clone)",
+      "image": "ss (6).png",
+      "description": "Basic clone of CodeWithHarray website",
+      "url": "https://codewithgirdhar.netlify.app/"
+    },
+    {
+      "title": "Bank Website",
+      "image": "web.jpg",
+      "description": "Bank website",
+      "url": ""
+    }
+     ,
+    {
+      "title": "Gmail Basic Clone",
+      "image": "web.jpg",
+      "description": "Basic clone of Gmail",
+      "url": ""
+    }   
+  ]
+}
