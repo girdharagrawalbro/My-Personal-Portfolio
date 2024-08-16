@@ -6,6 +6,25 @@
       "description": "This is my personal blooging website, where i post blogs about coding..",
       "url": "https://codewithgirdhar.great-site.net/"
     },
+    
+    {
+      "title": "Book Store",
+      "image": "web.jpg",
+      "description": "This is my first Next Js which is currently under development",
+      "url": "https://github.com/girdharagrawalbro/booksstore"
+    },
+    {
+      "title": "Online Exam Portal",
+      "image": "onlineexam.jpg",
+      "description": "This is my Full Stack project for taking quiz based exams online, developed using ReactJs as frontend and Node.js as backend",
+      "url": "https://onlineexamgirdhar.netlify.app/"
+    },
+    {
+      "title": "Bhagvat Gita",
+      "image": "gita.jpg",
+      "description": "This web app to show phrases of bhavat gita using APIs",
+      "url": "https://bhagvat-gite.netlify.app/"
+    },
     {
       "title": "Chat Box",
       "image": "web.jpg",
