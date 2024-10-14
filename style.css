@@ -503,3 +503,26 @@ transform: translateX(7px);
         padding-bottom: 1.5rem;
     }
 }
+
+
+
+.text-container {
+    position: relative;
+}
+
+.background-text {
+    position: absolute;
+    padding-top: 30px ;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.116); /* Light color for background */
+    z-index: 1;
+  }
+  
+  .foreground-text {
+    position: relative;
+    font-size: 3rem;
+    font-weight: bold;;
+    z-index: 2;
+  }
+  
