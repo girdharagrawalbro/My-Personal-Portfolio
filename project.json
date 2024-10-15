@@ -7,24 +7,35 @@
       "url": "https://codewithgirdhar.great-site.net/"
     },
     {
+      "title": "Farming with AI",
+      "image": "agriai.jpg",
+      "description": "This project gives the suggestion according to user input (text, image) using AI",
+      "url": "https://farmingwithai.netlify.app/"
+    },
+    {
+      "title": "Agriculture using ML",
+      "image": "agriai.jpg",
+      "description": "This project gives the suggestion according to user input (text) using ML",
+      "url": "https://github.com/girdharagrawalbro/Agriculture-using-ML"
+    },
+    {
       "title": "Instagram using Next.js",
-      "image" : "web.jpg",
-      "description" : "instagram clone",
+      "image": "web.jpg",
+      "description": "instagram clone",
       "url": "https://github.com/girdharagrawalbro/Instagram-Next-js-"
     },
-    
     {
       "title": "Realtime Chat",
-      "image" : "realtime.jpg",
-      "description" : "Connect and chat with people in realtime using Socket.io",
+      "image": "realtime.jpg",
+      "description": "Connect and chat with people in realtime using Socket.io",
       "url": "https://chatapp-girdhar.netlify.app/"
     },
-    { 
-      "title": "Todos App", 
-      "image" : "todos.jpg",
-      "description" : "Organize your daily task",
+    {
+      "title": "Todos App",
+      "image": "todos.jpg",
+      "description": "Organize your daily task",
       "url": "https://tooods.netlify.app/"
-    },    
+    },
     {
       "title": "Book Store",
       "image": "web.jpg",
@@ -62,38 +73,40 @@
       "url": "https://wheather-forecast-ga.netlify.app/"
     },
     {
-            "title": "News Web",
+      "title": "News Web",
       "image": "news.png",
       "description": "This is website for seeing top headlines of any category. The user can search the there intrest in search box.",
       "url": "https://news-web-ga.netlify.app/"
     },
-    
     {
-            "title": "Hotel BlueBird",
+      "title": "Hotel BlueBird",
       "image": "ss (2).png",
       "description": "This is website for hotel management where customer can boo hotel rooms online.",
       "url": "https://github.com/girdharagrawalbro/Hotel-Management-System"
-    },{
+    },
+    {
       "title": "E-Waste Seller",
       "image": "ss (3).png",
       "description": "This is website for sell and purchase E-waste (my college project).",
       "url": ""
-    },{
+    },
+    {
       "title": "Code With Girdhar (blog)",
       "image": "ss (4).png",
       "description": "This is a blooging website developed using html css,js and mysql",
       "url": "https://github.com/girdharagrawalbro/Blogging-Site-php"
-    },{
+    },
+    {
       "title": "Spotify Clone",
       "image": "ss (5).png",
       "description": "List and play songs with various controls",
       "url": "http://spotifywe-girdhar.great-site.net/"
-    },{
+    },
+    {
       "title": "CodeWithHarray (clone)",
       "image": "ss (6).png",
       "description": "Basic clone of CodeWithHarray website",
       "url": "https://codewithgirdhar.netlify.app/"
     }
-    
   ]
 }
