@@ -7,6 +7,18 @@
       "url": "https://codewithgirdhar.great-site.net/"
     },
     {
+      "title": "ChatGPT Clone",
+      "image": "chatgpt.jpg",
+      "description": "A basic clone of ChatGPT using Gemini AI API..",
+      "url": "https://chatgpt-girdhar.netlify.app/"
+    },
+    {
+      "title": "Infinity E-Sports",
+      "image": "esports.jpg",
+      "description": "Plateform to manage the Infinity E-Sports Club Data",
+      "url": "https://rsdc-infinity-esports.netlify.app/"
+    },
+    {
       "title": "Farming with AI",
       "image": "agriai.jpg",
       "description": "This project gives the suggestion according to user input (text, image) using AI",
