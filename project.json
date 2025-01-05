@@ -7,6 +7,12 @@
       "url": "https://codewithgirdhar.great-site.net/"
     },
     {
+      "title" : "Social Square",
+      "image" : "socialsquare.jpg"
+      "description": "A social media plateform in which you interact with other peoples",
+      "url" : "https://social-square.netlify.app/"
+    },
+    {
       "title": "ChatGPT Clone",
       "image": "chatgpt.jpg",
       "description": "A basic clone of ChatGPT using Gemini AI API..",
