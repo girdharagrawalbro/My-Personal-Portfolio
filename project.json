@@ -8,7 +8,7 @@
     },
     {
       "title" : "Social Square",
-      "image" : "socialsquare.jpg"
+      "image" : "socialsquare.jpg",
       "description": "A social media plateform in which you interact with other peoples",
       "url" : "https://social-square.netlify.app/"
     },
