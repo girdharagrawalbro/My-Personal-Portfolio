@@ -18,6 +18,12 @@
       "description": "A basic clone of ChatGPT using Gemini AI API..",
       "url": "https://chatgpt-girdhar.netlify.app/"
     },
+     {
+      "title": "Lets tweet",
+      "image": "tweet.jpg",
+      "description": "Proeject on Django",
+      "url": ""
+    },
     {
       "title": "Infinity E-Sports",
       "image": "esports.jpg",
