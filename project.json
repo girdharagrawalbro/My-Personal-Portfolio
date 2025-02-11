@@ -49,10 +49,10 @@
       "url": "https://github.com/girdharagrawalbro/Instagram-Next-js-"
     },
     {
-      "title": "Realtime Chat",
+      "title": "imeetzu",
       "image": "realtime.jpg",
-      "description": "Connect and chat with people in realtime using Socket.io",
-      "url": "https://chatapp-girdhar.netlify.app/"
+      "description": "Connect and chat with random people in realtime using Socket.io",
+      "url": "https://imeetzu.netlify.app/"
     },
     {
       "title": "Todos App",
