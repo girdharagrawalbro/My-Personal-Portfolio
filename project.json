@@ -1,5 +1,4 @@
-{
-  "project": [
+[
     {
       "title": "CodeWithGirdhar",
       "image": "ss(1).png",
@@ -7,22 +6,22 @@
       "url": "https://codewithgirdhar.great-site.net/"
     },
     {
-      "title" : "Social Square",
-      "image" : "socialsquare.jpg",
-      "description": "A social media plateform in which you interact with other peoples",
-      "url" : "https://social-square.netlify.app/"
+      "title": "Blockchian Certification System",
+      "image": "certchain.png",
+      "description": "Blockchain Certification Sytem to issue and verify certificates.",
+      "url": "https://chatgpt-girdhar.netlify.app/"
+    },
+    {
+      "title": "Decentralized Crowd Funding System",
+      "image": "crowdfunding.jpg",
+      "description": "This is a a decentralized crowd funding web app in blockhain plateform and payments using ethers (crypto currency)",
+      "url": "https://crowdfunding-dapp-liard.vercel.app/"
     },
     {
       "title": "ChatGPT Clone",
       "image": "chatgpt.jpg",
       "description": "A basic clone of ChatGPT using Gemini AI API..",
       "url": "https://chatgpt-girdhar.netlify.app/"
-    },
-     {
-      "title": "Lets tweet",
-      "image": "web.jpg",
-      "description": "Proeject on Django",
-      "url": ""
     },
     {
       "title": "Infinity E-Sports",
@@ -49,10 +48,10 @@
       "url": "https://github.com/girdharagrawalbro/Instagram-Next-js-"
     },
     {
-      "title": "imeetzu",
+      "title": "Realtime Chat",
       "image": "realtime.jpg",
-      "description": "Connect and chat with random people in realtime using Socket.io",
-      "url": "https://imeetzu.netlify.app/"
+      "description": "Connect and chat with people in realtime using Socket.io",
+      "url": "https://chatapp-girdhar.netlify.app/"
     },
     {
       "title": "Todos App",
@@ -133,4 +132,3 @@
       "url": "https://codewithgirdhar.netlify.app/"
     }
   ]
-}
