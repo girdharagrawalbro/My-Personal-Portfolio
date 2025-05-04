@@ -244,7 +244,7 @@ fetch('project.json')
                         <span>Live Demo</span>
                     </a>
                     ` : ''}
-                    <a href="https://github.com/girdharagrawalbro" target="_blank" class="project-link">
+                    <a href=`{project.github ? project.github : "https://github.com/girdharagrawalbro"}`" target="_blank" class="project-link">
                         <i class="fab fa-github"></i>
                         <span>Code</span>
                     </a>
