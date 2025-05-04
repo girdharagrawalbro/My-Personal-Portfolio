@@ -238,16 +238,25 @@ fetch('project.json')
                     ${!tags.length ? '<span class="project-tag">Web</span>' : ''}
                 </div>
                 <div class="project-links">
-                    ${project.url ? `
-                    <a href="${project.url}" target="_blank" class="project-link">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Live Demo</span>
-                    </a>
-                    ` : ''}
-                    <a href=`{project.github ? project.github : "https://github.com/girdharagrawalbro"}`" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i>
-                        <span>Code</span>
-                    </a>
+                   ${project.url ? `
+    <a href="${project.url}" target="_blank" class="project-link">
+        <i class="fas fa-external-link-alt"></i>
+        <span>Live Demo</span>
+    </a>
+` : ''}
+
+${project.github ? `
+    <a href="${project.github}" target="_blank" class="project-link">
+        <i class="fab fa-github"></i>
+        <span>Code</span>
+    </a>
+` : `
+    <a href="https://github.com/girdharagrawalbro" target="_blank" class="project-link">
+        <i class="fab fa-github"></i>
+        <span>Code</span>
+    </a>
+`}
+
                 </div>
             </div>
         `;
