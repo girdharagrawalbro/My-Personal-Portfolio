@@ -5,6 +5,18 @@
       "description": "This is my personal blooging website, where i post blogs about coding..",
       "url": "https://codewithgirdhar.great-site.net/"
     },
+     {
+      "title": "EventFlow",
+      "image": "event.jpeg",
+      "description": "An Event Management System with real time notifications and enevt score system.",
+      "url": "https://event-flow-eight.vercel.app/"
+    },
+     {
+      "title": "Recipe Region",
+      "image": "web.jpg",
+      "description": "A Food and its Recipe Showcase",
+      "url": "no link"
+    },
     {
       "title": "Blockchian Certification System",
       "image": "certchain.png",
