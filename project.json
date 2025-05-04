@@ -9,37 +9,42 @@
       "title": "EventFlow",
       "image": "event.jpg",
       "description": "An Event Management System with real time notifications and enevt score system.",
-      "url": "https://event-flow-eight.vercel.app/"
+      "url": "https://event-flow-eight.vercel.app/",
+      "github": "https://github.com/girdharagrawalbro/EventFlow"
     },
      {
       "title": "Recipe Region",
       "image": "web.jpg",
       "description": "A Food and its Recipe Showcase",
-      "url": "no link"
+      "url": "no link",
     },
     {
       "title": "Blockchian Certification System",
       "image": "certchain.png",
       "description": "Blockchain Certification Sytem to issue and verify certificates.",
-      "url": "https://github.com/girdharagrawalbro/HackIndia-Spark-4-2025-Code-Avengers"
+      "url": "https://github.com/girdharagrawalbro/HackIndia-Spark-4-2025-Code-Avengers",
+      "github" : "https://github.com/girdharagrawalbro/HackIndia-Spark-4-2025-Code-Avengers"
     },
     {
       "title": "Decentralized Crowd Funding System",
       "image": "crowdfunding.jpg",
       "description": "This is a a decentralized crowd funding web app in blockhain plateform and payments using ethers (crypto currency)",
-      "url": "https://crowdfunding-dapp-liard.vercel.app/"
+      "url": "https://crowdfunding-dapp-liard.vercel.app/",
+        "github" : "https://github.com/girdharagrawalbro/Crowd-Funding-Dapp"
     },
      {
       "title" : "Social Square",
       "image" : "socialsquare.jpg",
       "description": "A social media plateform in which you interact with other peoples",
-      "url" : "https://social-square.netlify.app/"
+      "url" : "https://social-square.netlify.app/",
+         "github" : "https://github.com/girdharagrawalbro/Social-Square-Social-Media-Plateform"
      },
     {
       "title": "ChatGPT Clone",
       "image": "chatgpt.jpg",
       "description": "A basic clone of ChatGPT using Gemini AI API..",
-      "url": "https://chatgpt-girdhar.netlify.app/"
+      "url": "https://chatgpt-girdhar.netlify.app/",
+        "github" : "https://github.com/girdharagrawalbro/ChatGPT-clone"
     },
     {
       "title": "Infinity E-Sports",
@@ -51,7 +56,9 @@
       "title": "Farming with AI",
       "image": "agriai.jpg",
       "description": "This project gives the suggestion according to user input (text, image) using AI",
-      "url": "https://farmingwithai.netlify.app/"
+      "url": "https://farmingwithai.netlify.app/",
+        "github" : "https://github.com/girdharagrawalbro/Agriculture-using-ML"
+        
     },
     {
       "title": "Agriculture using ML",
@@ -87,7 +94,8 @@
       "title": "Online Exam Portal",
       "image": "onlineexam.jpg",
       "description": "This is my Full Stack project for taking quiz based exams online, developed using ReactJs and Node.js",
-      "url": "https://onlineexamgirdhar.netlify.app/"
+      "url": "https://onlineexamgirdhar.netlify.app/",
+        "github" :"https://github.com/girdharagrawalbro/Online-Exam-Portal"
     },
     {
       "title": "Bhagvat Gita",
