@@ -3,7 +3,8 @@
       "title": "CodeWithGirdhar",
       "image": "ss(1).png",
       "description": "This is my personal blooging website, where i post blogs about coding..",
-      "url": "https://codewithgirdhar.great-site.net/"
+      "url": "https://codewithgirdhar.great-site.net/",
+        "github" : ""
     },
      {
       "title": "EventFlow",
@@ -17,6 +18,7 @@
       "image": "web.jpg",
       "description": "A Food and its Recipe Showcase",
       "url": "no link",
+         "github" : ""
     },
     {
       "title": "Blockchian Certification System",
@@ -50,7 +52,8 @@
       "title": "Infinity E-Sports",
       "image": "esports.jpg",
       "description": "Plateform to manage the Infinity E-Sports Club Data",
-      "url": "https://rsdc-infinity-esports.netlify.app/"
+      "url": "https://rsdc-infinity-esports.netlify.app/",
+        "github" : ""
     },
     {
       "title": "Farming with AI",
@@ -58,37 +61,41 @@
       "description": "This project gives the suggestion according to user input (text, image) using AI",
       "url": "https://farmingwithai.netlify.app/",
         "github" : "https://github.com/girdharagrawalbro/Agriculture-using-ML"
-        
     },
     {
       "title": "Agriculture using ML",
       "image": "agriai.jpg",
       "description": "This project gives the suggestion according to user input (text) using ML",
-      "url": "https://github.com/girdharagrawalbro/Agriculture-using-ML"
+      "url": "https://github.com/girdharagrawalbro/Agriculture-using-ML",
+        "github" : "https://github.com/girdharagrawalbro/Agriculture-using-ML"
     },
     {
       "title": "Instagram using Next.js",
       "image": "web.jpg",
       "description": "instagram clone",
-      "url": "https://github.com/girdharagrawalbro/Instagram-Next-js-"
+      "url": "https://github.com/girdharagrawalbro/Instagram-Next-js-",
+        "github" : ""
     },
     {
       "title": "Realtime Chat",
       "image": "realtime.jpg",
       "description": "Connect and chat with people in realtime using Socket.io",
-      "url": "https://chatapp-girdhar.netlify.app/"
+      "url": "https://chatapp-girdhar.netlify.app/",
+        "github" : ""
     },
     {
       "title": "Todos App",
       "image": "todos.jpg",
       "description": "Organize your daily task",
-      "url": "https://tooods.netlify.app/"
+      "url": "https://tooods.netlify.app/",
+        "github" : ""
     },
     {
       "title": "Book Store",
       "image": "web.jpg",
       "description": "This is my first Next Js which is currently under development",
-      "url": "https://github.com/girdharagrawalbro/booksstore"
+      "url": "https://github.com/girdharagrawalbro/booksstore",
+        "github" : ""
     },
     {
       "title": "Online Exam Portal",
@@ -101,60 +108,70 @@
       "title": "Bhagvat Gita",
       "image": "gita.jpg",
       "description": "This web app to show phrases of bhavat gita using APIs",
-      "url": "https://bhagvat-gite.netlify.app/"
+      "url": "https://bhagvat-gite.netlify.app/",
+        "github" : ""
     },
     {
       "title": "Chat Box",
       "image": "web.jpg",
       "description": "Chatting Website and App",
-      "url": "https://github.com/girdharagrawalbro/ChatBox"
+      "url": "https://github.com/girdharagrawalbro/ChatBox",
+        "github" : ""
     },
     {
       "title": "Todolist-PHP",
       "image": "ss(9).jpeg",
       "description": "This is website to manage work in daily life.",
-      "url": "https://todolist-girdhar.great-site.net/"
+      "url": "https://todolist-girdhar.great-site.net/",
+        "github" : ""
     },
     {
       "title": "Wheather Forecast",
       "image": "wheather.png",
       "description": "This is website for seeing current wheather by searching your area city name with country (like = Raipur,In).",
-      "url": "https://wheather-forecast-ga.netlify.app/"
+      "url": "https://wheather-forecast-ga.netlify.app/",
+        "github" : ""
     },
     {
       "title": "News Web",
       "image": "news.png",
       "description": "This is website for seeing top headlines of any category. The user can search the there intrest in search box.",
-      "url": "https://news-web-ga.netlify.app/"
+      "url": "https://news-web-ga.netlify.app/",
+        "github" : ""
     },
     {
       "title": "Hotel BlueBird",
       "image": "ss (2).png",
       "description": "This is website for hotel management where customer can boo hotel rooms online.",
-      "url": "https://github.com/girdharagrawalbro/Hotel-Management-System"
+      "url": "https://github.com/girdharagrawalbro/Hotel-Management-System",
+        "github" : ""
     },
     {
       "title": "E-Waste Seller",
       "image": "ss (3).png",
       "description": "This is website for sell and purchase E-waste (my college project).",
-      "url": ""
+      "url": "",
+        "github" : ""
     },
     {
       "title": "Code With Girdhar (blog)",
       "image": "ss (4).png",
       "description": "This is a blooging website developed using html css,js and mysql",
-      "url": "https://github.com/girdharagrawalbro/Blogging-Site-php"
+      "url": "https://github.com/girdharagrawalbro/Blogging-Site-php",
+        "github" : ""
     },
     {
       "title": "Spotify Clone",
       "image": "ss (5).png",
       "description": "List and play songs with various controls",
-      "url": "http://spotifywe-girdhar.great-site.net/"
+      "url": "http://spotifywe-girdhar.great-site.net/",
+        "github" : ""
     },
     {
       "title": "CodeWithHarray (clone)",
       "image": "ss (6).png",
       "description": "Basic clone of CodeWithHarray website",
-      "url": "https://codewithgirdhar.netlify.app/"
+      "url": "https://codewithgirdhar.netlify.app/",
+        "github" : ""
     }
   ]
