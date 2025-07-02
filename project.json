@@ -273,5 +273,16 @@
     "github": "",
     "tags": ["HTML", "CSS", "JavaScript"],
     "category": "frontend"
+  },
+   {
+    "id": "26",
+    "title": "Whatsapp Bot (Event Manager)",
+    "image": "ss (6).png",
+    "description": "Event Manager and Schedular using Whatsapp Bot with dedicated Dashoboard.",
+    "url": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
+    "repo": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
+    "github": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
+    "tags": ["AI", "Node.js", "Twilo"],
+    "category": "Backend"
   }
 ]
