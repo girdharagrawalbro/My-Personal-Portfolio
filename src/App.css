@@ -1,0 +1,12 @@
+@import "tailwindcss";
+button{
+    cursor: pointer;
+}
+::-webkit-scrollbar{
+    display:none;
+}
+.scroll-reveal-text {
+  font-size: clamp(0.6rem, 1vw, 0.5rem);
+  line-height: 0    .5;
+  font-weight: 600;
+}

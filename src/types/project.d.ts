@@ -1,0 +1,13 @@
+export interface Project {
+  id: string;
+  title: string;
+  image: string;
+  description: string;
+  url: string;
+  repo?: string;
+  github?: string;
+  tags: string[];
+  category: 'frontend' | 'backend' | 'fullstack';
+  date?: string;
+  lastUpdated?: string;
+}
