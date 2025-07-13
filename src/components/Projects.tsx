@@ -1,4 +1,4 @@
-import { useState, useEffect, type JSXElementConstructor, type Key, type ReactElement, type ReactNode, type ReactPortal } from 'react';
+import { useState, useEffect} from 'react';
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -163,14 +163,14 @@ const Projects = () => {
                   />
                   <div className="absolute bottom-3 left-3 bg-gray-900/80 text-gray-300 text-xs px-2 py-1 rounded flex items-center">
                     <FaCalendarAlt className="mr-1" />
-                    <span>{formatDate(project.date)}</span>
+                    <span>{formatDate(project.date ?? '')}</span>
                   </div>
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="text-xl font-bold text-white">{project.title}</h3>
                     <span className="text-xs text-gray-400">
-                      Updated: {formatDate(project.lastUpdated)}
+                      Updated: {formatDate(project.lastUpdated ?? '')}
                     </span>
                   </div>
                   <p className="text-gray-300 mb-4">{project.description}</p>

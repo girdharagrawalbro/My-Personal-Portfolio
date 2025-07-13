@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Chatbot from './components/Chatbot';
 import useTheme from './hooks/useTheme';
 import About from './components/About';
 import Skills from './components/Skills';

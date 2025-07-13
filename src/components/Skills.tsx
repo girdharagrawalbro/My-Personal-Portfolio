@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiCode, FiDatabase, FiLayers, FiCpu, FiTool } from 'react-icons/fi';
+import { FiDatabase, FiLayers, FiCpu, FiTool } from 'react-icons/fi';
 import { FaReact, FaNodeJs, FaPython, FaJava, FaDocker, FaAws, FaGitAlt } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiMongodb, SiPostgresql, SiTailwindcss, SiNextdotjs, SiFirebase, SiGraphql, SiRedux, SiJest, SiFigma, SiPostman, SiGithub } from 'react-icons/si';
 

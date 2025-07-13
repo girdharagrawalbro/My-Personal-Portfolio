@@ -3,11 +3,7 @@ import { SiJavascript, SiReact, SiNodedotjs, SiPython, SiMongodb, SiPostgresql }
 import { motion } from "framer-motion";
 import ScrambledText from '../ui/ScrambledText'
 const About = () => {
-  const stats = [
-    { number: '10+', text: 'Projects Completed' },
-    { number: '5+', text: 'Open Source Contributions' },
-    { number: '2+', text: 'Years of Experience' }
-  ];
+ 
 
   const skills = [
     { name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" /> },

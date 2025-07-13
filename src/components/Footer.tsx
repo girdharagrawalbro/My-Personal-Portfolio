@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedinIn, FaInstagram, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -10,13 +10,6 @@ const Footer = () => {
     { icon: <FaInstagram />, url: "https://www.instagram.com/codewithgirdhar/" }
   ];
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" }
-  ];
 
   return (
     <footer className="relative pt-10 pb-10 bg-gradient-to-b from-black via-indigo-900 to-black ">
