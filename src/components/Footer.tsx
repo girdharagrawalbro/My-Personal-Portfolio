@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaInstagram, FaLink } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -7,7 +7,9 @@ const Footer = () => {
   const socialLinks = [
     { icon: <FaGithub />, url: "https://github.com/girdharagrawalbro" },
     { icon: <FaLinkedinIn />, url: "https://www.linkedin.com/in/girdhar-agrawal-124346220/" },
-    { icon: <FaInstagram />, url: "https://www.instagram.com/codewithgirdhar/" }
+    { icon: <FaInstagram />, url: "https://www.instagram.com/codewithgirdhar/" },
+    { icon: <FaLink />, url: "https://codewithgirdhar.great-site.net/" }
+
   ];
 
 
@@ -38,7 +40,7 @@ const Footer = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center text-2xl font-bold text-white"
             >
-              
+
               <span className="text-indigo-400 mr-2">&lt;/&gt;</span>
               <span>GirdharAgrawal</span>
 

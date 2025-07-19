@@ -7,6 +7,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
 import './App.css';
@@ -89,6 +90,7 @@ const App = () => {
                     <Skills />
                     <Projects />
                     <Contact />
+                    <ChatBot />
                   </motion.div>
                 )}
               </AnimatePresence>

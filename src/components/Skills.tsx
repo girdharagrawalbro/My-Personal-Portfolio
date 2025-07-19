@@ -105,7 +105,8 @@ const Skills = () => {
               viewport={{ once: true }}
               className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm"
             >
-              <div className="flex items-center mb-6">
+              
+              <div className="flex items-center mb-6 ">
                 <div className="p-3 rounded-full bg-indigo-500/20 mr-4">
                   {category.icon}
                 </div>

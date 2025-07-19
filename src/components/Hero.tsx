@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
-import { FaArrowRight, FaDownload, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaArrowRight, FaDownload, FaGithub, FaLinkedinIn, FaLink, FaInstagram } from 'react-icons/fa';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import useTheme from '../hooks/useTheme';
 import ShinyText from '../ui/ShinyText';
@@ -14,7 +14,13 @@ const Hero = () => {
   const isInView = useInView(mainRef, { once: true });
   const { theme } = useTheme();
   const [isHovering, setIsHovering] = useState(false);
+const socialLinks = [
+    { icon: <FaGithub />, url: "https://github.com/girdharagrawalbro" },
+    { icon: <FaLinkedinIn />, url: "https://www.linkedin.com/in/girdhar-agrawal-124346220/" },
+    { icon: <FaInstagram />, url: "https://www.instagram.com/codewithgirdhar/" },
+    { icon: <FaLink />, url: "https://codewithgirdhar.great-site.net/" }
 
+  ];
   const techStack = [
     { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
     { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
@@ -93,8 +99,7 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-              >
-                Girdhar Agrawal
+              >Girdhar Agrawal
               </motion.h1>
               <h2 className="text-xl md:text-2xl font-medium mb-6">
                 I'm a <span ref={typedRef} className="text-indigo-500 dark:text-indigo-400"></span>
@@ -106,15 +111,15 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-             
-                <DecryptedText
-                  text="Full Stack Developer specializing in modern web technologies. Building innovative solutions that bridge technology and user needs."
-                  animateOn="view"
-                  revealDirection="start"
-                  speed={190}
-                  maxIterations={10}
-                  className="text-lg md:text-xl mb-8 leading-relaxed"
-                />
+
+              <DecryptedText
+                text="Full Stack Developer specializing in modern web technologies. Building innovative solutions that bridge technology and user needs."
+                animateOn="view"
+                revealDirection="start"
+                speed={190}
+                maxIterations={10}
+                className="text-lg md:text-xl mb-8 leading-relaxed"
+              />
             </motion.div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 mt-5">
               <motion.a
@@ -141,26 +146,21 @@ const Hero = () => {
 
             {/* Social Links */}
             <div className="flex justify-center lg:justify-start gap-4">
-              {[
-                { icon: <FaGithub className="text-2xl" />, url: "https://github.com/yourusername" },
-                { icon: <FaLinkedin className="text-2xl" />, url: "https://linkedin.com/in/yourprofile" },
-                { icon: <FaTwitter className="text-2xl" />, url: "https://twitter.com/yourhandle" }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all"
-                  whileHover={{ y: -5, scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + index * 0.1 }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+              
+
+              {socialLinks.map((social, index) => (
+                            <motion.a
+                              key={index}
+                              href={social.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              whileHover={{ y: -5, scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              className="p-3 rounded-full bg-gray-800 hover:bg-indigo-600 text-white transition-colors"
+                            >
+                              {social.icon}
+                            </motion.a>
+                          ))}
             </div>
           </motion.div>
 
@@ -181,7 +181,7 @@ const Hero = () => {
               >
                 <img
                   src={theme === 'dark' ? "/img.png" : "/img.png"}
-                  alt="Girdhar Agrawal"
+                  alt="Girdhar Agrawal Profile Image"
                   className="w-full h-auto object-cover"
                 />
                 <motion.div

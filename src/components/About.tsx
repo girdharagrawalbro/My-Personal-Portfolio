@@ -3,7 +3,7 @@ import { SiJavascript, SiReact, SiNodedotjs, SiPython, SiMongodb, SiPostgresql }
 import { motion } from "framer-motion";
 import ScrambledText from '../ui/ScrambledText'
 const About = () => {
- 
+
 
   const skills = [
     { name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" /> },
@@ -56,7 +56,7 @@ const About = () => {
                 radius={100}
                 duration={1.2}
                 speed={0.5}
-                className="scrambled-text-demo m-[0vw] max-w-[300px]"
+                className="scrambled-text-demo m-[0vw] max-w-[400px]"
               >
                 <p className="text-lg leading-relaxed">
                   Hello! I'm <span className="text-indigo-300 font-medium">Girdhar</span>, a passionate Full Stack Developer currently pursuing my
