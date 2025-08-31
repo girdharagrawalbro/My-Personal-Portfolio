@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -6,9 +6,10 @@ import {
   FaStar,
   FaExclamationTriangle,
   FaCalendarAlt,
-  FaSpinner
+  FaSpinner,
+  FaTimes
 } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '../types/project.d.ts';
 import { getLanguageColor } from '../utils/helpers';
 
@@ -20,6 +21,7 @@ const Projects = () => {
   const [loadingRepos, setLoadingRepos] = useState(true);
   const [errorProjects, setErrorProjects] = useState('');
   const [errorRepos, setErrorRepos] = useState('');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -192,7 +194,7 @@ const Projects = () => {
                       );
                     })}
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-3">
                     {project.url && project.url !== 'no link' && (
                       <a
                         href={project.url}
@@ -215,12 +217,75 @@ const Projects = () => {
                         <span>Code</span>
                       </a>
                     )}
+                    {project.caseStudy && (
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="flex items-center gap-1 text-sm px-3 py-2 rounded bg-purple-600 hover:bg-purple-700 text-white transition-colors"
+                      >
+                        <span>Show Case Study</span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         )}
+
+        {/* Case Study Modal */}
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="bg-gray-900 border border-gray-700 rounded-2xl p-6 max-w-2xl w-full relative text-white shadow-2xl"
+              >
+                <button
+                  className="absolute top-4 right-4 text-gray-400 hover:text-red-400"
+                  onClick={() => setSelectedProject(null)}
+                >
+                  <FaTimes size={20} />
+                </button>
+                <h3 className="text-2xl font-bold mb-4">{selectedProject.title}</h3>
+                <p className="text-gray-300 mb-4">{selectedProject.description}</p>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-indigo-400 font-semibold">Problem</h4>
+                    <p className="text-gray-300">
+                      {typeof selectedProject.caseStudy === 'object' && selectedProject.caseStudy?.problem
+                        ? selectedProject.caseStudy.problem
+                        : ''}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-indigo-400 font-semibold">Solution</h4>
+                    <p className="text-gray-300">
+                      {typeof selectedProject.caseStudy === 'object' && selectedProject.caseStudy?.solution
+                        ? selectedProject.caseStudy.solution
+                        : ''}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-indigo-400 font-semibold">Impact</h4>
+                    <p className="text-gray-300">
+                      {typeof selectedProject.caseStudy === 'object' && selectedProject.caseStudy?.impact
+                        ? selectedProject.caseStudy.impact
+                        : ''}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* GitHub Repos Section */}
         <motion.div

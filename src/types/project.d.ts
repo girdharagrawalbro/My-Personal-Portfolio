@@ -10,4 +10,9 @@ export interface Project {
   category: 'frontend' | 'backend' | 'fullstack';
   date?: string;
   lastUpdated?: string;
+   caseStudy?: {
+    problem?: string;
+    solution?: string;
+    impact?: string;
+  };
 }

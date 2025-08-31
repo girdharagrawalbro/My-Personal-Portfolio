@@ -73,7 +73,7 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25 }}
-            className="absolute bottom-20 right-0 w-80 h-96 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-xl shadow-xl flex flex-col"
+            className="absolute bottom-20 right-0 w-60 h-96 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-xl shadow-xl flex flex-col"
           >
             {/* Chat Header */}
             <div className="bg-indigo-600/90 p-3 rounded-t-xl flex justify-between items-center">
