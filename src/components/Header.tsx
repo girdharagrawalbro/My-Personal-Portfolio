@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
-import useTheme from '../hooks/useTheme';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,28 +21,6 @@ const Header = () => {
           <a href="#skills" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={closeMenu}>Skills</a>
           <a href="#projects" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={closeMenu}>Projects</a>
           <a href="#contact" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={closeMenu}>Contact</a>
-
-          <div className="relative ml-4">
-            <input
-              type="checkbox"
-              id="theme-switch"
-              className="hidden"
-              checked={theme === 'dark'}
-              onChange={toggleTheme}
-            />
-            <label htmlFor="theme-switch" className="flex items-center cursor-pointer">
-              <div className="relative">
-                <div className={`w-12 h-6 rounded-full shadow-inner transition-colors duration-300 ${theme === 'dark' ? 'bg-gray-700' : 'bg-yellow-100'}`}></div>
-                <div className={`absolute top-0 w-6 h-6 rounded-full shadow transform transition-transform duration-300 flex items-center justify-center ${theme === 'dark' ? 'translate-x-6 bg-gray-300' : 'translate-x-0 bg-yellow-400'}`}>
-                  {theme === 'dark' ? (
-                    <FaMoon className="text-gray-800 text-xs" />
-                  ) : (
-                    <FaSun className="text-yellow-600 text-xs" />
-                  )}
-                </div>
-              </div>
-            </label>
-          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -56,27 +31,6 @@ const Header = () => {
             <a href="#skills" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={closeMenu}>Skills</a>
             <a href="#projects" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={closeMenu}>Projects</a>
             <a href="#contact" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={closeMenu}>Contact</a>
-            <div className="py-2 flex justify-center">
-              <input
-                type="checkbox"
-                id="mobile-theme-switch"
-                className="hidden"
-                checked={theme === 'dark'}
-                onChange={toggleTheme}
-              />
-              <label htmlFor="mobile-theme-switch" className="flex items-center cursor-pointer">
-                <div className="relative">
-                  <div className={`w-12 h-6 rounded-full shadow-inner transition-colors duration-300 ${theme === 'dark' ? 'bg-gray-700' : 'bg-yellow-100'}`}></div>
-                  <div className={`absolute top-0 w-6 h-6 rounded-full shadow transform transition-transform duration-300 flex items-center justify-center ${theme === 'dark' ? 'translate-x-6 bg-gray-300' : 'translate-x-0 bg-yellow-400'}`}>
-                    {theme === 'dark' ? (
-                      <FaMoon className="text-gray-800 text-xs" />
-                    ) : (
-                      <FaSun className="text-yellow-600 text-xs" />
-                    )}
-                  </div>
-                </div>
-              </label>
-            </div>
           </div>
 
           <div className="flex-1"></div>
