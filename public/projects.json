@@ -284,5 +284,16 @@
     "github": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
     "tags": ["AI", "Node.js", "Twilo"],
     "category": "Backend"
+  },
+  {
+    "id": "26",
+    "title": "TalkEasy (Voice Agent)",
+    "image": "voiceagent.png",
+    "description": "Project for the 30 Days Murf AI Agent Challenge — building a voice-enabled conversational assistant with FastAPI, Murf TTS, AssemblyAI STT, and Gemini LLM, from scratch in 30 days.",
+    "url": "https://voice-agent-girdhar.onrender.com/",
+    "repo": "https://github.com/girdharagrawalbro/30days-murf-ai-agent",
+    "github": "https://github.com/girdharagrawalbro/30days-murf-ai-agent",
+    "tags": ["Gemini-AI", "Flask", "Python", "MURF.ai","Assembly.ai", "Voice-Agent"],
+    "category": "Full Stack"
   }
 ]
