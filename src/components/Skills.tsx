@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiDatabase, FiLayers, FiCpu, FiTool } from 'react-icons/fi';
 import { FaReact, FaNodeJs, FaPython, FaJava, FaDocker, FaAws, FaGitAlt } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiMongodb, SiPostgresql, SiTailwindcss, SiNextdotjs, SiFirebase, SiGraphql, SiRedux, SiJest, SiFigma, SiPostman, SiGithub } from 'react-icons/si';
+import { SiTypescript, SiJavascript, SiMongodb, SiPostgresql, SiTailwindcss, SiNextdotjs, SiFirebase, SiGraphql, SiRedux, SiJest, SiFigma, SiPostman, SiGithub, SiSupabase } from 'react-icons/si';
 
 const skillsData = [
   {
@@ -21,7 +21,7 @@ const skillsData = [
     skills: [
       { name: 'Node.js', percent: 85, icon: <FaNodeJs className="text-green-500" /> },
       { name: 'Python', percent: 75, icon: <FaPython className="text-blue-500" /> },
-      { name: 'Java', percent: 70, icon: <FaJava className="text-red-500" /> }
+      // { name: 'Java', percent: 70, icon: <FaJava className="text-red-500" /> }
     ]
   },
   {
@@ -29,7 +29,8 @@ const skillsData = [
     icon: <FiDatabase className="text-green-400" />,
     skills: [
       { name: 'MongoDB', percent: 80, icon: <SiMongodb className="text-green-400" /> },
-      { name: 'PostgreSQL', percent: 75, icon: <SiPostgresql className="text-blue-600" /> }
+      { name: 'PostgreSQL', percent: 50, icon: <SiPostgresql className="text-blue-600" /> },
+      { name: 'SupaBase', percent: 50, icon: <SiSupabase className="text-blue-600" /> },  
     ]
   }
 ];
