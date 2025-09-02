@@ -2,7 +2,7 @@
   {
     "id": "1",
     "title": "CodeWithGirdhar",
-    "image": "ss(1).png",
+    "image": "project-1-ss(1).png",
     "description": "This is my personal blogging website, where I post blogs about coding.",
     "url": "https://codewithgirdhar.great-site.net/",
     "repo": "",
@@ -13,7 +13,7 @@
   {
     "id": "2",
     "title": "EventFlow",
-    "image": "event.jpg",
+    "image": "project-2-event.jpg",
     "description": "An Event Management System with real-time notifications and event score system.",
     "url": "https://event-flow-eight.vercel.app/",
     "repo": "EventFlow",
@@ -24,7 +24,7 @@
   {
     "id": "3",
     "title": "Recipe Region",
-    "image": "web.jpg",
+    "image": "project-3-web.jpg",
     "description": "A food and recipe showcase.",
     "url": "",
     "repo": "",
@@ -35,7 +35,7 @@
   {
     "id": "4",
     "title": "Blockchain Certification System",
-    "image": "certchain.png",
+    "image": "project-4-certchain.png",
     "description": "Blockchain Certification System to issue and verify certificates.",
     "url": "https://github.com/girdharagrawalbro/HackIndia-Spark-4-2025-Code-Avengers",
     "repo": "HackIndia-Spark-4-2025-Code-Avengers",
@@ -46,7 +46,7 @@
   {
     "id": "5",
     "title": "Decentralized Crowd Funding System",
-    "image": "crowdfunding.jpg",
+    "image": "project-5-crowdfunding.jpg",
     "description": "This is a decentralized crowd funding web app in blockchain platform with payments using ethers (cryptocurrency).",
     "url": "https://crowdfunding-dapp-liard.vercel.app/",
     "repo": "Crowd-Funding-Dapp",
@@ -57,7 +57,7 @@
   {
     "id": "6",
     "title": "Social Square",
-    "image": "socialsquare.jpg",
+    "image": "project-6-socialsquare.jpg",
     "description": "A social media platform where you can interact with other people.",
     "url": "https://social-square.netlify.app/",
     "repo": "Social-Square-Social-Media-Platform",
@@ -68,7 +68,7 @@
   {
     "id": "7",
     "title": "Gemini Clone",
-    "image": "chatgpt.jpg",
+    "image": "project-7-chatgpt.jpg",
     "description": "A basic clone of Gemini AI using Gemini AI API.",
     "url": "https://chatgpt-girdhar.netlify.app/",
     "repo": "Gemini-Clone",
@@ -79,7 +79,7 @@
   {
     "id": "8",
     "title": "Infinity E-Sports",
-    "image": "esports.jpg",
+    "image": "project-8-esports.jpg",
     "description": "Platform to manage the Infinity E-Sports Club Data.",
     "url": "https://rsdc-infinity-esports.netlify.app/",
     "repo": "",
@@ -90,7 +90,7 @@
   {
     "id": "9",
     "title": "Farming with AI",
-    "image": "agriai.jpg",
+    "image": "project-9-agriai.jpg",
     "description": "This project gives suggestions according to user input (text, image) using AI.",
     "url": "https://farmingwithai.netlify.app/",
     "repo": "Agriculture-using-ML",
@@ -101,7 +101,7 @@
   {
     "id": "10",
     "title": "Agriculture using ML",
-    "image": "agriai.jpg",
+    "image": "project-9-agriai.jpg",
     "description": "This project gives suggestions according to user input (text) using ML.",
     "url": "https://github.com/girdharagrawalbro/Agriculture-using-ML",
     "repo": "Agriculture-using-ML",
@@ -112,7 +112,7 @@
   {
     "id": "11",
     "title": "Instagram using Next.js",
-    "image": "web.jpg",
+    "image": "project-3-web.jpg",
     "description": "Instagram clone built with Next.js.",
     "url": "https://github.com/girdharagrawalbro/Instagram-Next-js-",
     "repo": "Instagram-Next-js",
@@ -123,7 +123,7 @@
   {
     "id": "12",
     "title": "Realtime Chat",
-    "image": "realtime.jpg",
+    "image": "project-12-realtime.jpg",
     "description": "Connect and chat with people in realtime using Socket.io.",
     "url": "https://chatapp-girdhar.netlify.app/",
     "repo": "",
@@ -134,7 +134,7 @@
   {
     "id": "13",
     "title": "Todos App",
-    "image": "todos.jpg",
+    "image": "project-13-todos.jpg",
     "description": "Organize your daily tasks.",
     "url": "https://tooods.netlify.app/",
     "repo": "",
@@ -145,7 +145,7 @@
   {
     "id": "14",
     "title": "Book Store",
-    "image": "web.jpg",
+    "image": "project-3-web.jpg",
     "description": "This is my first Next.js project which is currently under development.",
     "url": "https://github.com/girdharagrawalbro/booksstore",
     "repo": "booksstore",
@@ -156,7 +156,7 @@
   {
     "id": "15",
     "title": "Online Exam Portal",
-    "image": "onlineexam.jpg",
+    "image": "project-15-onlineexam.jpg",
     "description": "This is my Full Stack project for taking quiz-based exams online, developed using ReactJs and Node.js.",
     "url": "https://onlineexamgirdhar.netlify.app/",
     "repo": "Online-Exam-Portal",
@@ -167,7 +167,7 @@
   {
     "id": "16",
     "title": "Bhagvat Gita",
-    "image": "gita.jpg",
+    "image": "project-16-gita.jpg",
     "description": "This web app shows phrases of Bhagavad Gita using APIs.",
     "url": "https://bhagvat-gite.netlify.app/",
     "repo": "",
@@ -178,7 +178,7 @@
   {
     "id": "17",
     "title": "Chat Box",
-    "image": "web.jpg",
+    "image": "project-3-web.jpg",
     "description": "Chatting Website and App.",
     "url": "https://github.com/girdharagrawalbro/ChatBox",
     "repo": "ChatBox",
@@ -189,7 +189,7 @@
   {
     "id": "18",
     "title": "Todolist-PHP",
-    "image": "ss(9).jpeg",
+    "image": "project-18-ss(9).jpeg",
     "description": "This is a website to manage work in daily life.",
     "url": "https://todolist-girdhar.great-site.net/",
     "repo": "",
@@ -200,7 +200,7 @@
   {
     "id": "19",
     "title": "Weather Forecast",
-    "image": "wheather.png",
+    "image": "project-19-wheather.png",
     "description": "This is a website for seeing current weather by searching your area city name with country (like = Raipur,In).",
     "url": "https://wheather-forecast-ga.netlify.app/",
     "repo": "",
@@ -211,7 +211,7 @@
   {
     "id": "20",
     "title": "News Web",
-    "image": "news.png",
+    "image": "project-20-news.png",
     "description": "This is a website for seeing top headlines of any category. The user can search their interests in the search box.",
     "url": "https://news-web-ga.netlify.app/",
     "repo": "",
@@ -222,7 +222,7 @@
   {
     "id": "21",
     "title": "Hotel BlueBird",
-    "image": "ss (2).png",
+    "image": "project-21-ss (2).png",
     "description": "This is a website for hotel management where customers can book hotel rooms online.",
     "url": "https://github.com/girdharagrawalbro/Hotel-Management-System",
     "repo": "Hotel-Management-System",
@@ -233,7 +233,7 @@
   {
     "id": "22",
     "title": "E-Waste Seller",
-    "image": "ss (3).png",
+    "image": "project-22-ss (3).png",
     "description": "This is a website for selling and purchasing E-waste (my college project).",
     "url": "",
     "repo": "",
@@ -244,7 +244,7 @@
   {
     "id": "23",
     "title": "Code With Girdhar (blog)",
-    "image": "ss (4).png",
+    "image": "project-23-ss (4).png",
     "description": "This is a blogging website developed using HTML, CSS, JS and MySQL.",
     "url": "https://github.com/girdharagrawalbro/Blogging-Site-php",
     "repo": "Blogging-Site-php",
@@ -255,7 +255,7 @@
   {
     "id": "24",
     "title": "Spotify Clone",
-    "image": "ss (5).png",
+    "image": "project-24-ss (5).png",
     "description": "List and play songs with various controls.",
     "url": "http://spotifywe-girdhar.great-site.net/",
     "repo": "",
@@ -266,7 +266,7 @@
   {
     "id": "25",
     "title": "CodeWithHarry (clone)",
-    "image": "ss (6).png",
+    "image": "project-25-ss (6).png",
     "description": "Basic clone of CodeWithHarry website.",
     "url": "https://codewithgirdhar.netlify.app/",
     "repo": "",
@@ -277,7 +277,7 @@
    {
     "id": "26",
     "title": "Whatsapp Bot (Event Manager)",
-    "image": "ss (6).png",
+    "image": "project-25-ss (6).png",
     "description": "Event Manager and Schedular using Whatsapp Bot with dedicated Dashoboard.",
     "url": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
     "repo": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
@@ -288,7 +288,7 @@
   {
     "id": "26",
     "title": "TalkEasy (Voice Agent)",
-    "image": "voiceagent.png",
+    "image": "project-26-voiceagent.png",
     "description": "Project for the 30 Days Murf AI Agent Challenge — building a voice-enabled conversational assistant with FastAPI, Murf TTS, AssemblyAI STT, and Gemini LLM, from scratch in 30 days.",
     "url": "https://voice-agent-girdhar.onrender.com/",
     "repo": "https://github.com/girdharagrawalbro/30days-murf-ai-agent",
