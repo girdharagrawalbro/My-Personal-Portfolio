@@ -90,7 +90,7 @@
   {
     "id": "9",
     "title": "Whatsapp Bot (Event Manager)",
-    "image": "project-25-ss (6).png",
+    "image": "project-9-wpbot.png",
     "description": "Event Manager and Schedular using Whatsapp Bot with dedicated Dashoboard.",
     "url": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
     "repo": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
@@ -222,7 +222,7 @@
   {
     "id": "21",
     "title": "Chat Box",
-    "image": "default.jpg",
+    "image": "chatbox.jpg",
     "description": "Chatting Website and App.",
     "url": "https://github.com/girdharagrawalbro/ChatBox",
     "repo": "ChatBox",
@@ -276,7 +276,7 @@
   },
   {
     "id": "26",
-    "title": "Decentralized Crowd Funding System",
+    "title": "Event Flow",
     "image": "project-2-event.jpg",
     "description": "An Event Management System with real-time notifications and event score system.",
     "url": "https://event-flow-eight.vercel.app/",
