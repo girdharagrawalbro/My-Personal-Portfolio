@@ -17,6 +17,8 @@ const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [repos, setRepos] = useState<any[]>([]);
   const [filter, setFilter] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6);
   const [loadingProjects, setLoadingProjects] = useState(true);
   const [loadingRepos, setLoadingRepos] = useState(true);
   const [errorProjects, setErrorProjects] = useState('');
@@ -60,9 +62,20 @@ const Projects = () => {
     fetchRepos();
   }, []);
 
+  // Reset to first page when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
+
   const filteredProjects = filter === 'all'
     ? projects
     : projects.filter(project => project.category === filter);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
@@ -147,7 +160,7 @@ const Projects = () => {
             whileInView={{ opacity: 1 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
           >
-            {filteredProjects.map((project, index) => (
+            {paginatedProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -158,7 +171,7 @@ const Projects = () => {
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
-                    src={`/${project.image || 'default.jpg'}`}
+                    src={`/siteimage/${project.image || 'default.jpg'}`}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                     loading="lazy"
@@ -229,6 +242,46 @@ const Projects = () => {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        )}
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="flex justify-center items-center gap-4 mb-12"
+          >
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white transition-colors"
+            >
+              Previous
+            </button>
+
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-3 py-2 rounded text-sm transition-colors ${currentPage === page
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-gray-700 hover:bg-gray-600 text-gray-300'
+                    }`}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white transition-colors"
+            >
+              Next
+            </button>
           </motion.div>
         )}
 

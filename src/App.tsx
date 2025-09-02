@@ -70,7 +70,7 @@ const App = () => {
                     className="absolute inset-0 flex items-center justify-center text-center"
                   >
                     <BlurText
-                      text="Crafting digital experiences"
+                      text="Crafting Digital Experiences"
                       delay={150}
                       animateBy="words"
                       direction="top"

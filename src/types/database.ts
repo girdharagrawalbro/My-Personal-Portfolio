@@ -15,3 +15,4 @@ export interface Database {
           featured: boolean
           created_at: string
           updated_at: string
+        }}}}}

@@ -140,7 +140,7 @@ const socialLinks = [
                 whileTap={{ scale: 0.95 }}
               >
                 <FaDownload />
-                <span>Download CV</span>
+                <span>Resume</span>
               </motion.a>
             </div>
 
