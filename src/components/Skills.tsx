@@ -21,7 +21,7 @@ const skillsData = [
     skills: [
       { name: 'Node.js', percent: 85, icon: <FaNodeJs className="text-green-500" /> },
       { name: 'Python', percent: 75, icon: <FaPython className="text-blue-500" /> },
-      // { name: 'Java', percent: 70, icon: <FaJava className="text-red-500" /> }
+      { name: 'Java', percent: 70, icon: <FaJava className="text-red-500" /> }
     ]
   },
   {
@@ -30,7 +30,7 @@ const skillsData = [
     skills: [
       { name: 'MongoDB', percent: 80, icon: <SiMongodb className="text-green-400" /> },
       { name: 'PostgreSQL', percent: 50, icon: <SiPostgresql className="text-blue-600" /> },
-      { name: 'SupaBase', percent: 50, icon: <SiSupabase className="text-blue-600" /> },  
+      { name: 'SupaBase', percent: 50, icon: <SiSupabase className="text-blue-600" /> },
     ]
   }
 ];
@@ -106,7 +106,7 @@ const Skills = () => {
               viewport={{ once: true }}
               className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm"
             >
-              
+
               <div className="flex items-center mb-6 ">
                 <div className="p-3 rounded-full bg-indigo-500/20 mr-4">
                   {category.icon}
