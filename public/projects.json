@@ -24,9 +24,9 @@
   {
     "id": "3",
     "title": "Gemini Clone",
-    "image": "project-7-chatgpt.jpg",
+    "image": "project-7-chatgpt.png",
     "description": "A basic clone of Gemini AI using Gemini AI API.",
-    "url": "https://chatgpt-girdhar.netlify.app/",
+    "url": "https://gemini-girdhar.netlify.app/",
     "repo": "Gemini-Clone",
     "github": "https://github.com/girdharagrawalbro/Gemini-Clone",
     "tags": ["React", "AI", "Gemini API"],
