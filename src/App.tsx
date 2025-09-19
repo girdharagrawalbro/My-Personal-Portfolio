@@ -9,15 +9,20 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
+import GithubActivity from './components/GithubActivity';
 import LoadingScreen from './components/LoadingScreen';
 import './App.css';
 import BlurText from './ui/BlurText';
 import { AnimatePresence, motion } from 'framer-motion';
+import type { Project } from './types/project';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const { theme } = useTheme();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [filter, setFilter] = useState('all');
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -88,9 +93,10 @@ const App = () => {
                     <Hero />
                     <About />
                     <Skills />
-                    <Projects />
+                    <Projects filter={filter} setFilter={setFilter} projects={projects} setProjects={setProjects} />
+                    <GithubActivity />
                     <Contact />
-                    <ChatBot />
+                    <ChatBot projects={projects} onFilterChange={setFilter} />
                   </motion.div>
                 )}
               </AnimatePresence>

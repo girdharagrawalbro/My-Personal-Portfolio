@@ -3,39 +3,94 @@ import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const ChatBot = () => {
+interface ChatBotProps {
+  projects: any[];
+  onFilterChange: (filter: string) => void;
+}
+
+const ChatBot: React.FC<ChatBotProps> = ({ projects, onFilterChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
   const [messages, setMessages] = useState<Array<{ text: string, sender: 'user' | 'bot' }>>([]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Initialize Gemini API
-  const genAI = new GoogleGenerativeAI('AIzaSyDo0eD4kH-FMGIa6mrr29TodxlqB5RFfzk');
-
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isTyping]);
+
+  // Initialize Gemini API
+  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+
+  const handleLocalCommand = (command: string): boolean => {
+    const lowerCaseCommand = command.toLowerCase();
+
+    // Command to filter projects
+    const filterMatch = lowerCaseCommand.match(/show me (.*) projects/);
+    if (filterMatch && filterMatch[1]) {
+      const category = filterMatch[1].trim();
+      const validCategories = ['all', 'frontend', 'backend', 'fullstack'];
+      if (validCategories.includes(category)) {
+        onFilterChange(category);
+        setMessages(prev => [...prev, { text: `Sure, here are the ${category} projects.`, sender: 'bot' }]);
+        return true;
+      }
+    }
+
+    // Command to get project details
+    const detailsMatch = lowerCaseCommand.match(/tell me more about (.*)/);
+    if (detailsMatch && detailsMatch[1]) {
+      const projectName = detailsMatch[1].trim().toLowerCase();
+      const project = projects.find(p => p.title.toLowerCase().includes(projectName));
+      if (project) {
+        const projectInfo = `
+          **${project.title}**: ${project.description}
+          It's a ${project.category} project.
+          Tags: ${project.tags.join(', ')}.
+          You can view it live [here](${project.url}) or check out the code [on GitHub](${project.github}).
+        `;
+        setMessages(prev => [...prev, { text: projectInfo, sender: 'bot' }]);
+        return true;
+      }
+    }
+    
+    if (lowerCaseCommand.includes('best project')) {
+        setMessages(prev => [...prev, { text: "Girdhar is particularly proud of 'TalkEasy (Voice Agent)'. It's a voice-enabled conversational assistant built with FastAPI, Murf TTS, AssemblyAI STT, and Gemini LLM.", sender: 'bot' }]);
+        return true;
+    }
+
+    return false;
+  };
+
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
 
-    // Add user message
     const userMessage = inputMessage;
     setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
     setInputMessage('');
     setIsTyping(true);
 
+    if (handleLocalCommand(userMessage)) {
+      setIsTyping(false);
+      return;
+    }
+
+
     try {
       // Get the Gemini model
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
+      const portfolioContext = `You are an expert portfolio assistant for Girdhar Agrawal. Here is his project list: ${JSON.stringify(projects.map(p => ({ title: p.title, description: p.description, category: p.category, tags: p.tags })))}. Be helpful and enthusiastic.`;
+      const fullPrompt = `${portfolioContext}\n\nUser question: "${userMessage}"`;
+
+
       // Generate response
-      const result = await model.generateContent(userMessage);
+      const result = await model.generateContent(fullPrompt);
       const response = await result.response;
       const text = response.text();
 
@@ -73,7 +128,7 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25 }}
-            className="absolute bottom-20 right-0 w-60 h-96 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-xl shadow-xl flex flex-col"
+            className="absolute bottom-20 right-0 w-80 h-96 bg-gray-800/90 backdrop-blur-sm border border-gray-700 rounded-xl shadow-xl flex flex-col"
           >
             {/* Chat Header */}
             <div className="bg-indigo-600/90 p-3 rounded-t-xl flex justify-between items-center">
@@ -92,8 +147,16 @@ const ChatBot = () => {
             {/* Messages Container */}
             <div className="flex-1 p-4 overflow-y-auto">
               {messages.length === 0 ? (
-                <div className="text-center text-gray-400 h-full flex items-center justify-center">
-                  <p>Ask me anything about Girdhar's portfolio!</p>
+                <div className="text-center text-gray-400 h-full flex flex-col items-center justify-center">
+                  <p className="mb-4">Ask me about Girdhar's portfolio!</p>
+                  <div className='text-left text-sm'>
+                    <p className='font-bold'>Try these commands:</p>
+                    <ul className='list-disc list-inside'>
+                        <li>Show me frontend projects</li>
+                        <li>Tell me more about TalkEasy</li>
+                        <li>What is his best project?</li>
+                    </ul>
+                  </div>
                 </div>
               ) : (
                 <div className="space-y-3">

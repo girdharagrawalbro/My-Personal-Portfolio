@@ -50,8 +50,7 @@ const About = () => {
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Text Content */}
           <div className="lg:w-1/2">
-            <div
-            >
+            <div>
               <ScrambledText
                 radius={100}
                 duration={1.2}

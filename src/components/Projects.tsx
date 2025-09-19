@@ -13,10 +13,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '../types/project.d.ts';
 import { getLanguageColor } from '../utils/helpers';
 
-const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
+interface ProjectsProps {
+  filter: string;
+  setFilter: (filter: string) => void;
+  projects: Project[];
+  setProjects: (projects: Project[]) => void;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setProjects }) => {
   const [repos, setRepos] = useState<any[]>([]);
-  const [filter, setFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6);
   const [loadingProjects, setLoadingProjects] = useState(true);
@@ -60,7 +65,7 @@ const Projects = () => {
 
     fetchProjects();
     fetchRepos();
-  }, []);
+  }, [setProjects]);
 
   // Reset to first page when filter changes
   useEffect(() => {
