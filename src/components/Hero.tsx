@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Typed from 'typed.js';
 import { FaArrowRight, FaDownload, FaGithub, FaLinkedinIn, FaLink, FaInstagram } from 'react-icons/fa';
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
-import  {DndContext, useSensor, useSensors, PointerSensor } from '@dnd-kit/core';
+import  {DndContext, useSensor, useSensors, PointerSensor, TouchSensor } from '@dnd-kit/core';
 import useTheme from '../hooks/useTheme';
 import ShinyText from '../ui/ShinyText';
 import DecryptedText from '../ui/DecryptedText';
@@ -15,16 +15,39 @@ const Hero = () => {
   const controls = useAnimation();
   const isInView = useInView(mainRef, { once: true });
   const { theme } = useTheme();
-  const [droppedItems, setDroppedItems] = useState<string[]>([]);
-  const [isComplete, setIsComplete] = useState(false);  const sensors = useSensors(
-    useSensor(PointerSensor, {
+  const [isComplete, setIsComplete] = useState(false);
+  const [selectedTechId, setSelectedTechId] = useState<string | null>(null);
+  const [completedTech, setCompletedTech] = useState<string[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check for mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Check for game completion
+  useEffect(() => {
+    if (completedTech.length === techStack.length && completedTech.length > 0) {
+      setIsComplete(true);
+    }
+  }, [completedTech]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor, {
       activationConstraint: {
-        distance: 8,
+        delay: 250,
+        tolerance: 5,
       },
     })
-  );
-
-  const socialLinks = [
+  );  const socialLinks = [
     { icon: <FaGithub />, url: "https://github.com/girdharagrawalbro" },
     { icon: <FaLinkedinIn />, url: "https://www.linkedin.com/in/girdhar-agrawal-124346220/" },
     { icon: <FaInstagram />, url: "https://www.instagram.com/codewithgirdhar/" },
@@ -60,21 +83,36 @@ const Hero = () => {
     }
   }, [isInView, controls]);
 
+    const handleDragStart = (event: any) => {
+    setSelectedTechId(event.active.id);
+  };
+
   const handleDragEnd = (event: any) => {
-    if (event.over && event.over.id === 'drop-zone') {
-      const itemName = event.active.id;
-      if (!droppedItems.includes(itemName)) {
-        const newDroppedItems = [...droppedItems, itemName];
-        setDroppedItems(newDroppedItems);
-        if (newDroppedItems.length === techStack.length) {
-          setIsComplete(true);
-        }
+    const { over } = event;
+    
+    if (over && over.id === 'game-area' && selectedTechId && selectedTechId !== 'complete') {
+      const newCompletedTech = [...completedTech, selectedTechId];
+      setCompletedTech(newCompletedTech);
+      setSelectedTechId(newCompletedTech.length === techStack.length ? 'complete' : null);
+    }
+    setSelectedTechId(null);
+  };
+
+  // Mobile click handler
+  const handleMobileClick = (techId: string) => {
+    if (isMobile && !completedTech.includes(techId)) {
+      const newCompletedTech = [...completedTech, techId];
+      setCompletedTech(newCompletedTech);
+      
+      // Show completion message if all techs are selected
+      if (newCompletedTech.length === techStack.length) {
+        setSelectedTechId('complete');
       }
     }
   };
 
   return (
-    <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+    <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}>
       <section
         id="home"
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
@@ -200,13 +238,21 @@ const Hero = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                     >
-                      <DropZone droppedItems={droppedItems} techStack={techStack} />
+                      <DropZone droppedItems={completedTech} techStack={techStack} />
                       <div className="flex flex-wrap justify-center gap-4 mt-8">
                         {techStack.map(tech => (
-                          <DraggableTech key={tech.name} tech={tech} isDropped={droppedItems.includes(tech.name)} />
+                          <DraggableTech 
+                            key={tech.name} 
+                            tech={tech} 
+                            isDropped={completedTech.includes(tech.name)}
+                            onMobileClick={handleMobileClick}
+                            isMobile={isMobile}
+                          />
                         ))}
                       </div>
-                      <p className="text-gray-400 mt-4 text-sm">Drag the icons to build my stack!</p>
+                      <p className="text-gray-400 mt-4 text-sm">
+                        {isMobile ? 'Tap the icons to build my stack!' : 'Drag the icons to build my stack!'}
+                      </p>
                     </motion.div>
                   ) : (
                     <motion.div

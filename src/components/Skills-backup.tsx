@@ -25,7 +25,6 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 bg-black relative z-10">
       <div className="container mx-auto px-6">
-        {/* Header - Static for testing */}
         <div className="mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
             <span className="text-indigo-400">02.</span> Skills & Tools
@@ -37,13 +36,7 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Frontend Skills */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center relative z-10"
-          >
+          <div className="text-center relative z-10">
             <div className="flex items-center justify-center mb-8">
               <div className="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center mr-3">
                 <span className="text-2xl">🎨</span>
@@ -65,16 +58,10 @@ const Skills = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Backend Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center relative z-10"
-          >
+          <div className="text-center relative z-10">
             <div className="flex items-center justify-center mb-8">
               <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mr-3">
                 <span className="text-2xl">⚙️</span>
@@ -96,16 +83,10 @@ const Skills = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Database Skills */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-center relative z-10"
-          >
+          <div className="text-center relative z-10">
             <div className="flex items-center justify-center mb-8">
               <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mr-3">
                 <span className="text-2xl">🗄️</span>
@@ -127,33 +108,23 @@ const Skills = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Additional Skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 text-center"
-        >
+        <div className="mt-16 text-center">
           <h3 className="text-xl font-semibold text-white mb-6">Other Technologies</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {['Git', 'Docker', 'AWS', 'Vercel', 'Firebase', 'REST APIs', 'GraphQL'].map((tech, index) => (
-              <motion.span
+              <span
                 key={tech}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 + 1 }}
                 className="px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-gray-700 hover:border-indigo-500 hover:text-white transition-colors"
               >
                 {tech}
-              </motion.span>
+              </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

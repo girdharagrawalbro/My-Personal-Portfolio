@@ -49,7 +49,7 @@ const App = () => {
         ) : (
           <>
             <Header />
-            <main className="relative bg-black text-white min-h-screen flex flex-col items-center justify-center overflow-hidden">
+            <main className="relative bg-black text-white min-h-screen overflow-hidden">
 
               {/* Animated background elements */}
               <div className="absolute inset-0 overflow-hidden z-0">

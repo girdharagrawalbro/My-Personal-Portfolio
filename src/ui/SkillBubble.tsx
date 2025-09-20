@@ -32,17 +32,18 @@ const SkillBubble = ({ name, level, icon, color, delay = 0 }: SkillBubbleProps) 
 
   return (
     <motion.div
-      className="relative"
+      className="relative will-change-transform"
       variants={floatingVariants}
       initial="initial"
       animate="animate"
+      viewport={{ once: false }}
       whileHover={{ 
         scale: 1.2,
-        zIndex: 10,
         transition: { duration: 0.3 }
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
+      style={{ zIndex: isHovered ? 20 : 1 }}
     >
       <motion.div
         className={`
