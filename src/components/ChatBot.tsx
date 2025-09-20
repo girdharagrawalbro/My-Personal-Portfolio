@@ -185,9 +185,9 @@ const ChatBot: React.FC<ChatBotProps> = ({ projects, onFilterChange }) => {
                       </div>
                     </div>
                   )}
-                  <div ref={messagesEndRef} />
                 </div>
               )}
+              <div ref={messagesEndRef} />
             </div>
 
             {/* Input Area */}

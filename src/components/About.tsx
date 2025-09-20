@@ -51,109 +51,227 @@ const About = () => {
           {/* Text Content */}
           <div className="lg:w-1/2">
             <div>
-              <ScrambledText
-                radius={100}
-                duration={1.2}
-                speed={0.5}
-                className="scrambled-text-demo m-[0vw] max-w-[400px]"
-              >
-                <p className="text-lg leading-relaxed">
-                  Hello! I'm <span className="text-indigo-300 font-medium">Girdhar</span>, a passionate Full Stack Developer currently pursuing my
-                  Master of Computer Applications (MCA) from Rungta Group of Institutions.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  I specialize in building exceptional digital experiences with clean, efficient code.
-                  My journey in web development started when I built my first website, and I've been
-                  hooked ever since.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  When I'm not coding, you can find me contributing to open-source projects,
-                  learning new technologies, or sharing my knowledge through blog posts.
-                </p>
-              </ScrambledText>
+           <ScrambledText
+  radius={100}
+  duration={1.2}
+  speed={0.5}
+  className="scrambled-text-demo m-[0vw] max-w-[400px]"
+>
+  <div className="text-lg leading-relaxed mb-4">
+    Hello! I'm <span className="text-indigo-300 font-medium">Girdhar</span>, a passionate Full Stack Developer currently pursuing my
+    Master of Computer Applications (MCA) from Rungta Group of Institutions.
+  </div>
+  <div className="text-lg leading-relaxed mb-4">
+    I specialize in building exceptional digital experiences with clean, efficient code.
+    My journey in web development started when I built my first website, and I've been
+    hooked ever since.
+  </div>
+  <div className="text-lg leading-relaxed">
+    When I'm not coding, you can find me contributing to open-source projects,
+    learning new technologies, or sharing my knowledge through blog posts.
+  </div>
+</ScrambledText>
+
             </div>
 
           </div>
 
-          {/* Terminal */}
+          {/* Interactive Terminal */}
           <div className="lg:w-1/2 w-full">
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
             >
-              <div className="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden shadow-xl">
+              <div className="bg-gradient-to-br from-gray-900 to-black border border-indigo-500/30 rounded-xl overflow-hidden shadow-2xl backdrop-blur-sm">
                 {/* Terminal Header */}
-                <div className="bg-gray-900 px-4 py-3 flex items-center border-b border-gray-700">
-                  <div className="flex space-x-2 mr-4">
-                    <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                    <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                    <span className="w-3 h-3 rounded-full bg-green-500"></span>
+                <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-4 py-3 flex items-center justify-between border-b border-indigo-500/20">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex space-x-2">
+                      <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors cursor-pointer"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 transition-colors cursor-pointer"></div>
+                    </div>
+                    <div className="text-gray-400 text-sm font-mono flex items-center">
+                      <span className="text-indigo-400">girdhar</span>
+                      <span className="text-gray-500">@</span>
+                      <span className="text-green-400">portfolio</span>
+                      <span className="text-gray-500">:~</span>
+                    </div>
                   </div>
-                  <div className="text-gray-400 text-sm font-mono">girdhar@portfolio:~</div>
+                  <div className="text-xs text-gray-500 font-mono">zsh</div>
                 </div>
 
                 {/* Terminal Body */}
-                <div className="p-4 font-mono text-gray-300">
-                  {/* Whoami Section with Icons */}
-                  <div className="mb-6">
-                    <div className="flex items-center text-green-400 mb-1">
-                      <span className="mr-2">$</span> whoami
+                <div className="p-6 font-mono text-sm text-gray-300 space-y-6">
+                  
+                  {/* Whoami Command */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="flex items-center text-green-400 mb-3">
+                      <span className="text-indigo-400 mr-2">❯</span>
+                      <span className="text-blue-400">whoami</span>
                     </div>
-                    <div className="ml-6 mt-2">
-                      <div className="flex flex-wrap gap-4">
-                        <div className="flex items-center space-x-2 bg-gray-700/50 border border-gray-600 rounded-full px-4 py-2">
-                          <FaCode className="text-indigo-400" />
-                          <span>Full Stack Developer</span>
+                    <div className="ml-6 space-y-3">
+                      <div className="grid grid-cols-1 gap-2">
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.8 }}
+                          viewport={{ once: true }}
+                          className="flex items-center space-x-3 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 rounded-lg px-4 py-2 hover:border-indigo-400/50 transition-colors"
+                        >
+                          <FaCode className="text-indigo-400 text-lg" />
+                          <span className="text-gray-200">Full Stack Developer</span>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 1.0 }}
+                          viewport={{ once: true }}
+                          className="flex items-center space-x-3 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-lg px-4 py-2 hover:border-emerald-400/50 transition-colors"
+                        >
+                          <FaGraduationCap className="text-emerald-400 text-lg" />
+                          <span className="text-gray-200">MCA Student</span>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 1.2 }}
+                          viewport={{ once: true }}
+                          className="flex items-center space-x-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-lg px-4 py-2 hover:border-purple-400/50 transition-colors"
+                        >
+                          <FaLaptopCode className="text-purple-400 text-lg" />
+                          <span className="text-gray-200">Tech Enthusiast</span>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Skills Command */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 1.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="flex items-center text-green-400 mb-3">
+                      <span className="text-indigo-400 mr-2">❯</span>
+                      <span className="text-blue-400">cat</span>
+                      <span className="text-yellow-400 ml-2">skills.json</span>
+                    </div>
+                    <div className="ml-6">
+                      <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4">
+                        <div className="text-gray-400 text-xs mb-2">// Primary Technologies</div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {skills.slice(0, 4).map((skill, index) => (
+                            <motion.div
+                              key={index}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 1.6 + index * 0.1 }}
+                              viewport={{ once: true }}
+                              whileHover={{ scale: 1.05 }}
+                              className="flex items-center space-x-2 bg-gray-700/30 border border-gray-600/50 rounded-md px-3 py-2 hover:border-indigo-500/50 transition-all cursor-pointer"
+                            >
+                              {skill.icon}
+                              <span className="text-sm">{skill.name}</span>
+                            </motion.div>
+                          ))}
                         </div>
-                        <div className="flex items-center space-x-2 bg-gray-700/50 border border-gray-600 rounded-full px-4 py-2">
-                          <FaGraduationCap className="text-indigo-400" />
-                          <span>MCA Student</span>
-                        </div>
-                        <div className="flex items-center space-x-2 bg-gray-700/50 border border-gray-600 rounded-full px-4 py-2">
-                          <FaLaptopCode className="text-indigo-400" />
-                          <span>Tech Enthusiast</span>
+                        <div className="text-gray-400 text-xs mt-3 mb-2">// Databases</div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {skills.slice(4).map((skill, index) => (
+                            <motion.div
+                              key={index}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 2.0 + index * 0.1 }}
+                              viewport={{ once: true }}
+                              whileHover={{ scale: 1.05 }}
+                              className="flex items-center space-x-2 bg-gray-700/30 border border-gray-600/50 rounded-md px-3 py-2 hover:border-green-500/50 transition-all cursor-pointer"
+                            >
+                              {skill.icon}
+                              <span className="text-sm">{skill.name}</span>
+                            </motion.div>
+                          ))}
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* Skills Section */}
-                  <div className="mb-6">
-                    <div className="flex items-center text-green-400 mb-1">
-                      <span className="mr-2">$</span> cat skills.txt
+                  {/* Status Command */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 2.2 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="flex items-center text-green-400 mb-3">
+                      <span className="text-indigo-400 mr-2">❯</span>
+                      <span className="text-blue-400">./check-status.sh</span>
                     </div>
-                    <div className="ml-6 mt-2">
-                      <div className="flex flex-wrap gap-3">
-                        {skills.map((skill, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center space-x-2 bg-gray-700/50 border border-gray-600 rounded-full px-3 py-1"
-                          >
-                            {skill.icon}
-                            <span>{skill.name}</span>
+                    <div className="ml-6">
+                      <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-lg p-4">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <div className="flex items-center space-x-2">
+                            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                            <span className="text-green-400 font-semibold">ONLINE</span>
                           </div>
-                        ))}
+                          <div className="text-gray-400">|</div>
+                          <div className="text-sm text-gray-300">Available for projects</div>
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          Currently: <span className="text-indigo-300">Building awesome web experiences</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* Current Status */}
-                  <div>
-                    <div className="flex items-center text-green-400 mb-1">
-                      <span className="mr-2">$</span> ./current_status.sh
-                    </div>
-                    <div className="ml-6 mt-2 flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                      <span>Currently building awesome web experiences</span>
-                    </div>
-                  </div>
+                  {/* Interactive Cursor */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 2.4 }}
+                    viewport={{ once: true }}
+                    className="flex items-center"
+                  >
+                    <span className="text-indigo-400 mr-2">❯</span>
+                    <motion.div
+                      className="w-2 h-5 bg-indigo-400"
+                      animate={{
+                        opacity: [1, 0, 1],
+                      }}
+                      transition={{
+                        duration: 1.2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </motion.div>
+                </div>
 
-                  {/* Cursor */}
-                  <div className="flex items-center mt-4">
-                    <span className="mr-2">$</span>
-                    <span className="w-2 h-5 bg-green-400 animate-blink"></span>
+                {/* Terminal Footer */}
+                <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-4 py-2 border-t border-indigo-500/20">
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <div className="flex items-center space-x-4">
+                      <span>zsh 5.9</span>
+                      <span>•</span>
+                      <span>Node v18.17.0</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                      <span>Connected</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

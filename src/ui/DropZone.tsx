@@ -1,5 +1,4 @@
 import { useDroppable } from '@dnd-kit/core';
-import React from 'react';
 
 interface Tech {
   name: string;

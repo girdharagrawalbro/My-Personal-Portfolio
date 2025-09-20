@@ -1,85 +1,29 @@
 import { motion } from 'framer-motion';
-import { FiDatabase, FiLayers, FiCpu, FiTool } from 'react-icons/fi';
-import { FaReact, FaNodeJs, FaPython, FaJava, FaDocker, FaAws, FaGitAlt } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiMongodb, SiPostgresql, SiTailwindcss, SiNextdotjs, SiFirebase, SiGraphql, SiRedux, SiJest, SiFigma, SiPostman, SiGithub, SiSupabase } from 'react-icons/si';
-
-const skillsData = [
-  {
-    title: 'Frontend',
-    icon: <FiLayers className="text-indigo-400" />,
-    skills: [
-      { name: 'React', percent: 90, icon: <FaReact className="text-blue-400" /> },
-      { name: 'Next.js', percent: 85, icon: <SiNextdotjs className="text-black dark:text-white" /> },
-      { name: 'TypeScript', percent: 80, icon: <SiTypescript className="text-blue-600" /> },
-      { name: 'JavaScript', percent: 85, icon: <SiJavascript className="text-yellow-400" /> },
-      { name: 'Tailwind CSS', percent: 95, icon: <SiTailwindcss className="text-cyan-400" /> }
-    ]
-  },
-  {
-    title: 'Backend',
-    icon: <FiCpu className="text-purple-400" />,
-    skills: [
-      { name: 'Node.js', percent: 85, icon: <FaNodeJs className="text-green-500" /> },
-      { name: 'Python', percent: 75, icon: <FaPython className="text-blue-500" /> },
-      { name: 'Java', percent: 70, icon: <FaJava className="text-red-500" /> }
-    ]
-  },
-  {
-    title: 'Database',
-    icon: <FiDatabase className="text-green-400" />,
-    skills: [
-      { name: 'MongoDB', percent: 80, icon: <SiMongodb className="text-green-400" /> },
-      { name: 'PostgreSQL', percent: 50, icon: <SiPostgresql className="text-blue-600" /> },
-      { name: 'SupaBase', percent: 50, icon: <SiSupabase className="text-blue-600" /> },
-    ]
-  }
-];
-
-const toolsData = [
-  {
-    category: 'Development Tools',
-    items: [
-      { name: 'VS Code', icon: <FaReact className="text-blue-500" /> },
-      { name: 'Git', icon: <FaGitAlt className="text-orange-500" /> },
-      { name: 'GitHub', icon: <SiGithub className="text-gray-800 dark:text-gray-200" /> },
-      { name: 'Postman', icon: <SiPostman className="text-orange-400" /> }
-    ]
-  },
-  {
-    category: 'DevOps & Cloud',
-    items: [
-      { name: 'Docker', icon: <FaDocker className="text-blue-400" /> },
-      { name: 'AWS', icon: <FaAws className="text-yellow-500" /> },
-      { name: 'Firebase', icon: <SiFirebase className="text-yellow-400" /> }
-    ]
-  },
-  {
-    category: 'Design & Testing',
-    items: [
-      { name: 'Figma', icon: <SiFigma className="text-purple-500" /> },
-      { name: 'Jest', icon: <SiJest className="text-red-400" /> },
-      { name: 'GraphQL', icon: <SiGraphql className="text-pink-500" /> },
-      { name: 'Redux', icon: <SiRedux className="text-purple-400" /> }
-    ]
-  }
-];
+import SkillBubble from '../ui/SkillBubble';
 
 const Skills = () => {
+  const skillsData = {
+    frontend: [
+      { name: 'React', level: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', color: 'bg-blue-500/20 border-blue-400' },
+      { name: 'Next.js', level: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', color: 'bg-gray-500/20 border-gray-400' },
+      { name: 'TypeScript', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', color: 'bg-blue-600/20 border-blue-500' },
+      { name: 'Tailwind CSS', level: 95, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', color: 'bg-cyan-500/20 border-cyan-400' },
+    ],
+    backend: [
+      { name: 'Node.js', level: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', color: 'bg-green-500/20 border-green-400' },
+      { name: 'Python', level: 75, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', color: 'bg-blue-500/20 border-blue-400' },
+      { name: 'Express.js', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', color: 'bg-gray-500/20 border-gray-400' },
+    ],
+    database: [
+  { name: 'MongoDB', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', color: 'bg-green-600/20 border-green-500' },
+  { name: 'PostgreSQL', level: 50, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', color: 'bg-blue-700/20 border-blue-600' },
+  { name: 'SupaBase', level: 50, icon: '🗄️', color: 'bg-emerald-500/20 border-emerald-400' },
+  { name: 'MySQL', level: 60, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', color: 'bg-blue-500/20 border-blue-400' }
+ ],
+  };
   return (
-    <section id="skills" className="relative py-20 overflow-hidden bg-gradient-to-b from-black via-indigo-900 to-black">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-black"></div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.1 }}
-          transition={{ duration: 2 }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 blur-3xl"
-        />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Title */}
+    <section id="skills" className="py-20 bg-black">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,111 +31,130 @@ const Skills = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            <span className="text-indigo-400 mr-2">02.</span>
-            <span className="relative inline-block">
-              Skills & Tools
-            </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+            <span className="text-indigo-400">02.</span> Skills & Tools
           </h2>
+          <p className="text-gray-400 text-center max-w-2xl mx-auto">
+            Hover over the bubbles to see my proficiency levels. The size of each bubble represents my skill level.
+          </p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {skillsData.map((category, categoryIndex) => (
-            <motion.div
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm"
-            >
-
-              <div className="flex items-center mb-6 ">
-                <div className="p-3 rounded-full bg-indigo-500/20 mr-4">
-                  {category.icon}
-                </div>
-                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Frontend Skills */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center mr-3">
+                <span className="text-2xl">🎨</span>
               </div>
-
-              <div className="space-y-5">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 + skillIndex * 0.1 }}
-                    viewport={{ once: true }}
-                    className="skill-item"
-                  >
-                    <div className="flex justify-between items-center mb-2">
-                      <div className="flex items-center">
-                        <div className="mr-3">
-                          {skill.icon}
-                        </div>
-                        <span className="text-gray-300">{skill.name}</span>
-                      </div>
-                      <span className="text-indigo-400 font-medium">{skill.percent}%</span>
-                    </div>
-
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.percent}%` }}
-                        transition={{ duration: 1, delay: 0.3 + skillIndex * 0.1 }}
-                        viewport={{ once: true }}
-                        className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"
-                      />
-                    </div>
-                  </motion.div>
+              <h3 className="text-2xl font-bold text-white">Frontend</h3>
+            </div>
+            
+            <div className="relative min-h-[300px] bg-gray-900/30 rounded-2xl p-8 backdrop-blur-sm border border-gray-800">
+              <div className="flex flex-wrap items-center justify-center gap-6 h-full">
+                {skillsData.frontend.map((skill, index) => (
+                  <SkillBubble
+                    key={skill.name}
+                    name={skill.name}
+                    level={skill.level}
+                    icon={skill.icon}
+                    color={skill.color}
+                    delay={index * 0.2}
+                  />
                 ))}
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+
+          {/* Backend Skills */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mr-3">
+                <span className="text-2xl">⚙️</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white">Backend</h3>
+            </div>
+            
+            <div className="relative min-h-[300px] bg-gray-900/30 rounded-2xl p-8 backdrop-blur-sm border border-gray-800">
+              <div className="flex flex-wrap items-center justify-center gap-6 h-full">
+                {skillsData.backend.map((skill, index) => (
+                  <SkillBubble
+                    key={skill.name}
+                    name={skill.name}
+                    level={skill.level}
+                    icon={skill.icon}
+                    color={skill.color}
+                    delay={index * 0.2 + 1}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Database Skills */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mr-3">
+                <span className="text-2xl">🗄️</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white">Database</h3>
+            </div>
+            
+            <div className="relative min-h-[300px] bg-gray-900/30 rounded-2xl p-8 backdrop-blur-sm border border-gray-800">
+              <div className="flex flex-wrap items-center justify-center gap-6 h-full">
+                {skillsData.database.map((skill, index) => (
+                  <SkillBubble
+                    key={skill.name}
+                    name={skill.name}
+                    level={skill.level}
+                    icon={skill.icon}
+                    color={skill.color}
+                    delay={index * 0.2 + 2}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Tools & Technologies Section */}
+        {/* Additional Skills */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true }}
+          className="mt-16 text-center"
         >
-          <h3 className="text-2xl font-bold text-white mb-8 flex items-center">
-            <FiTool className="text-indigo-400 mr-3" />
-            Tools & Technologies
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {toolsData.map((toolCategory, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+          <h3 className="text-xl font-semibold text-white mb-6">Other Technologies</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {['Git', 'Docker', 'AWS', 'Vercel', 'Firebase', 'REST APIs', 'GraphQL'].map((tech, index) => (
+              <motion.span
+                key={tech}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 + 1 }}
                 viewport={{ once: true }}
-                className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm"
+                className="px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-gray-700 hover:border-indigo-500 hover:text-white transition-colors"
               >
-                <h4 className="text-lg font-semibold text-white mb-4">{toolCategory.category}</h4>
-                <div className="space-y-3">
-                  {toolCategory.items.map((tool, toolIndex) => (
-                    <motion.div
-                      key={toolIndex}
-                      whileHover={{ x: 5 }}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.3, delay: toolIndex * 0.05 }}
-                      viewport={{ once: true }}
-                      className="flex items-center py-2 px-3 rounded-lg hover:bg-gray-700/30 transition-colors"
-                    >
-                      <div className="mr-3 text-xl">
-                        {tool.icon}
-                      </div>
-                      <span className="text-gray-300">{tool.name}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+                {tech}
+              </motion.span>
             ))}
           </div>
         </motion.div>

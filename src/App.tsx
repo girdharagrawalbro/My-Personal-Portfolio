@@ -9,7 +9,6 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
-import GithubActivity from './components/GithubActivity';
 import LoadingScreen from './components/LoadingScreen';
 import './App.css';
 import BlurText from './ui/BlurText';
@@ -94,7 +93,6 @@ const App = () => {
                     <About />
                     <Skills />
                     <Projects filter={filter} setFilter={setFilter} projects={projects} setProjects={setProjects} />
-                    <GithubActivity />
                     <Contact />
                     <ChatBot projects={projects} onFilterChange={setFilter} />
                   </motion.div>
