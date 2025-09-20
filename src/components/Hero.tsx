@@ -40,11 +40,15 @@ const Hero = () => {
   }, [completedTech]);
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8, // Minimum distance before dragging starts
+      },
+    }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 250,
-        tolerance: 5,
+        delay: 250, // Delay before touch becomes drag
+        tolerance: 5, // Tolerance for touch movement
       },
     })
   );  const socialLinks = [
@@ -90,23 +94,32 @@ const Hero = () => {
   const handleDragEnd = (event: any) => {
     const { over } = event;
     
-    if (over && over.id === 'game-area' && selectedTechId && selectedTechId !== 'complete') {
+    if (over && over.id === 'drop-zone' && selectedTechId && selectedTechId !== 'complete') {
       const newCompletedTech = [...completedTech, selectedTechId];
       setCompletedTech(newCompletedTech);
-      setSelectedTechId(newCompletedTech.length === techStack.length ? 'complete' : null);
+      
+      // Check if all techs are completed
+      if (newCompletedTech.length === techStack.length) {
+        setSelectedTechId('complete');
+        setIsComplete(true);
+      } else {
+        setSelectedTechId(null);
+      }
+    } else {
+      setSelectedTechId(null);
     }
-    setSelectedTechId(null);
   };
 
-  // Mobile click handler
+  // Mobile/Desktop click handler - works for both
   const handleMobileClick = (techId: string) => {
-    if (isMobile && !completedTech.includes(techId)) {
+    if (!completedTech.includes(techId)) {
       const newCompletedTech = [...completedTech, techId];
       setCompletedTech(newCompletedTech);
       
       // Show completion message if all techs are selected
       if (newCompletedTech.length === techStack.length) {
         setSelectedTechId('complete');
+        setIsComplete(true);
       }
     }
   };
@@ -250,8 +263,11 @@ const Hero = () => {
                           />
                         ))}
                       </div>
-                      <p className="text-gray-400 mt-4 text-sm">
-                        {isMobile ? 'Tap the icons to build my stack!' : 'Drag the icons to build my stack!'}
+                      <p className="text-gray-400 mt-4 text-sm text-center">
+                        {isMobile 
+                          ? 'Tap the icons to build my tech stack!' 
+                          : 'Drag and drop the icons or click them to build my tech stack!'
+                        }
                       </p>
                     </motion.div>
                   ) : (
