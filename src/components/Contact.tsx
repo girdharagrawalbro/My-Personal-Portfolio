@@ -88,7 +88,7 @@ const Contact = () => {
           className="mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            <span className="text-indigo-400 mr-2">04.</span>
+            <span className="text-indigo-400 mr-2">06.</span>
             <span className="relative inline-block">
               Get In Touch
             </span>

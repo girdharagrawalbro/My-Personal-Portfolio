@@ -17,7 +17,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative py-20 overflow-hidden bg-gradient-to-b from-black via-indigo-900 to-black"
+      className="relative py-20 px-4 overflow-hidden bg-gradient-to-b from-black via-slate-900 to-black"
     >
       {/* Background elements - matching Hero section */}
       <div className="absolute inset-0 overflow-hidden z-0">
@@ -26,7 +26,7 @@ const About = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.1 }}
           transition={{ duration: 2 }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 blur-3xl"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] rounded-full bg-gradient-to-r from-blue-500 to-purple-600 blur-3xl"
         />
       </div>
 
@@ -37,43 +37,49 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className=""
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            <span className="text-indigo-400 mr-2">01.</span>
-            <span className="relative inline-block">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="text-gray-400 font-mono text-lg">01.</span>
+            <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               About Me
             </span>
           </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            A brief introduction to my background and passion for technology.
+          </p>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Text Content */}
           <div className="lg:w-1/2">
-            <div>
-           <ScrambledText
-  radius={100}
-  duration={1.2}
-  speed={0.5}
-  className="scrambled-text-demo m-[0vw] max-w-[400px]"
->
-  <div className="text-lg leading-relaxed mb-4">
-    Hello! I'm <span className="text-indigo-300 font-medium">Girdhar</span>, a passionate Full Stack Developer currently pursuing my
-    Master of Computer Applications (MCA) from Rungta Group of Institutions.
-  </div>
-  <div className="text-lg leading-relaxed mb-4">
-    I specialize in building exceptional digital experiences with clean, efficient code.
-    My journey in web development started when I built my first website, and I've been
-    hooked ever since.
-  </div>
-  <div className="text-lg leading-relaxed">
-    When I'm not coding, you can find me contributing to open-source projects,
-    learning new technologies, or sharing my knowledge through blog posts.
-  </div>
-</ScrambledText>
-
-            </div>
-
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <ScrambledText
+                radius={100}
+                duration={1.2}
+                speed={0.5}
+                className="scrambled-text-demo m-[0vw] max-w-[400px]"
+              >
+                <div className="text-lg text-gray-300 leading-relaxed mb-4">
+                  Hello! I'm <span className="text-blue-300 font-medium">Girdhar</span>, a passionate Full Stack Developer currently pursuing my
+                  Master of Computer Applications (MCA) from Rungta Group of Institutions.
+                </div>
+                <div className="text-lg text-gray-300 leading-relaxed mb-4">
+                  I specialize in building exceptional digital experiences with clean, efficient code.
+                  My journey in web development started when I built my first website, and I've been
+                  hooked ever since.
+                </div>
+                <div className="text-lg text-gray-300 leading-relaxed">
+                  When I'm not coding, you can find me contributing to open-source projects,
+                  learning new technologies, or sharing my knowledge through blog posts.
+                </div>
+              </ScrambledText>
+            </motion.div>
           </div>
 
           {/* Interactive Terminal */}
@@ -84,17 +90,17 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="bg-gradient-to-br from-gray-900 to-black border border-indigo-500/30 rounded-xl overflow-hidden shadow-2xl backdrop-blur-sm">
+              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden shadow-2xl">
                 {/* Terminal Header */}
-                <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-4 py-3 flex items-center justify-between border-b border-indigo-500/20">
+                <div className="bg-slate-900/70 px-4 py-3 flex items-center justify-between border-b border-slate-600/50">
                   <div className="flex items-center space-x-3">
                     <div className="flex space-x-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors cursor-pointer"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 transition-colors cursor-pointer"></div>
+                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
                     <div className="text-gray-400 text-sm font-mono flex items-center">
-                      <span className="text-indigo-400">girdhar</span>
+                      <span className="text-blue-400">girdhar</span>
                       <span className="text-gray-500">@</span>
                       <span className="text-green-400">portfolio</span>
                       <span className="text-gray-500">:~</span>
@@ -114,8 +120,8 @@ const About = () => {
                     viewport={{ once: true }}
                   >
                     <div className="flex items-center text-green-400 mb-3">
-                      <span className="text-indigo-400 mr-2">❯</span>
-                      <span className="text-blue-400">whoami</span>
+                      <span className="text-blue-400 mr-2">❯</span>
+                      <span className="text-white">whoami</span>
                     </div>
                     <div className="ml-6 space-y-3">
                       <div className="grid grid-cols-1 gap-2">
@@ -124,9 +130,9 @@ const About = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.8 }}
                           viewport={{ once: true }}
-                          className="flex items-center space-x-3 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 rounded-lg px-4 py-2 hover:border-indigo-400/50 transition-colors"
+                          className="flex items-center space-x-3 bg-slate-700/30 border border-slate-600/50 rounded-lg px-4 py-2 hover:border-blue-400/50 transition-colors"
                         >
-                          <FaCode className="text-indigo-400 text-lg" />
+                          <FaCode className="text-blue-400 text-lg" />
                           <span className="text-gray-200">Full Stack Developer</span>
                         </motion.div>
                         <motion.div
@@ -134,9 +140,9 @@ const About = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: 1.0 }}
                           viewport={{ once: true }}
-                          className="flex items-center space-x-3 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-lg px-4 py-2 hover:border-emerald-400/50 transition-colors"
+                          className="flex items-center space-x-3 bg-slate-700/30 border border-slate-600/50 rounded-lg px-4 py-2 hover:border-green-400/50 transition-colors"
                         >
-                          <FaGraduationCap className="text-emerald-400 text-lg" />
+                          <FaGraduationCap className="text-green-400 text-lg" />
                           <span className="text-gray-200">MCA Student</span>
                         </motion.div>
                         <motion.div
@@ -144,7 +150,7 @@ const About = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: 1.2 }}
                           viewport={{ once: true }}
-                          className="flex items-center space-x-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-lg px-4 py-2 hover:border-purple-400/50 transition-colors"
+                          className="flex items-center space-x-3 bg-slate-700/30 border border-slate-600/50 rounded-lg px-4 py-2 hover:border-purple-400/50 transition-colors"
                         >
                           <FaLaptopCode className="text-purple-400 text-lg" />
                           <span className="text-gray-200">Tech Enthusiast</span>
@@ -161,12 +167,12 @@ const About = () => {
                     viewport={{ once: true }}
                   >
                     <div className="flex items-center text-green-400 mb-3">
-                      <span className="text-indigo-400 mr-2">❯</span>
-                      <span className="text-blue-400">cat</span>
+                      <span className="text-blue-400 mr-2">❯</span>
+                      <span className="text-white">cat</span>
                       <span className="text-yellow-400 ml-2">skills.json</span>
                     </div>
                     <div className="ml-6">
-                      <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4">
+                      <div className="bg-slate-700/50 border border-slate-600/50 rounded-lg p-4">
                         <div className="text-gray-400 text-xs mb-2">// Primary Technologies</div>
                         <div className="grid grid-cols-2 gap-2">
                           {skills.slice(0, 4).map((skill, index) => (
@@ -177,7 +183,7 @@ const About = () => {
                               transition={{ delay: 1.6 + index * 0.1 }}
                               viewport={{ once: true }}
                               whileHover={{ scale: 1.05 }}
-                              className="flex items-center space-x-2 bg-gray-700/30 border border-gray-600/50 rounded-md px-3 py-2 hover:border-indigo-500/50 transition-all cursor-pointer"
+                              className="flex items-center space-x-2 bg-slate-600/40 border border-slate-500/50 rounded-md px-3 py-2 hover:border-blue-500/50 transition-all cursor-pointer"
                             >
                               {skill.icon}
                               <span className="text-sm">{skill.name}</span>
@@ -194,7 +200,7 @@ const About = () => {
                               transition={{ delay: 2.0 + index * 0.1 }}
                               viewport={{ once: true }}
                               whileHover={{ scale: 1.05 }}
-                              className="flex items-center space-x-2 bg-gray-700/30 border border-gray-600/50 rounded-md px-3 py-2 hover:border-green-500/50 transition-all cursor-pointer"
+                              className="flex items-center space-x-2 bg-slate-600/40 border border-slate-500/50 rounded-md px-3 py-2 hover:border-green-500/50 transition-all cursor-pointer"
                             >
                               {skill.icon}
                               <span className="text-sm">{skill.name}</span>
@@ -213,8 +219,8 @@ const About = () => {
                     viewport={{ once: true }}
                   >
                     <div className="flex items-center text-green-400 mb-3">
-                      <span className="text-indigo-400 mr-2">❯</span>
-                      <span className="text-blue-400">./check-status.sh</span>
+                      <span className="text-blue-400 mr-2">❯</span>
+                      <span className="text-white">./check-status.sh</span>
                     </div>
                     <div className="ml-6">
                       <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-lg p-4">
@@ -227,7 +233,7 @@ const About = () => {
                           <div className="text-sm text-gray-300">Available for projects</div>
                         </div>
                         <div className="text-sm text-gray-400">
-                          Currently: <span className="text-indigo-300">Building awesome web experiences</span>
+                          Currently: <span className="text-blue-300">Building awesome web experiences</span>
                         </div>
                       </div>
                     </div>
@@ -241,9 +247,9 @@ const About = () => {
                     viewport={{ once: true }}
                     className="flex items-center"
                   >
-                    <span className="text-indigo-400 mr-2">❯</span>
+                    <span className="text-blue-400 mr-2">❯</span>
                     <motion.div
-                      className="w-2 h-5 bg-indigo-400"
+                      className="w-2 h-5 bg-blue-400"
                       animate={{
                         opacity: [1, 0, 1],
                       }}
@@ -257,7 +263,7 @@ const About = () => {
                 </div>
 
                 {/* Terminal Footer */}
-                <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-4 py-2 border-t border-indigo-500/20">
+                <div className="bg-slate-900/70 px-4 py-2 border-t border-slate-600/50">
                   <div className="flex items-center justify-between text-xs text-gray-500">
                     <div className="flex items-center space-x-4">
                       <span>zsh 5.9</span>

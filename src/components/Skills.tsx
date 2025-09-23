@@ -5,9 +5,9 @@ const Skills = () => {
   const skillsData = {
     frontend: [
       { name: 'React', level: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', color: 'bg-blue-500/20 border-blue-400' },
-      { name: 'Next.js', level: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', color: 'bg-gray-500/20 border-gray-400' },
+      { name: 'Next.js', level: 65, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', color: 'bg-gray-500/20 border-gray-400' },
       { name: 'TypeScript', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', color: 'bg-blue-600/20 border-blue-500' },
-      { name: 'Tailwind CSS', level: 95, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', color: 'bg-cyan-500/20 border-cyan-400' },
+      { name: 'Tailwind CSS', level: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', color: 'bg-cyan-500/20 border-cyan-400' },
     ],
     backend: [
       { name: 'Node.js', level: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', color: 'bg-green-500/20 border-green-400' },
@@ -18,7 +18,7 @@ const Skills = () => {
       { name: 'MongoDB', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', color: 'bg-green-600/20 border-green-500' },
       { name: 'PostgreSQL', level: 50, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', color: 'bg-blue-700/20 border-blue-600' },
       { name: 'SupaBase', level: 50, icon: '🗄️', color: 'bg-emerald-500/20 border-emerald-400' },
-      { name: 'MySQL', level: 60, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', color: 'bg-blue-500/20 border-blue-400' }
+      { name: 'MySQL', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', color: 'bg-blue-500/20 border-blue-400' }
     ],
   };
   

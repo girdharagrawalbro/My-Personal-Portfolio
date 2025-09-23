@@ -37,6 +37,13 @@ const ChatBot: React.FC<ChatBotProps> = ({ projects, onFilterChange }) => {
       if (validCategories.includes(category)) {
         onFilterChange(category);
         setMessages(prev => [...prev, { text: `Sure, here are the ${category} projects.`, sender: 'bot' }]);
+        
+        // Smooth scroll to projects section
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+          projectsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
         return true;
       }
     }

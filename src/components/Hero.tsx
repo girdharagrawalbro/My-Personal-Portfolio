@@ -170,7 +170,8 @@ const Hero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                >Girdhar Agrawal
+                >
+                  <span>Girdhar</span> <span className="inline-block">Agrawal</span>
                 </motion.h1>
                 <h2 className="text-xl md:text-2xl font-medium mb-6">
                   I'm a <span ref={typedRef} className="text-indigo-500 dark:text-indigo-400"></span>

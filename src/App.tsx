@@ -5,6 +5,8 @@ import Hero from './components/Hero';
 import useTheme from './hooks/useTheme';
 import About from './components/About';
 import Skills from './components/Skills';
+import Experience from './components/Experience';
+import Education from './components/Education';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import ChatBot from './components/ChatBot';
@@ -92,6 +94,8 @@ const App = () => {
                     <Hero />
                     <About />
                     <Skills />
+                    <Experience />
+                    <Education />
                     <Projects filter={filter} setFilter={setFilter} projects={projects} setProjects={setProjects} />
                     <Contact />
                     <ChatBot projects={projects} onFilterChange={setFilter} />
