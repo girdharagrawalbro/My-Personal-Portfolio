@@ -87,12 +87,14 @@ const Contact = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        
             <span className="text-gray-400 font-mono text-lg">06.</span>
             <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               Let's Connect
             </span>
           </h2>
+          
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
             Have a project in mind or just want to say hello? My inbox is always open.
           </p>

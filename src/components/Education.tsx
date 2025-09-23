@@ -7,7 +7,7 @@ import GradientText from '../ui/GradientText';
 
 const Education: React.FC = () => {
   return (
-    <section id="education" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section id="education" className="relative py-20 overflow-hidden bg-gradient-to-b from-black via-indigo-900 to-black">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
       <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl"></div>
@@ -16,10 +16,14 @@ const Education: React.FC = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <ScrollRevealWrapper>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-gray-400 font-mono text-lg">04.</span>
-              <GradientText className="ml-4">Education</GradientText>
+            
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                        <span className="text-gray-400 font-mono text-lg">04.</span>
+                        <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+Education
+                        </span>
             </h2>
+
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
               My academic journey in computer science and technology
             </p>

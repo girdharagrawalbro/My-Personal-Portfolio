@@ -116,12 +116,11 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            <span className="text-indigo-400 mr-2">05.</span>
-            <span className="relative inline-block">
+  <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="text-gray-400 font-mono text-lg">05.</span>
+            <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               My Projects
-            </span>
-          </h2>
+            </span>          </h2>
         </motion.div>
 
         {/* Filter Buttons */}
