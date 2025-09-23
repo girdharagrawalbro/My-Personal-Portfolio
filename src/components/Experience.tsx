@@ -50,13 +50,14 @@ const Experience = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            <span className="text-indigo-400 mr-2">03.</span>
-            Experience & Journey
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="text-gray-400 font-mono text-lg">03.</span>
+            <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+              My Professional Journey
+            </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-            My professional journey, education, and contributions to the tech community. 
-            Each step has shaped me into the developer I am today.
+            A timeline of my work experience, projects, and educational background.
           </p>
           
           {/* LinkedIn Link */}

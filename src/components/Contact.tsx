@@ -87,12 +87,15 @@ const Contact = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            <span className="text-indigo-400 mr-2">06.</span>
-            <span className="relative inline-block">
-              Get In Touch
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="text-gray-400 font-mono text-lg">06.</span>
+            <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+              Let's Connect
             </span>
           </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            Have a project in mind or just want to say hello? My inbox is always open.
+          </p>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12">
@@ -105,10 +108,9 @@ const Contact = () => {
             className="lg:w-1/2"
           >
             <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-8 backdrop-blur-sm h-full">
-              <h3 className="text-2xl font-bold text-white mb-6">Let's talk about your project</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to build something amazing?</h3>
               <p className="text-gray-300 mb-8">
-                I'm currently looking for new opportunities. Whether you have a question
-                or just want to say hi, I'll get back to you as soon as possible!
+                I'm actively seeking freelance opportunities and collaborations. If you're looking for a dedicated developer to bring your ideas to life, let's talk.
               </p>
 
               <div className="space-y-6 mb-8">

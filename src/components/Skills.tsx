@@ -26,12 +26,15 @@ const Skills = () => {
     <section id="skills" className="py-20 bg-black relative z-10">
       <div className="container mx-auto px-6">
         {/* Header - Static for testing */}
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-            <span className="text-indigo-400">02.</span> Skills & Tools
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="text-gray-400 font-mono text-lg">02.</span>
+            <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+              My Tech Stack
+            </span>
           </h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto">
-            Hover over the bubbles to see my proficiency levels. The size of each bubble represents my skill level.
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            A showcase of the tools and technologies I use to build modern web applications.
           </p>
         </div>
 

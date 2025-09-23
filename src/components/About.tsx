@@ -46,7 +46,7 @@ const About = () => {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            A brief introduction to my background and passion for technology.
+            Crafting digital solutions that drive business success.
           </p>
         </motion.div>
 
@@ -66,17 +66,13 @@ const About = () => {
                 className="scrambled-text-demo m-[0vw] max-w-[400px]"
               >
                 <div className="text-lg text-gray-300 leading-relaxed mb-4">
-                  Hello! I'm <span className="text-blue-300 font-medium">Girdhar</span>, a passionate Full Stack Developer currently pursuing my
-                  Master of Computer Applications (MCA) from Rungta Group of Institutions.
+                  Hello! I'm <span className="text-blue-300 font-medium">Girdhar</span>, a freelance Full Stack Developer specializing in building high-performance web applications that solve real-world problems.
                 </div>
                 <div className="text-lg text-gray-300 leading-relaxed mb-4">
-                  I specialize in building exceptional digital experiences with clean, efficient code.
-                  My journey in web development started when I built my first website, and I've been
-                  hooked ever since.
+                  With expertise in the MERN stack, Next.js, and modern AI integration, I deliver scalable and user-centric solutions. My goal is to partner with clients to turn their vision into a tangible, market-ready product.
                 </div>
                 <div className="text-lg text-gray-300 leading-relaxed">
-                  When I'm not coding, you can find me contributing to open-source projects,
-                  learning new technologies, or sharing my knowledge through blog posts.
+                  Whether you're a startup needing a new platform or an established business looking to innovate, I'm here to help you achieve your goals.
                 </div>
               </ScrambledText>
             </motion.div>
