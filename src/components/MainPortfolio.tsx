@@ -1,0 +1,107 @@
+import { useState, useEffect } from 'react';
+import Header from './Header';
+import Hero from './Hero';
+import useTheme from '../hooks/useTheme';
+import About from './About';
+import Skills from './Skills';
+import Experience from './Experience';
+import Education from './Education';
+import Projects from './Projects';
+import Contact from './Contact';
+import ChatBot from './ChatBot';
+import Footer from './Footer';
+import LoadingScreen from './LoadingScreen';
+import BlurText from '../ui/BlurText';
+import { AnimatePresence, motion } from 'framer-motion';
+import type { Project } from '../types/project';
+
+const MainPortfolio = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [showIntro, setShowIntro] = useState(true);
+  const { theme } = useTheme();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const introTimer = setTimeout(() => {
+        setShowIntro(false);
+      }, 2000);
+
+      return () => clearTimeout(introTimer);
+    }
+  }, [isLoading]);
+
+  return (
+    <div className="app">
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <Header />
+          <main className="relative bg-black text-white min-h-screen overflow-hidden">
+            {/* Animated background elements */}
+            <div className="absolute inset-0 overflow-hidden z-0">
+              <div className={`absolute top-0 left-0 w-full h-full ${theme === 'dark' ? 'bg-black' : 'bg-black  '}`}></div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.1 }}
+                transition={{ duration: 2 }}
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 blur-3xl"
+              />
+            </div>
+
+            <AnimatePresence mode="wait">
+              {showIntro ? (
+                <motion.div
+                  key="intro"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 flex items-center justify-center text-center"
+                >
+                  <BlurText
+                    text="Crafting Digital Experiences"
+                    delay={150}
+                    animateBy="words"
+                    direction="top"
+                    className="text-5xl md:text-8xl font-medium text-center px-4"
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="hero"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full"
+                >
+                  <Hero />
+                  <About />
+                  <Skills />
+                  <Experience />
+                  <Education />
+                  <Projects filter={filter} setFilter={setFilter} projects={projects} setProjects={setProjects} />
+                  <Contact />
+                  <ChatBot projects={projects} onFilterChange={setFilter} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </main>
+          <Footer />
+        </>
+      )}
+    </div>
+  );
+};
+
+export default MainPortfolio;

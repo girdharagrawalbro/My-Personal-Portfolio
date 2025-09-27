@@ -86,7 +86,6 @@ const Experience = () => {
           {[
             { key: 'all', label: 'All', icon: <FaBriefcase /> },
             { key: 'work', label: 'Work', icon: <MdWork /> },
-            { key: 'education', label: 'Education', icon: <MdSchool /> },
             { key: 'project', label: 'Projects', icon: <MdCode /> }
           ].map((filter) => (
             <motion.button

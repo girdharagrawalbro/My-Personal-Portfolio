@@ -114,7 +114,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
   <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             <span className="text-gray-400 font-mono text-lg">05.</span>
