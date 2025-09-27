@@ -1,57 +1,43 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
 import { FaEdit, FaTrash, FaPlus, FaSave, FaTimes, FaBriefcase } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-
-interface Experience {
-  id?: string;
-  title: string;
-  company: string;
-  location: string;
-  duration: string;
-  type: string;
-  description: string;
-  skills: string[];
-  achievements: string[];
-  startDate: string;
-  endDate?: string;
-  current: boolean;
-}
+import type { ExperienceItem } from '../../utils/experienceData';
 
 interface ExperienceFormProps {
-  experience?: Experience;
-  onSave: (experience: Experience) => void;
+  experience?: ExperienceItem;
+  onSave: (experience: ExperienceItem) => void;
   onCancel: () => void;
 }
 
 const ExperienceForm = ({ experience, onSave, onCancel }: ExperienceFormProps) => {
-  const [formData, setFormData] = useState<Experience>({
+  const [formData, setFormData] = useState<ExperienceItem>({
+    id: '',
     title: '',
     company: '',
     location: '',
     duration: '',
-    type: 'Full-time',
-    description: '',
+    type: 'work',
+    description: [],
     skills: [],
     achievements: [],
-    startDate: '',
-    endDate: '',
     current: false,
     ...experience
   });
   const [skillsInput, setSkillsInput] = useState(experience?.skills.join(', ') || '');
-  const [achievementsInput, setAchievementsInput] = useState(experience?.achievements.join('\n') || '');
+  const [achievementsInput, setAchievementsInput] = useState(experience?.achievements?.join('\n') || '');
+  const [descriptionInput, setDescriptionInput] = useState(experience?.description.join('\n') || '');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
-    const experienceData = {
+    const experienceData: ExperienceItem = {
       ...formData,
       skills: skillsInput.split(',').map(skill => skill.trim()).filter(skill => skill),
       achievements: achievementsInput.split('\n').map(achievement => achievement.trim()).filter(achievement => achievement),
-      endDate: formData.current ? undefined : formData.endDate
+      description: descriptionInput.split('\n').map(desc => desc.trim()).filter(desc => desc),
+      id: experience?.id || Date.now().toString()
     };
     
     onSave(experienceData);
@@ -123,26 +109,25 @@ const ExperienceForm = ({ experience, onSave, onCancel }: ExperienceFormProps) =
             </div>
 
             <div>
-              <label className="block text-gray-300 font-medium mb-2">Employment Type</label>
+              <label className="block text-gray-300 font-medium mb-2">Type</label>
               <select
                 value={formData.type}
-                onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, type: e.target.value as 'work' | 'education' | 'project' })}
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
               >
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Contract">Contract</option>
-                <option value="Freelance">Freelance</option>
-                <option value="Internship">Internship</option>
+                <option value="work">Work</option>
+                <option value="education">Education</option>
+                <option value="project">Project</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label className="block text-gray-300 font-medium mb-2">Description</label>
+            <label className="block text-gray-300 font-medium mb-2">Description (one point per line)</label>
             <textarea
-              value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              value={descriptionInput}
+              onChange={(e) => setDescriptionInput(e.target.value)}
+              placeholder="• First achievement or responsibility&#10;• Second achievement or responsibility&#10;• Third achievement or responsibility"
               rows={4}
               className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
               required
@@ -151,50 +136,29 @@ const ExperienceForm = ({ experience, onSave, onCancel }: ExperienceFormProps) =
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-gray-300 font-medium mb-2">Start Date</label>
+              <label className="block text-gray-300 font-medium mb-2">Duration</label>
               <input
-                type="date"
-                value={formData.startDate}
-                onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+                type="text"
+                value={formData.duration}
+                onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                placeholder="e.g., Jun 2023 - Present, Sep 2022 - Mar 2023"
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
                 required
               />
             </div>
 
-            <div>
-              <label className="block text-gray-300 font-medium mb-2">End Date</label>
+            <div className="flex items-center">
               <input
-                type="date"
-                value={formData.endDate}
-                onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
-                disabled={formData.current}
+                type="checkbox"
+                id="current"
+                checked={formData.current || false}
+                onChange={(e) => setFormData({ ...formData, current: e.target.checked })}
+                className="mr-3 h-4 w-4 text-indigo-600 bg-gray-800 border-gray-700 rounded focus:ring-indigo-500"
               />
+              <label htmlFor="current" className="text-gray-300">
+                Currently working here
+              </label>
             </div>
-          </div>
-
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="current"
-              checked={formData.current}
-              onChange={(e) => setFormData({ ...formData, current: e.target.checked })}
-              className="mr-3 h-4 w-4 text-indigo-600 bg-gray-800 border-gray-700 rounded focus:ring-indigo-500"
-            />
-            <label htmlFor="current" className="text-gray-300">
-              I currently work here
-            </label>
-          </div>
-
-          <div>
-            <label className="block text-gray-300 font-medium mb-2">Duration</label>
-            <input
-              type="text"
-              value={formData.duration}
-              onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-              placeholder="e.g., Jun 2023 - Present, 1 year 6 months"
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
-            />
           </div>
 
           <div>
@@ -248,9 +212,9 @@ const ExperienceForm = ({ experience, onSave, onCancel }: ExperienceFormProps) =
 };
 
 const ExperienceManager = () => {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [editingExperience, setEditingExperience] = useState<Experience | null>(null);
+  const [editingExperience, setEditingExperience] = useState<ExperienceItem | null>(null);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -260,8 +224,8 @@ const ExperienceManager = () => {
   const fetchExperiences = async () => {
     try {
       // Import the experience data (in a real app, this would come from Supabase)
-      const { experiences } = await import('../../utils/experienceData');
-      setExperiences(experiences);
+      const { experienceData } = await import('../../utils/experienceData');
+      setExperiences(experienceData);
     } catch (error) {
       console.error('Error fetching experiences:', error);
     } finally {
@@ -269,7 +233,7 @@ const ExperienceManager = () => {
     }
   };
 
-  const handleSaveExperience = async (experienceData: Experience) => {
+  const handleSaveExperience = async (experienceData: ExperienceItem) => {
     try {
       if (editingExperience) {
         // Update existing experience
@@ -369,7 +333,7 @@ const ExperienceManager = () => {
                   )}
                 </div>
 
-                {experience.achievements.length > 0 && (
+                {experience.achievements && experience.achievements.length > 0 && (
                   <div>
                     <h4 className="text-gray-300 font-medium mb-2">Key Achievements:</h4>
                     <ul className="text-gray-400 text-sm space-y-1">

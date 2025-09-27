@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaExternalLinkAlt, FaLinkedin } from 'react-icons/fa';
-import { MdWork, MdSchool, MdCode } from 'react-icons/md';
+import { MdWork, MdCode } from 'react-icons/md';
 import { experienceData, type ExperienceItem } from '../utils/experienceData';
 
 const Experience = () => {

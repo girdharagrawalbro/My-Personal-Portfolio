@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaSignOutAlt, FaChartBar, FaUsers, FaCog, FaProjectDiagram, FaGraduationCap, FaBriefcase, FaCode, FaTachometerAlt } from 'react-icons/fa';
+import { FaSignOutAlt, FaCog, FaProjectDiagram, FaGraduationCap, FaBriefcase, FaCode, FaTachometerAlt } from 'react-icons/fa';
 import { supabase } from '../lib/supabase';
 import ProjectsManager from './components/ProjectsManager';
 import ExperienceManager from './components/ExperienceManager';

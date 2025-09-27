@@ -9,6 +9,10 @@ export interface Education {
   achievements?: string[];
   skills: string[];
   logo?: string;
+  description?: string;
+  startDate?: string;
+  endDate?: string;
+  current?: boolean;
 }
 
 export const educationData: Education[] = [

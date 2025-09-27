@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaSave, FaTimes, FaGraduationCap, FaTrophy } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Education } from '../../utils/educationData';
+import type { Education } from '../../utils/educationData';
 
 interface EducationFormProps {
   education?: Education;
@@ -21,6 +21,10 @@ const EducationForm = ({ education, onSave, onCancel }: EducationFormProps) => {
     achievements: [],
     skills: [],
     logo: '🎓',
+    description: '',
+    startDate: '',
+    endDate: '',
+    current: false,
     ...education
   });
   const [skillsInput, setSkillsInput] = useState(education?.skills.join(', ') || '');
@@ -263,7 +267,7 @@ const EducationManager = () => {
         setEducations(updatedEducations);
       } else {
         // Add new education
-        const newEducation = { ...educationData, id: Date.now().toString() };
+        const newEducation = { ...educationData, id: Date.now() };
         setEducations([...educations, newEducation]);
       }
       
@@ -277,7 +281,7 @@ const EducationManager = () => {
     }
   };
 
-  const handleDeleteEducation = async (id: string) => {
+  const handleDeleteEducation = async (id: number) => {
     if (confirm('Are you sure you want to delete this education record?')) {
       try {
         setEducations(educations.filter(e => e.id !== id));
@@ -355,7 +359,7 @@ const EducationManager = () => {
                   </div>
                 )}
 
-                {education.achievements.length > 0 && (
+                {education.achievements && education.achievements.length > 0 && (
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <FaTrophy className="text-yellow-400" />
