@@ -15,4 +15,7 @@ export interface Project {
     solution?: string;
     impact?: string;
   };
+  // Selling fields
+  forSale?: boolean;
+  price?: number;
 }

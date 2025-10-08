@@ -29,6 +29,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
   const [errorProjects, setErrorProjects] = useState('');
   const [errorRepos, setErrorRepos] = useState('');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [buyProject, setBuyProject] = useState<Project | null>(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -194,6 +195,11 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                   </div>
                   <p className="text-gray-300 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-5">
+                    {project.forSale && (
+                      <span className="px-3 py-1 bg-amber-600/20 text-amber-300 text-sm rounded-full border border-amber-500/30">
+                        For Sale • ₹{project.price}
+                      </span>
+                    )}
                     {project.tags.map((tag: any) => {
                       const tagStr = typeof tag === 'string' ? tag : String(tag ?? '');
                       return (
@@ -233,6 +239,14 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                         <FaGithub />
                         <span>Code</span>
                       </a>
+                    )}
+                    {project.forSale && (
+                      <button
+                        onClick={() => setBuyProject(project)}
+                        className="flex items-center gap-1 text-sm px-3 py-2 rounded bg-amber-600 hover:bg-amber-700 text-white transition-colors"
+                      >
+                        <span>Buy</span>
+                      </button>
                     )}
                     {project.caseStudy && (
                       <button
@@ -338,6 +352,41 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                         : ''}
                     </p>
                   </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Buy Modal */}
+        <AnimatePresence>
+          {buyProject && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="bg-gray-900 border border-gray-700 rounded-2xl p-6 max-w-md w-full relative text-white shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className="absolute top-4 right-4 text-gray-400 hover:text-red-400"
+                  onClick={() => setBuyProject(null)}
+                >
+                  <FaTimes size={20} />
+                </button>
+                <h3 className="text-2xl font-bold mb-4">{buyProject.title}</h3>
+                <p className="text-gray-300 mb-4">Price: <span className="text-amber-300 font-semibold">₹{buyProject.price}</span></p>
+                <p className="text-gray-300 mb-6">If you're interested in purchasing this project, please contact me via the contact form or email.</p>
+                <div className="flex gap-3">
+                  <a href="#contact" onClick={() => setBuyProject(null)} className="flex-1 inline-flex items-center justify-center gap-2 text-sm px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">Contact to Buy</a>
+                  <button onClick={() => { navigator.clipboard?.writeText(`Project: ${buyProject.title} — Price: ₹${buyProject.price}`); alert('Copied details to clipboard'); }} className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg">Copy Details</button>
                 </div>
               </motion.div>
             </motion.div>

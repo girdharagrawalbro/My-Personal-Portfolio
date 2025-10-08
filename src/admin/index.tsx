@@ -29,7 +29,7 @@ const AdminApp = () => {
         }
 
         // Set up auth state listener
-        const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+        const { data: listener } = supabase.auth.onAuthStateChange(( _event: any, session: any) => {
           setSession(session);
         });
 
@@ -82,7 +82,7 @@ const AdminApp = () => {
   }
 
   if (!session) {
-    return <Login onLogin={() => supabase.auth.getSession().then(({ data }) => setSession(data.session))} />;
+    return <Login onLogin={() => supabase.auth.getSession().then(({ data }: any) => setSession(data.session))} />;
   }
 
   return <AdminPanel />;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaEdit, FaTrash, FaPlus, FaEye, FaSave, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus, FaEye, FaSave, FaTimes, FaTag } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Project {
@@ -13,6 +13,9 @@ interface Project {
   image?: string;
   date: string;
   lastUpdated: string;
+  // selling fields
+  forSale?: boolean;
+  price?: number;
 }
 
 interface ProjectFormProps {
@@ -32,6 +35,8 @@ const ProjectForm = ({ project, onSave, onCancel }: ProjectFormProps) => {
     image: '',
     date: new Date().toISOString().split('T')[0],
     lastUpdated: new Date().toISOString().split('T')[0],
+    forSale: false,
+    price: 0,
     ...project
   });
   const [tagsInput, setTagsInput] = useState(project?.tags.join(', ') || '');
@@ -44,6 +49,8 @@ const ProjectForm = ({ project, onSave, onCancel }: ProjectFormProps) => {
     const projectData = {
       ...formData,
       tags: tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag),
+      forSale: formData.forSale,
+      price: Number(formData.price) || 0,
       lastUpdated: new Date().toISOString().split('T')[0]
     };
     
@@ -173,6 +180,32 @@ const ProjectForm = ({ project, onSave, onCancel }: ProjectFormProps) => {
               className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
             />
           </div>
+
+            <div className="md:col-span-2">
+              <label className="inline-flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={!!formData.forSale}
+                  onChange={(e) => setFormData({ ...formData, forSale: e.target.checked })}
+                  className="h-4 w-4 text-indigo-600 bg-gray-800 border-gray-700 rounded"
+                />
+                <span className="text-gray-300">List this project for sale</span>
+              </label>
+            </div>
+
+            {formData.forSale && (
+              <div className="md:col-span-2">
+                <label className="block text-gray-300 font-medium mb-2">Price (INR)</label>
+                <input
+                  type="number"
+                  value={formData.price}
+                  onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
+                  min={0}
+                  step="0.01"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
+                />
+              </div>
+            )}
         </div>
 
         <div className="flex gap-4 mt-8">
@@ -207,6 +240,7 @@ const ProjectsManager = () => {
   const [loading, setLoading] = useState(true);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [sellProject, setSellProject] = useState<Project | null>(null);
 
   useEffect(() => {
     fetchProjects();
@@ -332,6 +366,11 @@ const ProjectsManager = () => {
                   <span className="px-3 py-1 bg-indigo-600/20 text-indigo-300 text-sm rounded-full border border-indigo-500/30">
                     {project.category}
                   </span>
+                  {project.forSale && (
+                    <span className="px-3 py-1 bg-amber-600/20 text-amber-300 text-sm rounded-full border border-amber-500/30">
+                      For Sale • ₹{project.price}
+                    </span>
+                  )}
                   {project.tags.slice(0, 3).map((tag, idx) => (
                     <span key={idx} className="px-3 py-1 bg-gray-700 text-gray-300 text-sm rounded-full">
                       {tag}
@@ -351,6 +390,15 @@ const ProjectsManager = () => {
               </div>
 
               <div className="flex gap-2">
+                <motion.button
+                  onClick={() => setSellProject(project)}
+                  whileHover={{ scale: 1.05 }}
+                  className="p-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-colors"
+                  title="Sell"
+                >
+                  <FaTag />
+                </motion.button>
+
                 {project.url && (
                   <motion.a
                     href={project.url}
@@ -389,6 +437,70 @@ const ProjectsManager = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Sell Panel */}
+      <AnimatePresence>
+        {sellProject && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setSellProject(null)}
+          >
+            <motion.div
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              className="bg-gray-900 rounded-xl p-8 max-w-md w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold text-white">Sell Project: {sellProject.title}</h3>
+                <button onClick={() => setSellProject(null)} className="text-gray-400 hover:text-white"><FaTimes /></button>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-gray-300 font-medium mb-2">Price (INR)</label>
+                  <input
+                    type="number"
+                    value={sellProject.price || 0}
+                    onChange={(e) => setSellProject({ ...sellProject, price: Number(e.target.value) })}
+                    min={0}
+                    step="0.01"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
+                  />
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => {
+                      // update project locally
+                      const updated = projects.map(p => p.id === sellProject.id ? { ...p, forSale: true, price: sellProject.price } : p)
+                      setProjects(updated)
+                      setSellProject(null)
+                    }}
+                    className="flex-1 bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg"
+                  >
+                    List for Sale
+                  </button>
+                  <button
+                    onClick={() => {
+                      // mark not for sale
+                      const updated = projects.map(p => p.id === sellProject.id ? { ...p, forSale: false, price: 0 } : p)
+                      setProjects(updated)
+                      setSellProject(null)
+                    }}
+                    className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {showForm && (

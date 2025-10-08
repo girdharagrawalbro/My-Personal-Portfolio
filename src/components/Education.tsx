@@ -1,157 +1,183 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { educationData } from '../utils/educationData';
-import { Calendar, MapPin, Award, BookOpen, Code } from 'lucide-react';
-import ScrollRevealWrapper from '../ui/ScrollRevealWrapper';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { educationData, type Education as EducationType } from '../utils/educationData';
+import { Calendar, MapPin, BookOpen } from 'lucide-react';
 
 const Education: React.FC = () => {
+  const [selected, setSelected] = useState<EducationType | null>(null);
+
+  const cardColor = 'border-indigo-400/30 bg-indigo-500/10';
+
   return (
     <section id="education" className="relative py-20 overflow-hidden bg-gradient-to-b from-black via-indigo-900 to-black">
-      {/* Background Effects */}
-      
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <ScrollRevealWrapper>
-          <div className="text-center mb-16">
-            
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        <span className="text-gray-400 font-mono text-lg">04.</span>
-                        <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-Education
-                        </span>
-            </h2>
+      {/* Background blob (match Experience) */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-black"></div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.08 }}
+          transition={{ duration: 2 }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vh] rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 blur-3xl"
+        />
+      </div>
 
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              My academic journey in computer science and technology
-            </p>
-          </div>
-        </ScrollRevealWrapper>
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="text-gray-400 font-mono text-lg">04.</span>
+            <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+              Education
+            </span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto mb-8 text-lg">My academic journey in computer science and technology.</p>
+        </motion.div>
 
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 hidden md:block"></div>
+          {/* Timeline Line (match Experience colors) */}
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 hidden md:block"></div>
 
-          <div className="space-y-8">
-            {educationData.map((education, index) => (
-              <ScrollRevealWrapper key={education.id} delay={index * 0.2}>
-                <div className="relative">
-                  {/* Timeline Dot */}
-                  <div className="absolute left-6 top-6 w-4 h-4 bg-blue-500 rounded-full border-4 border-black z-10 hidden md:block"></div>
-                  
-                  {/* Education Card */}
+          <AnimatePresence mode="wait">
+            <motion.div className="space-y-8">
+              {educationData.map((edu, idx) => (
+                <motion.div
+                  key={edu.id}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.08 }}
+                  viewport={{ once: true }}
+                  className="relative"
+                >
+                  <div className="absolute left-6 top-6 w-4 h-4 bg-indigo-500 rounded-full border-4 border-black z-10 hidden md:block"></div>
+
                   <div className="md:ml-20 ml-0">
                     <motion.div
-                      className="group relative"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      className={`p-8 rounded-2xl border backdrop-blur-sm cursor-pointer transition-all duration-300 ${cardColor}`}
+                      onClick={() => setSelected(edu)}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      
-                      <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300">
-                        <div className="grid lg:grid-cols-12 gap-6 items-start">
-                          {/* Logo/Icon */}
-                          <div className="lg:col-span-1 flex justify-center lg:justify-start">
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                        <div className="flex items-start space-x-4">
+                          <div className="text-2xl mt-1">
                             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-2xl">
-                              {education.logo}
+                              {edu.logo}
                             </div>
                           </div>
-
-                          {/* Main Content */}
-                          <div className="lg:col-span-8 space-y-4">
-                            <div>
-                              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                                {education.degree}
-                              </h3>
-                              <h4 className="text-lg text-blue-400 font-semibold mb-2">
-                                {education.institution}
-                              </h4>
-                              <p className="text-gray-400 font-medium">
-                                {education.field}
-                              </p>
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
+                            <p className="text-lg text-indigo-300 font-medium">{edu.institution}</p>
+                            <div className="flex flex-wrap items-center text-gray-400 text-sm gap-4 mt-2">
+                              <span className="flex items-center space-x-1">
+                                <MapPin className="w-4 h-4 text-blue-400" />
+                                <span>{edu.location}</span>
+                              </span>
+                              <span className="flex items-center space-x-1">
+                                <Calendar className="w-4 h-4 text-blue-400" />
+                                <span>{edu.duration}</span>
+                              </span>
                             </div>
-
-                            {/* Achievements */}
-                            {education.achievements && (
-                              <div className="flex flex-wrap gap-2">
-                                {education.achievements.map((achievement, idx) => (
-                                  <motion.div
-                                    key={idx}
-                                    className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 rounded-full px-4 py-2 text-yellow-400 text-sm font-semibold flex items-center gap-2"
-                                    whileHover={{ scale: 1.05 }}
-                                  >
-                                    <Award className="w-4 h-4" />
-                                    {achievement}
-                                  </motion.div>
-                                ))}
-                              </div>
-                            )}
-
-                            {/* Skills */}
-                            <div className="space-y-3">
-                              <div className="flex items-center gap-2 text-gray-300">
-                                <Code className="w-4 h-4" />
-                                <span className="font-medium">Key Skills:</span>
-                              </div>
-                              <div className="flex flex-wrap gap-2">
-                                {education.skills.map((skill, idx) => (
-                                  <motion.span
-                                    key={idx}
-                                    className="bg-slate-700/50 border border-slate-600/50 rounded-full px-3 py-1 text-sm text-gray-300 hover:border-blue-500/50 hover:text-blue-400 transition-all cursor-pointer"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                  >
-                                    {skill}
-                                  </motion.span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Details Sidebar */}
-                          <div className="lg:col-span-3 space-y-4 text-sm">
-                            <div className="flex items-center gap-3 text-gray-400">
-                              <Calendar className="w-4 h-4 text-blue-400" />
-                              <span>{education.duration}</span>
-                            </div>
-                            
-                            <div className="flex items-center gap-3 text-gray-400">
-                              <MapPin className="w-4 h-4 text-blue-400" />
-                              <span>{education.location}</span>
-                            </div>
-
-                            {education.grade && (
-                              <div className="flex items-center gap-3 text-gray-400">
-                                <BookOpen className="w-4 h-4 text-green-400" />
-                                <span className="text-green-400 font-semibold">
-                                  Grade: {education.grade}
-                                </span>
-                              </div>
-                            )}
                           </div>
                         </div>
+
+                        {/* small details on the right for md+ */}
+                        <div className="hidden md:block text-sm text-gray-400">
+                          {edu.grade && (
+                            <div className="flex items-center gap-3">
+                              <BookOpen className="w-4 h-4 text-green-400" />
+                              <span className="text-green-400 font-semibold">Grade: {edu.grade}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="text-gray-300 mb-4 line-clamp-3">{edu.description}</div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {edu.skills.slice(0, 5).map((s, i) => (
+                          <span key={i} className="px-3 py-1 bg-gray-700/50 text-gray-300 text-sm rounded-full border border-gray-600/30">
+                            {s}
+                          </span>
+                        ))}
+                        {edu.skills.length > 5 && (
+                          <span className="px-3 py-1 bg-indigo-600/20 text-indigo-300 text-sm rounded-full border border-indigo-500/30">+{edu.skills.length - 5} more</span>
+                        )}
                       </div>
                     </motion.div>
                   </div>
-                </div>
-              </ScrollRevealWrapper>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
-        {/* Timeline Connector */}
-        <ScrollRevealWrapper delay={0.4}>
-          <div className="mt-16 text-center">
+        {/* Modal for selected education (match Experience modal) */}
+        <AnimatePresence>
+          {selected && (
             <motion.div
-              className="inline-flex items-center gap-4 bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-full px-6 py-3"
-              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              onClick={() => setSelected(null)}
             >
-              <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse"></div>
-              <span className="text-gray-400 text-sm font-medium">
-                Continuous Learning Journey
-              </span>
-              <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-blue-600 rounded-full animate-pulse"></div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className={`max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border backdrop-blur-sm p-8 ${cardColor}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="text-3xl">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-2xl">
+                        {selected.logo}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">{selected.degree}</h3>
+                      <p className="text-xl text-indigo-300 font-medium">{selected.institution}</p>
+                      <div className="flex flex-wrap items-center text-gray-400 gap-4 mt-2">
+                        <span className="flex items-center space-x-1"><MapPin className="w-4 h-4 text-blue-400" /><span>{selected.location}</span></span>
+                        <span className="flex items-center space-x-1"><Calendar className="w-4 h-4 text-blue-400" /><span>{selected.duration}</span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-white text-2xl">×</button>
+                </div>
+
+                {selected.description && (
+                  <div className="mb-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">Description</h4>
+                    <div className="text-gray-300 space-y-2"><p>{selected.description}</p></div>
+                  </div>
+                )}
+
+                {selected.achievements && (
+                  <div className="mb-6">
+                    <h4 className="text-lg font-semibold text-white mb-3">Key Achievements</h4>
+                    <div className="text-gray-300 space-y-2">{selected.achievements.map((a, i) => <p key={i}>🏆 {a}</p>)}</div>
+                  </div>
+                )}
+
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-3">Skills & Technologies</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selected.skills.map((skill, i) => (
+                      <span key={i} className="px-3 py-1 bg-gray-700/50 text-gray-300 text-sm rounded-full border border-gray-600/30">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
-          </div>
-        </ScrollRevealWrapper>
+          )}
+        </AnimatePresence>
+
       </div>
     </section>
   );
