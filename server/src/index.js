@@ -1,4 +1,22 @@
-require('dotenv').config();
+const path = require('path');
+const dotenv = require('dotenv');
+
+// Load .env from server folder first. If key envs are missing (common when running from repo root),
+// try loading the repository root .env as a fallback so developers can keep a single .env at repo root.
+dotenv.config();
+if (!process.env.EMAIL_USER || !process.env.MONGO_URI) {
+  const alt = path.resolve(__dirname, '../../.env');
+  try {
+    const result = dotenv.config({ path: alt });
+    if (result.error) {
+      // no alt .env found — ignore
+    } else {
+      console.log('Loaded fallback .env from', alt);
+    }
+  } catch (e) {
+    // ignore
+  }
+}
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
@@ -287,6 +305,94 @@ async function start() {
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Failed to execute rpc' });
+    }
+  });
+
+  // Server-side email sending using nodemailer
+  // Expects body: { name, email, subject, message, to? }
+  app.post('/send-email', async (req, res) => {
+    try {
+      const { name, email, subject, message, to } = req.body || {};
+      if (!name || !email || !message) return res.status(400).json({ error: 'Missing required fields' });
+
+      // Load nodemailer dynamically so project can still be bundled for frontend-only scenarios
+      const nodemailer = require('nodemailer');
+
+      const EMAIL_USER = process.env.EMAIL_USER;
+      const EMAIL_PASS = process.env.EMAIL_PASS; // app password or SMTP password
+      const EMAIL_TO = to || process.env.EMAIL_TO || process.env.DEV_ADMIN_EMAIL;
+
+      if (!EMAIL_USER || !EMAIL_PASS || !EMAIL_TO) {
+        console.error('Email config missing: EMAIL_USER, EMAIL_PASS or EMAIL_TO');
+        return res.status(500).json({ error: 'Email server not configured' });
+      }
+
+      // Create transporter for Gmail SMTP by default. If you want to use another SMTP server,
+      // set SMTP_HOST and SMTP_PORT env vars and they will be used.
+      const host = process.env.SMTP_HOST || 'smtp.gmail.com';
+      const port = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 465;
+      const secure = port === 465;
+
+      const transporter = nodemailer.createTransport({
+        host,
+        port,
+        secure,
+        auth: {
+          user: EMAIL_USER,
+          pass: EMAIL_PASS,
+        },
+      });
+
+      // verify transporter configuration (helps surface SMTP auth/connectivity problems)
+      try {
+        await transporter.verify();
+      } catch (verifyErr) {
+        console.error('SMTP transporter verification failed', verifyErr);
+        return res.status(500).json({ error: 'SMTP verification failed', details: String(verifyErr && verifyErr.message ? verifyErr.message : verifyErr) });
+      }
+
+      // Owner email (site owner / admin)
+      const ownerTo = EMAIL_TO;
+      const ownerMailOptions = {
+        from: `Portfolio Contact <${EMAIL_USER}>`,
+        to: ownerTo,
+        subject: subject || `New message from ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+        html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p>${message.replace(/\n/g, '<br/>')}</p>`,
+      };
+
+      // Confirmation email to the person who filled the form
+      const confirmSubject = `Thanks for contacting ${process.env.SITE_NAME || 'me'}`;
+      const confirmMailOptions = {
+        from: `Portfolio <${EMAIL_USER}>`,
+        to: email,
+        subject: confirmSubject,
+        text: `Hi ${name},\n\nThanks for reaching out! I received your message and will get back to you shortly.\n\n— Message you sent:\n${message}`,
+        html: `<p>Hi ${name},</p><p>Thanks for reaching out! I received your message and will get back to you shortly.</p><hr/><p><strong>Your message:</strong></p><p>${message.replace(/\n/g, '<br/>')}</p><p style="color:#666;font-size:12px">If you did not send this message, please ignore this email.</p>`,
+      };
+
+      // Send owner's email first
+      try {
+        const ownerInfo = await transporter.sendMail(ownerMailOptions);
+        console.log('Owner email sent', ownerInfo && ownerInfo.messageId);
+
+        // Then send confirmation to submitter
+        try {
+          const confirmInfo = await transporter.sendMail(confirmMailOptions);
+          console.log('Confirmation email sent', confirmInfo && confirmInfo.messageId);
+          res.json({ success: true, ownerMessageId: ownerInfo && ownerInfo.messageId, confirmMessageId: confirmInfo && confirmInfo.messageId });
+        } catch (confirmErr) {
+          console.error('Failed to send confirmation email', confirmErr);
+          // Return 500 but include owner message id for record
+          return res.status(500).json({ error: 'Failed to send confirmation email', details: String(confirmErr && confirmErr.message ? confirmErr.message : confirmErr), ownerMessageId: ownerInfo && ownerInfo.messageId });
+        }
+      } catch (sendErr) {
+        console.error('Failed to send owner email', sendErr);
+        return res.status(500).json({ error: 'Failed to send owner email', details: String(sendErr && sendErr.message ? sendErr.message : sendErr) });
+      }
+    } catch (err) {
+      console.error('Failed to send email', err);
+      res.status(500).json({ error: 'Failed to send email' });
     }
   });
 

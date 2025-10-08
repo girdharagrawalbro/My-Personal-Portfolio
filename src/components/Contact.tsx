@@ -11,7 +11,7 @@ import {
   FaPaperPlane
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
+// switched to server-side email via nodemailer (/send-email)
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,24 +36,26 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
+    // POST to backend /send-email which uses nodemailer
     try {
-      await emailjs.send(
-        'service_n6fhdnh', // Replace with your EmailJS service ID
-        'template_jy99zle', // Replace with your EmailJS template ID
-        formData,
-        'TPC8kt38YA5v7jGwz' // Replace with your EmailJS user ID
-      );
+      // default to backend dev server if VITE_API_BASE not set
+      const apiBase = import.meta.env.VITE_API_BASE || 'https://my-personal-portfolio-p18j.onrender.com';
+      const res = await fetch(`${apiBase.replace(/\/$/, '')}/send-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-      setSubmitStatus({
-        success: true,
-        message: 'Thank you for your message! I will get back to you soon.'
-      });
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      if (!res.ok) {
+        // try to read error message from server
+        let payload = {} as any;
+        try { payload = await res.json(); } catch (e) { /* ignore */ }
+        const errMsg = payload && payload.error ? payload.error : 'Failed to send message';
+        throw new Error(errMsg);
+      }
+
+      setSubmitStatus({ success: true, message: 'Thank you for your message! I will get back to you soon.' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Failed to send email:', error);
       setSubmitStatus({

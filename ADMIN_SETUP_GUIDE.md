@@ -91,12 +91,11 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ## 🚀 Getting Started
 
 ### 1. Access Admin Panel
-Navigate to: `http://localhost:5173/admin`
+Navigate to: `https://girdharagrawal.vercel.app/admin`
 
 ### 2. Login (Development)
-- **Email**: `admin@example.com`
-- **Password**: `admin123`
-- Or create your own Supabase user
+- **Email**: ``
+- **Password**: ``
 
 ### 3. Navigation
 Use the sidebar to navigate between sections:

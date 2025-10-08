@@ -114,7 +114,7 @@ const authShim = {
     listeners.push(handler)
     return { data: { subscription: { unsubscribe: () => { const idx = listeners.indexOf(handler); if (idx >= 0) listeners.splice(idx, 1) } } } }
   },
-  resetPasswordForEmail: async (email: string) => {
+  resetPasswordForEmail: async (_email: string) => {
     // Not implemented for local REST API; return no-op
     return { error: null }
   }
