@@ -1,5 +1,5 @@
-// Lightweight compatibility shim that maps common supabase CRUD calls to a REST API
-// The REST API is expected to run at the same host under /api/:collection
+// Minimal API shim implementing the subset of the previous Supabase shim
+// It forwards calls to your local REST server (Express app at VITE_API_BASE)
 
 function normalizeUrl(path: string) {
   const base = (import.meta.env as any).VITE_API_BASE || ''
@@ -74,60 +74,55 @@ function from(collection: string) {
 
 const AUTH_KEY = 'portfolio_auth_token'
 
-// simple event for auth state changes
-const authListeners: Array<(event: string, session: any) => void> = []
-
-function emitAuth(event: string, session: any) {
-  authListeners.forEach((l) => {
-    try { l(event, session) } catch (e) { /* ignore */ }
-  })
-}
-
-const supabaseShim: any = {
-  from,
-  auth: {
-    getSession: async () => {
-      const token = localStorage.getItem(AUTH_KEY)
-      return { data: { session: token ? { access_token: token } : null }, error: null }
-    },
-    signInWithPassword: async ({ email, password }: { email: string, password: string }) => {
-      try {
-        const url = normalizeUrl('/auth/login')
-        const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) })
-        const body = await res.json().catch(() => null)
-        if (!res.ok) return { data: null, error: body || { message: res.statusText } }
-        const { token, user } = body
-        if (token) localStorage.setItem(AUTH_KEY, token)
-        emitAuth('SIGNED_IN', { user, token })
-        return { data: { user, session: { access_token: token } }, error: null }
-      } catch (err: any) {
-        return { data: null, error: { message: err?.message || 'Login failed' } }
-      }
-    },
-    signOut: async () => {
-      localStorage.removeItem(AUTH_KEY)
-      emitAuth('SIGNED_OUT', null)
-      return { error: null }
-    },
-    getUser: async () => {
-      try {
-        const token = localStorage.getItem(AUTH_KEY)
-        if (!token) return { data: { user: null }, error: null }
-        const url = normalizeUrl('/auth/me')
-        const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } })
-        const body = await res.json().catch(() => null)
-        if (!res.ok) return { data: { user: null }, error: body || { message: res.statusText } }
-        return { data: { user: body }, error: null }
-      } catch (err: any) {
-        return { data: { user: null }, error: { message: err?.message || 'Failed to fetch user' } }
-      }
-    },
-    onAuthStateChange: (handler: (event: string, session: any) => void) => {
-      authListeners.push(handler)
-      // return unsubscribe
-      return { data: { subscription: { unsubscribe: () => { const idx = authListeners.indexOf(handler); if (idx >= 0) authListeners.splice(idx, 1) } } } }
+const authShim = {
+  getSession: async () => {
+    const token = localStorage.getItem(AUTH_KEY)
+    return { data: { session: token ? { access_token: token } : null }, error: null }
+  },
+  signInWithPassword: async ({ email, password }: { email: string, password: string }) => {
+    try {
+      const url = normalizeUrl('/auth/login')
+      const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) })
+      const body = await res.json().catch(() => null)
+      if (!res.ok) return { data: null, error: body || { message: res.statusText } }
+      const { token, user } = body
+      if (token) localStorage.setItem(AUTH_KEY, token)
+      return { data: { user, session: { access_token: token } }, error: null }
+    } catch (err: any) {
+      return { data: null, error: { message: err?.message || 'Login failed' } }
     }
   },
+  signOut: async () => {
+    localStorage.removeItem(AUTH_KEY)
+    return { error: null }
+  },
+  getUser: async () => {
+    try {
+      const token = localStorage.getItem(AUTH_KEY)
+      if (!token) return { data: { user: null }, error: null }
+      const url = normalizeUrl('/auth/me')
+      const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } })
+      const body = await res.json().catch(() => null)
+      if (!res.ok) return { data: { user: null }, error: body || { message: res.statusText } }
+      return { data: { user: body }, error: null }
+    } catch (err: any) {
+      return { data: { user: null }, error: { message: err?.message || 'Failed to fetch user' } }
+    }
+  },
+  onAuthStateChange: (handler: (event: string, session: any) => void) => {
+    const listeners: any = (window as any).__portfolio_auth_listeners__ = (window as any).__portfolio_auth_listeners__ || []
+    listeners.push(handler)
+    return { data: { subscription: { unsubscribe: () => { const idx = listeners.indexOf(handler); if (idx >= 0) listeners.splice(idx, 1) } } } }
+  },
+  resetPasswordForEmail: async (email: string) => {
+    // Not implemented for local REST API; return no-op
+    return { error: null }
+  }
+}
+
+const apiShim: any = {
+  from,
+  auth: authShim,
   rpc: async (fn: string, payload?: any) => {
     const url = normalizeUrl(`/rpc/${fn}`)
     const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload || {}) })
@@ -135,6 +130,5 @@ const supabaseShim: any = {
   }
 }
 
-export const supabase: any = supabaseShim
-
+export const supabase: any = apiShim
 export default supabase

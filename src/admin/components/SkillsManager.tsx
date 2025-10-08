@@ -271,7 +271,7 @@ const SkillsManager = () => {
 
   const fetchSkills = async () => {
     try {
-      // Mock data - in a real app, this would come from Supabase
+  // Mock data - in a real app, this would come from the local API / MongoDB
       const mockSkills: Skill[] = [
         {
           id: '1',
@@ -332,8 +332,8 @@ const SkillsManager = () => {
         setSkills([...skills, newSkill]);
       }
       
-      // In a real implementation, you would save to Supabase here
-      // await supabase.from('skills').upsert(skillData);
+  // In a real implementation, you would save to the local API here
+  // await supabase.from('skills').upsert(skillData);
       
       setShowForm(false);
       setEditingSkill(null);
@@ -348,7 +348,7 @@ const SkillsManager = () => {
         setSkills(skills.filter(s => s.id !== id));
         
         // In a real implementation:
-        // await supabase.from('skills').delete().eq('id', id);
+  // await supabase.from('skills').delete().eq('id', id);
       } catch (error) {
         console.error('Error deleting skill:', error);
       }

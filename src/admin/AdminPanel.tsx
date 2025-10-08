@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaSignOutAlt, FaCog, FaProjectDiagram, FaGraduationCap, FaBriefcase, FaCode, FaTachometerAlt } from 'react-icons/fa';
-import { supabase } from '../lib/supabase';
+import { supabase } from '../lib/api';
 import ProjectsManager from './components/ProjectsManager';
 import ExperienceManager from './components/ExperienceManager';
 import EducationManager from './components/EducationManager';

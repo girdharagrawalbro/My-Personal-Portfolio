@@ -1,4 +1,4 @@
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../../lib/api';
 
 // Generic CRUD operations for any table
 export class DatabaseService {

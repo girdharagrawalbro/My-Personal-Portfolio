@@ -257,7 +257,7 @@ const ProjectsManager = () => {
           setProjects(data);
         }
       } else {
-        // Use Supabase service in production
+  // Use local API / MongoDB service in production
         // const projectsService = new ProjectsService();
         // const data = await projectsService.getAll();
         // setProjects(data);

@@ -185,6 +185,17 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                     <FaCalendarAlt className="mr-1" />
                     <span>{formatDate(project.date ?? '')}</span>
                   </div>
+                  {(project.forSale || project.price) && (
+                    <div className="absolute top-3 right-3">
+                      <span className="inline-flex items-center gap-2 px-3 py-1 bg-amber-600 text-white text-xs font-semibold rounded-full shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M3 3a1 1 0 011-1h3.586a1 1 0 01.707.293l7.414 7.414a1 1 0 010 1.414l-3.586 3.586a1 1 0 01-1.414 0L3.293 8.707A1 1 0 013 8V4a1 1 0 010-1z" />
+                        </svg>
+                        <span>For Sale</span>
+                        {/* <span className="ml-1 text-[10px] text-amber-100">₹{project.price ?? '—'}</span> */}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
@@ -195,11 +206,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                   </div>
                   <p className="text-gray-300 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-5">
-                    {project.forSale && (
-                      <span className="px-3 py-1 bg-amber-600/20 text-amber-300 text-sm rounded-full border border-amber-500/30">
-                        For Sale • ₹{project.price}
-                      </span>
-                    )}
+                    {/* For Sale badge shown in image corner */}
                     {project.tags.map((tag: any) => {
                       const tagStr = typeof tag === 'string' ? tag : String(tag ?? '');
                       return (
@@ -240,7 +247,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                         <span>Code</span>
                       </a>
                     )}
-                    {project.forSale && (
+                    {(project.forSale || project.price) && (
                       <button
                         onClick={() => setBuyProject(project)}
                         className="flex items-center gap-1 text-sm px-3 py-2 rounded bg-amber-600 hover:bg-amber-700 text-white transition-colors"

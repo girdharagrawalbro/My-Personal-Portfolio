@@ -1,4 +1,4 @@
-[
+ [
   {
     "id": "1",
     "title": "TalkEasy (Voice Agent)",
@@ -8,7 +8,9 @@
     "repo": "30days-murf-ai-agent",
     "github": "https://github.com/girdharagrawalbro/30days-murf-ai-agent",
     "tags": ["Gemini-AI", "Flask", "Python", "MURF.ai", "Assembly.ai", "Voice-Agent"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "2",
@@ -19,7 +21,9 @@
     "repo": "Agriculture-using-ML",
     "github": "https://github.com/girdharagrawalbro/Agriculture-using-ML",
     "tags": ["React", "AI", "Machine Learning"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "3",
@@ -30,7 +34,9 @@
     "repo": "Gemini-Clone",
     "github": "https://github.com/girdharagrawalbro/Gemini-Clone",
     "tags": ["React", "AI", "Gemini API"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "4",
@@ -41,7 +47,9 @@
     "repo": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
     "github": "https://github.com/girdharagrawalbro/My-Whatsapp-Bot",
     "tags": ["AI", "Node.js", "Twilo"],
-    "category": "Backend"
+    "category": "Backend",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "5",
@@ -52,7 +60,9 @@
     "repo": "Agriculture-using-ML",
     "github": "https://github.com/girdharagrawalbro/Agriculture-using-ML",
     "tags": ["Python", "Machine Learning"],
-    "category": "backend"
+    "category": "backend",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "6",
@@ -63,7 +73,9 @@
     "repo": "EventFlow",
     "github": "https://github.com/girdharagrawalbro/EventFlow",
     "tags": ["React", "Node.js", "Socket.io", "MongoDB"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "7",
@@ -74,7 +86,9 @@
     "repo": "Social-Square-Social-Media-Platform",
     "github": "https://github.com/girdharagrawalbro/Social-Square-Social-Media-Plateform",
     "tags": ["React", "Node.js", "MongoDB"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "8",
@@ -85,7 +99,9 @@
     "repo": "Online-Exam-Portal",
     "github": "https://github.com/girdharagrawalbro/Online-Exam-Portal",
     "tags": ["React", "Node.js", "MongoDB"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "9",
@@ -96,7 +112,9 @@
     "repo": "",
     "github": "",
     "tags": ["React", "Socket.io", "Node.js"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 10
   },
   {
     "id": "10",
@@ -107,7 +125,9 @@
     "repo": "ChatBox",
     "github": "",
     "tags": ["React", "Node.js"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "11",
@@ -118,7 +138,9 @@
     "repo": "HackIndia-Spark-4-2025-Code-Avengers",
     "github": "https://github.com/girdharagrawalbro/HackIndia-Spark-4-2025-Code-Avengers",
     "tags": ["Blockchain", "Solidity", "Web3"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "12",
@@ -129,7 +151,9 @@
     "repo": "Crowd-Funding-Dapp",
     "github": "https://github.com/girdharagrawalbro/Crowd-Funding-Dapp",
     "tags": ["Blockchain", "Solidity", "Ethers.js"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "13",
@@ -140,7 +164,9 @@
     "repo": "Hotel-Management-System",
     "github": "",
     "tags": ["PHP", "MySQL"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "14",
@@ -151,7 +177,9 @@
     "repo": "",
     "github": "",
     "tags": ["React", "Firebase"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "15",
@@ -162,7 +190,9 @@
     "repo": "",
     "github": "",
     "tags": ["React", "API"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "16",
@@ -173,7 +203,9 @@
     "repo": "",
     "github": "",
     "tags": ["React", "JavaScript"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "17",
@@ -184,7 +216,9 @@
     "repo": "",
     "github": "",
     "tags": ["React", "API"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "18",
@@ -195,7 +229,9 @@
     "repo": "",
     "github": "",
     "tags": ["React", "API"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "19",
@@ -206,7 +242,9 @@
     "repo": "",
     "github": "",
     "tags": ["HTML", "CSS", "JavaScript"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "20",
@@ -217,7 +255,9 @@
     "repo": "",
     "github": "",
     "tags": ["HTML", "CSS", "JavaScript"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "21",
@@ -228,7 +268,9 @@
     "repo": "booksstore",
     "github": "",
     "tags": ["Next.js", "React"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "22",
@@ -239,7 +281,9 @@
     "repo": "Instagram-Next-js",
     "github": "",
     "tags": ["Next.js", "React"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "23",
@@ -250,7 +294,9 @@
     "repo": "",
     "github": "",
     "tags": ["HTML", "CSS", "JavaScript"],
-    "category": "frontend"
+    "category": "frontend",
+    "forSale": true,
+    "price":1000
   },
   {
     "id": "24",
@@ -261,7 +307,9 @@
     "repo": "",
     "github": "",
     "tags": ["PHP", "MySQL", "HTML"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "25",
@@ -272,7 +320,9 @@
     "repo": "Blogging-Site-php",
     "github": "",
     "tags": ["PHP", "MySQL"],
-    "category": "fullstack"
+    "category": "fullstack",
+    "forSale": true,
+    "price": 1000
   },
   {
     "id": "26",
@@ -282,6 +332,8 @@
     "url": "",
     "repo": "",
     "github": "",
+    "forSale": true,
+    "price": 1000,
     "tags": ["PHP", "MySQL"],
     "category": "fullstack"
   }
