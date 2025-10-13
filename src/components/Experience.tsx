@@ -2,15 +2,33 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaExternalLinkAlt, FaLinkedin } from 'react-icons/fa';
 import { MdWork, MdCode } from 'react-icons/md';
-import { experienceData, type ExperienceItem } from '../utils/experienceData';
+import { type ExperienceItem } from '../utils/experienceData';
+import { useEffect } from 'react';
+import { supabase } from '../lib/api';
 
 const Experience = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'work' | 'education' | 'project'>('all');
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null);
 
-  const filteredExperience = activeFilter === 'all' 
-    ? experienceData 
-    : experienceData.filter(item => item.type === activeFilter);
+  const [items, setItems] = useState<ExperienceItem[]>([]);
+  useEffect(() => {
+    const fetchExperience = async () => {
+      try {
+        const resp: any = await supabase.from('experiences').select('*').order('start_date', { ascending: false });
+        if (resp?.error) throw resp.error;
+        const data = resp?.data || [];
+        const normalized = data.map((d: any) => ({ ...d, id: d._id ? String(d._id) : d.id }));
+        setItems(normalized);
+      } catch (err) {
+        console.error('Error fetching experiences', err);
+      }
+    };
+    fetchExperience();
+  }, []);
+
+  const filteredExperience = activeFilter === 'all'
+    ? items
+    : items.filter(item => item.type === activeFilter);
 
   const getIcon = (type: string) => {
     switch (type) {

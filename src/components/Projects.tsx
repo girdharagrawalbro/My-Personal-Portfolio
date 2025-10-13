@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { supabase } from '../lib/api';
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -34,16 +35,19 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('/projects.json');
-        if (!response.ok) throw new Error('Failed to load projects');
-        const data = await response.json();
-        const projectsWithDates = data.map((project: Project) => ({
+        // Fetch published projects from backend
+        const resp: any = await supabase.from('projects').select('*').eq('status', 'published').order('date', { ascending: false });
+        if (resp?.error) throw resp.error;
+        const data = resp?.data || [];
+        const projectsWithDates = data.map((project: any) => ({
           ...project,
-          date: project.date || new Date().toISOString().split('T')[0],
-          lastUpdated: project.lastUpdated || new Date().toISOString().split('T')[0]
+          id: project._id ? String(project._id) : project.id,
+          date: project.date || project.created_at || new Date().toISOString().split('T')[0],
+          lastUpdated: project.lastUpdated || project.updated_at || project.created_at || new Date().toISOString().split('T')[0]
         }));
         setProjects(projectsWithDates);
       } catch (err) {
+        console.error('Error fetching projects:', err);
         setErrorProjects(err instanceof Error ? err.message : 'Failed to load projects');
       } finally {
         setLoadingProjects(false);
@@ -236,7 +240,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                         <span>Live Demo</span>
                       </a>
                     )}
-                    {(project.github || project.repo) && (
+                    {/* {(project.github || project.repo) && (
                       <a
                         href={project.github || `https://github.com/girdharagrawalbro/${project.repo}`}
                         target="_blank"
@@ -246,7 +250,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
                         <FaGithub />
                         <span>Code</span>
                       </a>
-                    )}
+                    )} */}
                     {(project.forSale || project.price) && (
                       <button
                         onClick={() => setBuyProject(project)}

@@ -2,26 +2,53 @@ import { motion } from 'framer-motion';
 import SkillBubble from '../ui/SkillBubble';
 
 const Skills = () => {
-  const skillsData = {
-    frontend: [
-      { name: 'React', level: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', color: 'bg-blue-500/20 border-blue-400' },
-      { name: 'Next.js', level: 65, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', color: 'bg-gray-500/20 border-gray-400' },
-      { name: 'TypeScript', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', color: 'bg-blue-600/20 border-blue-500' },
-      { name: 'Tailwind CSS', level: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', color: 'bg-cyan-500/20 border-cyan-400' },
-    ],
-    backend: [
-      { name: 'Node.js', level: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', color: 'bg-green-500/20 border-green-400' },
-      { name: 'Python', level: 75, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', color: 'bg-blue-500/20 border-blue-400' },
-      { name: 'Express.js', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', color: 'bg-gray-500/20 border-gray-400' },
-    ],
-    database: [
-      { name: 'MongoDB', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', color: 'bg-green-600/20 border-green-500' },
-      { name: 'PostgreSQL', level: 50, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', color: 'bg-blue-700/20 border-blue-600' },
-      { name: 'SupaBase', level: 50, icon: '🗄️', color: 'bg-emerald-500/20 border-emerald-400' },
-      { name: 'MySQL', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', color: 'bg-blue-500/20 border-blue-400' }
-    ],
-  };
-  
+  const [skillsData, setSkillsData] = useState<any>({ frontend: [], backend: [], database: [] });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const resp: any = await (await import('../lib/api')).supabase.from('skills').select('*');
+        if (resp?.error) throw resp.error;
+        const data = resp?.data || [];
+        // group by category
+        const grouped = data.reduce((acc: any, s: any) => {
+          const cat = s.category || 'frontend';
+          acc[cat] = acc[cat] || [];
+          acc[cat].push(s);
+          return acc;
+        }, { frontend: [], backend: [], database: [] });
+        setSkillsData(grouped);
+      } catch (err) {
+        console.error('Failed to fetch skills, using fallback', err);
+        // fallback to inline static data if API fails
+        setSkillsData({
+          frontend: [
+            { name: 'React', level: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', color: 'bg-blue-500/20 border-blue-400' },
+            { name: 'Next.js', level: 65, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', color: 'bg-gray-500/20 border-gray-400' },
+            { name: 'TypeScript', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', color: 'bg-blue-600/20 border-blue-500' },
+            { name: 'Tailwind CSS', level: 90, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', color: 'bg-cyan-500/20 border-cyan-400' },
+          ],
+          backend: [
+            { name: 'Node.js', level: 85, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', color: 'bg-green-500/20 border-green-400' },
+            { name: 'Python', level: 75, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', color: 'bg-blue-500/20 border-blue-400' },
+            { name: 'Express.js', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', color: 'bg-gray-500/20 border-gray-400' },
+          ],
+          database: [
+            { name: 'MongoDB', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', color: 'bg-green-600/20 border-green-500' },
+            { name: 'PostgreSQL', level: 50, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', color: 'bg-blue-700/20 border-blue-600' },
+            { name: 'MySQL', level: 80, icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', color: 'bg-blue-500/20 border-blue-400' }
+          ],
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSkills();
+  }, []);
+
+  if (loading) return null;
+
   return (
     <section id="skills" className="py-20 bg-black relative z-10">
       <div className="container mx-auto px-6">

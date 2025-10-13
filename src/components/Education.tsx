@@ -1,10 +1,28 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { educationData, type Education as EducationType } from '../utils/educationData';
+import { type Education as EducationType } from '../utils/educationData';
+import { useEffect, useState } from 'react';
+import { supabase } from '../lib/api';
 import { Calendar, MapPin, BookOpen } from 'lucide-react';
 
 const Education: React.FC = () => {
   const [selected, setSelected] = useState<EducationType | null>(null);
+  const [items, setItems] = useState<EducationType[]>([]);
+
+  useEffect(() => {
+    const fetchEducation = async () => {
+      try {
+        const resp: any = await supabase.from('educations').select('*').order('start_date', { ascending: false });
+        if (resp?.error) throw resp.error;
+        const data = resp?.data || [];
+        const normalized = data.map((d: any) => ({ ...d, id: d._id ? String(d._id) : d.id }));
+        setItems(normalized);
+      } catch (err) {
+        console.error('Error fetching education', err);
+      }
+    };
+    fetchEducation();
+  }, []);
 
   const cardColor = 'border-indigo-400/30 bg-indigo-500/10';
 
@@ -44,7 +62,7 @@ const Education: React.FC = () => {
 
           <AnimatePresence mode="wait">
             <motion.div className="space-y-8">
-              {educationData.map((edu, idx) => (
+              {items.map((edu, idx) => (
                 <motion.div
                   key={edu.id}
                   initial={{ opacity: 0, x: -50 }}
