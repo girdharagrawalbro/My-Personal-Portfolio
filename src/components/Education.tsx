@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { type Education as EducationType } from '../utils/educationData';
-import { useEffect, useState } from 'react';
 import { supabase } from '../lib/api';
 import { Calendar, MapPin, BookOpen } from 'lucide-react';
 
