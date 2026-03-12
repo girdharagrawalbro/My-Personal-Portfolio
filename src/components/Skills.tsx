@@ -1,8 +1,22 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import SkillBubble from '../ui/SkillBubble';
 
 const Skills = () => {
-  const [skillsData, setSkillsData] = useState<any>({ frontend: [], backend: [], database: [] });
+  interface Skill {
+    name: string;
+    level: number;
+    icon: string;
+    color: string;
+  }
+
+  interface SkillsData {
+    frontend: Skill[];
+    backend: Skill[];
+    database: Skill[];
+  }
+
+  const [skillsData, setSkillsData] = useState<SkillsData>({ frontend: [], backend: [], database: [] });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -83,7 +97,7 @@ const Skills = () => {
             
             <div className="relative min-h-[300px] bg-gray-900/30 rounded-2xl p-8 backdrop-blur-sm border border-gray-800">
               <div className="flex flex-wrap items-center justify-center gap-6 h-full">
-                {skillsData.frontend.map((skill, index) => (
+                {skillsData.frontend.map((skill: Skill, index) => (
                   <SkillBubble
                     key={skill.name}
                     name={skill.name}
@@ -114,7 +128,7 @@ const Skills = () => {
             
             <div className="relative min-h-[300px] bg-gray-900/30 rounded-2xl p-8 backdrop-blur-sm border border-gray-800">
               <div className="flex flex-wrap items-center justify-center gap-6 h-full">
-                {skillsData.backend.map((skill, index) => (
+                {skillsData.backend.map((skill: Skill, index) => (
                   <SkillBubble
                     key={skill.name}
                     name={skill.name}
