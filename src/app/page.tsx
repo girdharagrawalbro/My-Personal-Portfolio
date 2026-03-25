@@ -4,7 +4,7 @@ import { useRef } from "react";
 import ScrollyCanvas from "@/components/ScrollyCanvas";
 import Overlay from "@/components/Overlay";
 import Projects from "@/components/Projects";
-import NanoBanana from "@/components/NanoBanana";
+// import NanoBanana from "@/components/NanoBanana";
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -24,9 +24,9 @@ export default function Home() {
       <Projects />
 
       {/* "Use nano banana for extra UI components." */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <NanoBanana />
-      </div>
+      {/* <div className="fixed bottom-6 right-6 z-50"> */}
+      {/* <NanoBanana /> */}
+      {/* </div> */}
     </main>
   );
 }
