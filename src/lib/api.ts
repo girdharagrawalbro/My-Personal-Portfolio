@@ -2,7 +2,12 @@
 // It forwards calls to your local REST server (Express app at VITE_API_BASE)
 
 function normalizeUrl(path: string) {
-  const base = (import.meta.env as any).VITE_API_BASE || ''
+  const envBase = (import.meta.env as any).VITE_API_BASE || ''
+  // Default to local server during development when VITE_API_BASE isn't set
+  const defaultLocal = (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
+    ? 'http://localhost:4000'
+    : ''
+  const base = envBase || defaultLocal || ''
   return `${base}${path}`
 }
 

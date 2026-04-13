@@ -3,7 +3,6 @@ import Header from './Header';
 import Hero from './Hero';
 import useTheme from '../hooks/useTheme';
 import About from './About';
-import Skills from './Skills';
 import Experience from './Experience';
 import Education from './Education';
 import Projects from './Projects';
@@ -87,11 +86,7 @@ const MainPortfolio = () => {
                 >
                   <Hero />
                   <About />
-                  <Skills />
-                  <Experience />
-                  <Education />
                   <Projects filter={filter} setFilter={setFilter} projects={projects} setProjects={setProjects} />
-                  <Contact />
                   <ChatBot projects={projects} onFilterChange={setFilter} />
                 </motion.div>
               )}

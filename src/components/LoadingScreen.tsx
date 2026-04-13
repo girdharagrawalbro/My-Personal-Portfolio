@@ -22,12 +22,12 @@ const LoadingScreen = () => {
         className="relative z-10 text-center"
       >
         <div className="font-mono text-2xl md:text-3xl text-indigo-400 mb-6">
-          <span className="text-white">Girdhar</span>.<span className="text-purple-400">portfolio</span>
+          <span className="text-white">Girdhar</span>.<span className="text-purple-400">Portfolio</span>
         </div>
-
+{/* 
         <div className="loader-code text-lg md:text-xl text-gray-300 mb-4">
-          LoadingPortfolio<span className="animate-pulse">()</span>
-        </div>
+          Loading Portfolio <span className="animate-pulse">()</span>
+        </div> */}
 
         <div className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden mx-auto">
           <motion.div

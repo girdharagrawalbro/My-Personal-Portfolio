@@ -122,7 +122,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
           className="mb-16 text-center"
         >
   <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            <span className="text-gray-400 font-mono text-lg">05.</span>
+            {/* <span className="text-gray-400 font-mono text-lg">05.</span> */}
             <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               My Projects
             </span>          </h2>
