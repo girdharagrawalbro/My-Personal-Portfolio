@@ -86,7 +86,10 @@ const MainPortfolio = () => {
                 >
                   <Hero />
                   <About />
+                  <Experience />
+                  <Education />
                   <Projects filter={filter} setFilter={setFilter} projects={projects} setProjects={setProjects} />
+                  <Contact />
                   <ChatBot projects={projects} onFilterChange={setFilter} />
                 </motion.div>
               )}

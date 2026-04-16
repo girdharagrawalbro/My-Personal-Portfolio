@@ -18,4 +18,5 @@ export interface Project {
   // Selling fields
   forSale?: boolean;
   price?: number;
+  status?: string;
 }

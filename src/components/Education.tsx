@@ -9,7 +9,7 @@ const Education: React.FC = () => {
   const [items, setItems] = useState<EducationType[]>([]);
 
   useEffect(() => {
-    const fetchEducation = async () => {
+    const loadEducation = async () => {
       try {
         const resp: any = await supabase.from('educations').select('*').order('start_date', { ascending: false });
         if (resp?.error) throw resp.error;
@@ -17,10 +17,10 @@ const Education: React.FC = () => {
         const normalized = data.map((d: any) => ({ ...d, id: d._id ? String(d._id) : d.id }));
         setItems(normalized);
       } catch (err) {
-        console.error('Error fetching education', err);
+        console.error('Error loading education', err);
       }
     };
-    fetchEducation();
+    loadEducation();
   }, []);
 
   const cardColor = 'border-indigo-400/30 bg-indigo-500/10';

@@ -33,9 +33,10 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
   const [buyProject, setBuyProject] = useState<Project | null>(null);
 
   useEffect(() => {
-    const fetchProjects = async () => {
+    const loadProjects = async () => {
       try {
-        // Fetch published projects from backend
+        setLoadingProjects(true);
+        // Fetch published projects from local data via api shim
         const resp: any = await supabase.from('projects').select('*').eq('status', 'published').order('date', { ascending: false });
         if (resp?.error) throw resp.error;
         const data = resp?.data || [];
@@ -47,7 +48,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
         }));
         setProjects(projectsWithDates);
       } catch (err) {
-        console.error('Error fetching projects:', err);
+        console.error('Error loading projects:', err);
         setErrorProjects(err instanceof Error ? err.message : 'Failed to load projects');
       } finally {
         setLoadingProjects(false);
@@ -56,6 +57,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
 
     const fetchRepos = async () => {
       try {
+        setLoadingRepos(true);
         const response = await fetch('https://api.github.com/users/girdharagrawalbro/repos?sort=updated&per_page=6');
         if (!response.ok) throw new Error('GitHub API limit exceeded');
         const data = await response.json();
@@ -68,7 +70,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
       }
     };
 
-    fetchProjects();
+    loadProjects();
     fetchRepos();
   }, [setProjects]);
 
@@ -121,7 +123,7 @@ const Projects: React.FC<ProjectsProps> = ({ filter, setFilter, projects, setPro
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-  <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {/* <span className="text-gray-400 font-mono text-lg">05.</span> */}
             <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               My Projects

@@ -12,7 +12,7 @@ const Experience = () => {
 
   const [items, setItems] = useState<ExperienceItem[]>([]);
   useEffect(() => {
-    const fetchExperience = async () => {
+    const loadExperience = async () => {
       try {
         const resp: any = await supabase.from('experiences').select('*').order('start_date', { ascending: false });
         if (resp?.error) throw resp.error;
@@ -20,10 +20,10 @@ const Experience = () => {
         const normalized = data.map((d: any) => ({ ...d, id: d._id ? String(d._id) : d.id }));
         setItems(normalized);
       } catch (err) {
-        console.error('Error fetching experiences', err);
+        console.error('Error loading experiences', err);
       }
     };
-    fetchExperience();
+    loadExperience();
   }, []);
 
   const filteredExperience = activeFilter === 'all'
@@ -77,7 +77,7 @@ const Experience = () => {
           <p className="text-gray-400 max-w-2xl mx-auto mb-8">
             A timeline of my work experience, projects, and educational background.
           </p>
-          
+
           {/* LinkedIn Link */}
           <motion.a
             href="https://www.linkedin.com/in/girdhar-agrawal-124346220/"
@@ -111,11 +111,10 @@ const Experience = () => {
               onClick={() => setActiveFilter(filter.key as any)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                activeFilter === filter.key
+              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeFilter === filter.key
                   ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
                   : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/30'
-              }`}
+                }`}
             >
               {filter.icon}
               <span>{filter.label}</span>
@@ -148,7 +147,7 @@ const Experience = () => {
                 >
                   {/* Timeline Dot */}
                   <div className="absolute left-6 top-6 w-4 h-4 bg-indigo-500 rounded-full border-4 border-black z-10 hidden md:block"></div>
-                  
+
                   {/* Experience Card */}
                   <div className="md:ml-20 ml-0">
                     <motion.div
@@ -181,7 +180,7 @@ const Experience = () => {
                             </div>
                           </div>
                         </div>
-                        
+
                         {item.link && (
                           <motion.a
                             href={item.link}

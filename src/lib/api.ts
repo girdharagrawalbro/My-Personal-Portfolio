@@ -1,139 +1,142 @@
-// Minimal API shim implementing the subset of the previous Supabase shim
-// It forwards calls to your local REST server (Express app at VITE_API_BASE)
+// Local API shim that replaces the server dependency with static data
+import { projectsData } from '../utils/projectsData';
+import { experienceData } from '../utils/experienceData';
+import { educationData } from '../utils/educationData';
+import { skillsData } from '../utils/constants';
 
-function normalizeUrl(path: string) {
-  const envBase = (import.meta.env as any).VITE_API_BASE || ''
-  // Default to local server during development when VITE_API_BASE isn't set
-  const defaultLocal = (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
-    ? 'http://localhost:4000'
-    : ''
-  const base = envBase || defaultLocal || ''
-  return `${base}${path}`
-}
+const AUTH_KEY = 'portfolio_auth_token';
 
-async function handleResponse(res: Response) {
-  const body = await res.json().catch(() => null)
-  if (!res.ok) return { data: null, error: body || { message: res.statusText } }
-  return { data: body, error: null }
-}
+// Simple in-memory mock for data that might be modified (e.g., contact messages)
+const mockDb: Record<string, any[]> = {
+  projects: projectsData,
+  experiences: experienceData,
+  educations: educationData,
+  skills: skillsData.flatMap(cat => cat.skills.map(s => ({ ...s, category: cat.title }))),
+  contact_messages: [],
+  analytics: []
+};
 
-function createQuery(collection: string) {
-  const state: any = { filters: [], order: null }
+// Simple local storage persistence helper
+const getLocalData = (collection: string) => {
+  const stored = localStorage.getItem(`portfolio_db_${collection}`);
+  if (stored) return JSON.parse(stored);
+  return mockDb[collection] || [];
+};
 
-  async function execute() {
-    const params = new URLSearchParams()
-    state.filters.forEach((f: any) => params.append(f.key, String(f.value)))
-    if (state.order) {
-      params.append('_order', state.order.field)
-      params.append('_orderDir', state.order.opts?.ascending ? 'asc' : 'desc')
-    }
-    const url = normalizeUrl(`/api/${collection}`) + (params.toString() ? `?${params.toString()}` : '')
-    const res = await fetch(url)
-    return handleResponse(res)
-  }
-
-  const proxy: any = {
-    select: (_cols?: string) => proxy,
-    eq: (key: string, value: any) => { state.filters.push({ key, op: 'eq', value }); return proxy },
-    gte: (key: string, value: any) => { state.filters.push({ key, op: 'gte', value }); return proxy },
-    order: (field: string, opts?: any) => { state.order = { field, opts }; return proxy },
-    then: (onfulfilled: any, onrejected?: any) => execute().then(onfulfilled, onrejected),
-    execute
-  }
-
-  return proxy
-}
+const setLocalData = (collection: string, data: any[]) => {
+  localStorage.setItem(`portfolio_db_${collection}`, JSON.stringify(data));
+};
 
 function from(collection: string) {
   return {
-    select: (cols?: string) => createQuery(collection).select(cols),
-    insert: async (payload: any) => {
-      const url = normalizeUrl(`/api/${collection}`)
-      const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-      return handleResponse(res)
-    },
-    update: async (idOrObj: any, payload?: any) => {
-      let id = idOrObj
-      let body = payload
-      if (typeof idOrObj === 'object' && !payload) {
-        id = idOrObj._id || idOrObj.id
-        body = idOrObj
+    select: () => ({
+      eq: (key: string, value: any) => ({
+        order: (field: string, { ascending = true } = {}) => ({
+          then: (resolve: any) => {
+            let data = [...getLocalData(collection)];
+            data = data.filter((item: any) => item[key] === value);
+            data.sort((a, b) => {
+              const valA = a[field];
+              const valB = b[field];
+              if (valA < valB) return ascending ? -1 : 1;
+              if (valA > valB) return ascending ? 1 : -1;
+              return 0;
+            });
+            resolve({ data, error: null });
+          }
+        }),
+        then: (resolve: any) => {
+          const data = getLocalData(collection).filter((item: any) => item[key] === value);
+          resolve({ data, error: null });
+        }
+      }),
+      order: (field: string, { ascending = true } = {}) => ({
+        then: (resolve: any) => {
+          const data = [...getLocalData(collection)];
+          data.sort((a, b) => {
+            const valA = a[field];
+            const valB = b[field];
+            if (valA < valB) return ascending ? -1 : 1;
+            if (valA > valB) return ascending ? 1 : -1;
+            return 0;
+          });
+          resolve({ data, error: null });
+        }
+      }),
+      then: (resolve: any) => {
+        resolve({ data: getLocalData(collection), error: null });
       }
-      if (!id) return { data: null, error: { message: 'Missing id for update' } }
-      const url = normalizeUrl(`/api/${collection}/${id}`)
-      const res = await fetch(url, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-      return handleResponse(res)
+    }),
+    insert: async (payload: any) => {
+      const data = getLocalData(collection);
+      const newItem = { ...payload, id: String(Date.now()), created_at: new Date().toISOString() };
+      data.push(newItem);
+      setLocalData(collection, data);
+      return { data: newItem, error: null };
+    },
+    update: async (id: string, payload: any) => {
+      const data = getLocalData(collection);
+      const idx = data.findIndex((item: any) => item.id === id || item._id === id);
+      if (idx >= 0) {
+        data[idx] = { ...data[idx], ...payload };
+        setLocalData(collection, data);
+        return { data: data[idx], error: null };
+      }
+      return { data: null, error: { message: 'Not found' } };
     },
     delete: async (id: string) => {
-      const url = normalizeUrl(`/api/${collection}/${id}`)
-      const res = await fetch(url, { method: 'DELETE' })
-      return handleResponse(res)
+      let data = getLocalData(collection);
+      data = data.filter((item: any) => item.id !== id && item._id !== id);
+      setLocalData(collection, data);
+      return { data: null, error: null };
     },
-    upsert: async (payload: any, opts?: any) => {
-      const url = normalizeUrl(`/api/${collection}/upsert`)
-      const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ payload, onConflict: opts?.onConflict }) })
-      return handleResponse(res)
+    upsert: async (payload: any) => {
+      const data = getLocalData(collection);
+      data.push(payload);
+      setLocalData(collection, data);
+      return { data: payload, error: null };
     }
-  }
+  };
 }
-
-const AUTH_KEY = 'portfolio_auth_token'
 
 const authShim = {
   getSession: async () => {
-    const token = localStorage.getItem(AUTH_KEY)
-    return { data: { session: token ? { access_token: token } : null }, error: null }
+    const token = localStorage.getItem(AUTH_KEY);
+    return { data: { session: token ? { access_token: token, user: { id: 'local-user', email: 'admin@example.com' } } : null }, error: null };
   },
-  signInWithPassword: async ({ email, password }: { email: string, password: string }) => {
-    try {
-      const url = normalizeUrl('/auth/login')
-      const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password }) })
-      const body = await res.json().catch(() => null)
-      if (!res.ok) return { data: null, error: body || { message: res.statusText } }
-      const { token, user } = body
-      if (token) localStorage.setItem(AUTH_KEY, token)
-      return { data: { user, session: { access_token: token } }, error: null }
-    } catch (err: any) {
-      return { data: null, error: { message: err?.message || 'Login failed' } }
+  signInWithPassword: async ({ email, password }: any) => {
+    // Basic local "admin" login check
+    if (email === 'admin@example.com' && password === 'admin') {
+      const token = 'local-mock-token';
+      localStorage.setItem(AUTH_KEY, token);
+      return { data: { user: { id: 'local-user', email }, session: { access_token: token } }, error: null };
     }
+    return { data: null, error: { message: 'Invalid credentials. Use admin@example.com / admin' } };
   },
   signOut: async () => {
-    localStorage.removeItem(AUTH_KEY)
-    return { error: null }
+    localStorage.removeItem(AUTH_KEY);
+    return { error: null };
   },
   getUser: async () => {
-    try {
-      const token = localStorage.getItem(AUTH_KEY)
-      if (!token) return { data: { user: null }, error: null }
-      const url = normalizeUrl('/auth/me')
-      const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } })
-      const body = await res.json().catch(() => null)
-      if (!res.ok) return { data: { user: null }, error: body || { message: res.statusText } }
-      return { data: { user: body }, error: null }
-    } catch (err: any) {
-      return { data: { user: null }, error: { message: err?.message || 'Failed to fetch user' } }
-    }
+    const token = localStorage.getItem(AUTH_KEY);
+    if (!token) return { data: { user: null }, error: null };
+    return { data: { user: { id: 'local-user', email: 'admin@example.com' } }, error: null };
   },
-  onAuthStateChange: (handler: (event: string, session: any) => void) => {
-    const listeners: any = (window as any).__portfolio_auth_listeners__ = (window as any).__portfolio_auth_listeners__ || []
-    listeners.push(handler)
-    return { data: { subscription: { unsubscribe: () => { const idx = listeners.indexOf(handler); if (idx >= 0) listeners.splice(idx, 1) } } } }
+  onAuthStateChange: (_handler: any) => {
+    return { data: { subscription: { unsubscribe: () => { } } } };
   },
-  resetPasswordForEmail: async (_email: string) => {
-    // Not implemented for local REST API; return no-op
-    return { error: null }
-  }
-}
+  resetPasswordForEmail: async () => ({ error: null })
+};
 
 const apiShim: any = {
   from,
   auth: authShim,
   rpc: async (fn: string, payload?: any) => {
-    const url = normalizeUrl(`/rpc/${fn}`)
-    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload || {}) })
-    return handleResponse(res)
+    console.log(`Mock RPC call: ${fn}`, payload);
+    return { data: true, error: null };
   }
-}
+};
 
-export const supabase: any = apiShim
-export default supabase
+export const supabase: any = apiShim;
+export default supabase;
+
