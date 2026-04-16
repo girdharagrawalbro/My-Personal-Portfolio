@@ -14,7 +14,7 @@ const Experience = () => {
   useEffect(() => {
     const loadExperience = async () => {
       try {
-        const resp: any = await supabase.from('experiences').select('*').order('start_date', { ascending: false });
+        const resp: any = await supabase.from('experiences').select('*').order('id', { ascending: false });
         if (resp?.error) throw resp.error;
         const data = resp?.data || [];
         const normalized = data.map((d: any) => ({ ...d, id: d._id ? String(d._id) : d.id }));
@@ -69,7 +69,7 @@ const Experience = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            <span className="text-gray-400 font-mono text-lg">03.</span>
+            {/* <span className="text-gray-400 font-mono text-lg">03.</span> */}
             <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               My Professional Journey
             </span>
@@ -112,8 +112,8 @@ const Experience = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeFilter === filter.key
-                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
-                  : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/30'
+                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
+                : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/30'
                 }`}
             >
               {filter.icon}

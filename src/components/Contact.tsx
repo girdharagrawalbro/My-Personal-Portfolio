@@ -11,7 +11,7 @@ import {
   FaPaperPlane
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-// switched to server-side email via nodemailer (/send-email)
+// Contact form component using Resend via Vercel Serverless Functions
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,31 +36,42 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // POST to backend /send-email which uses nodemailer
     try {
-      // default to backend dev server if VITE_API_BASE not set
-      const apiBase = import.meta.env.VITE_API_BASE || 'https://my-personal-portfolio-p18j.onrender.com';
-      const res = await fetch(`${apiBase.replace(/\/$/, '')}/send-email`, {
+      const res = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) {
-        // try to read error message from server
-        let payload = {} as any;
-        try { payload = await res.json(); } catch (e) { /* ignore */ }
-        const errMsg = payload && payload.error ? payload.error : 'Failed to send message';
-        throw new Error(errMsg);
+      // Safely try to parse JSON
+      let data;
+      const contentType = res.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        // Handle non-JSON responses (like 404 HTML pages from Vite)
+        const text = await res.text();
+        console.error('Non-JSON response received:', text);
+        if (res.status === 404) {
+          throw new Error('API endpoint not found. If you are running locally, please use "vercel dev" instead of "npm run dev".');
+        }
+        throw new Error(`Server returned ${res.status}: ${res.statusText}`);
       }
 
-      setSubmitStatus({ success: true, message: 'Thank you for your message! I will get back to you soon.' });
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setSubmitStatus({ 
+        success: true, 
+        message: data.message || 'Thank you! Your message has been sent and recorded.' 
+      });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      console.error('Failed to send email:', error);
+      console.error('Contact form error:', error);
       setSubmitStatus({
         success: false,
-        message: 'Failed to send message. Please try again later or contact me directly at girdharagrawalbro@gmail.com'
+        message: error instanceof Error ? error.message : 'An unexpected error occurred. Please try again later.'
       });
     } finally {
       setIsSubmitting(false);
@@ -91,7 +102,7 @@ const Contact = () => {
         >
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
         
-            <span className="text-gray-400 font-mono text-lg">06.</span>
+            {/* <span className="text-gray-400 font-mono text-lg">06.</span> */}
             <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               Let's Connect
             </span>

@@ -30,7 +30,7 @@ const Header = () => {
         <div className="hidden md:flex items-center justify-center space-x-6">
           <a href="#home" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Home</a>
           <a href="#about" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>About</a>
-          <a href="#skills" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Skills</a>
+          {/* <a href="#skills" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Skills</a> */}
           <a href="#experience" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Experience</a>
           <a href="#education" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Education</a>
           <a href="#projects" className="text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Projects</a>
@@ -42,7 +42,7 @@ const Header = () => {
           <div className={`absolute top-full left-0 right-0 bg-black bg-opacity-90 backdrop-blur-sm rounded-lg shadow-xl mt-2 py-2 px-4 transition-all duration-300 origin-top ${isMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'}`}>
             <a href="#home" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Home</a>
             <a href="#about" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>About</a>
-            <a href="#skills" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Skills</a>
+            {/* <a href="#skills" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Skills</a> */}
             <a href="#experience" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Experience</a>
             <a href="#education" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Education</a>
             <a href="#projects" className="block py-2 text-white hover:text-gray-300 transition-colors duration-200" onClick={handleSmoothScroll}>Projects</a>

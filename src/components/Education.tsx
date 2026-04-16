@@ -11,7 +11,7 @@ const Education: React.FC = () => {
   useEffect(() => {
     const loadEducation = async () => {
       try {
-        const resp: any = await supabase.from('educations').select('*').order('start_date', { ascending: false });
+        const resp: any = await supabase.from('educations').select('*').order('id', { ascending: false });
         if (resp?.error) throw resp.error;
         const data = resp?.data || [];
         const normalized = data.map((d: any) => ({ ...d, id: d._id ? String(d._id) : d.id }));
@@ -47,7 +47,7 @@ const Education: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            <span className="text-gray-400 font-mono text-lg">04.</span>
+            {/* <span className="text-gray-400 font-mono text-lg">04.</span> */}
             <span className="relative inline-block ml-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               Education
             </span>

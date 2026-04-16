@@ -1,6 +1,6 @@
 export interface ExperienceItem {
   id: string;
-  type: 'work' | 'education' | 'project';
+  type: 'work' | 'education' | 'project' | 'internship';
   title: string;
   company: string;
   location: string;
@@ -16,12 +16,37 @@ export interface ExperienceItem {
 export const experienceData: ExperienceItem[] = [
   {
     id: '1',
+    type: 'work',
+    title: 'Cashier',
+    company: 'DMart - Avenue Supermarts Ltd',
+    location: 'Raipur, Chhattisgarh, India · On-site',
+    duration: 'Sep 2022 - Mar 2023',
+    current: false,
+    description: [
+      'Efficiently processed customer transactions and handled payment operations',
+      'Provided excellent customer service and maintained positive customer relationships',
+      'Maintained accurate cash handling and ensured smooth checkout operations',
+      'Contributed to creating positive shopping experiences for customers',
+      'Worked collaboratively in fast-paced retail environment',
+      'Developed strong interpersonal and communication skills'
+    ],
+    skills: ['Customer Relationship Management (CRM)', 'Customer Service', 'Cash Handling', 'Point of Sale (POS)', 'Team Collaboration', 'Communication Skills'],
+    achievements: [
+      'Maintained accurate transaction records with zero discrepancies',
+      'Consistently received positive customer feedback for service quality',
+      'Contributed to smooth daily operations and team efficiency',
+      'Developed strong work ethic and professional customer interaction skills'
+    ],
+    companyUrl: 'https://www.dmart.in/'
+  },
+  {
+    id: '2',
     type: 'project',
     title: 'Contributor',
     company: 'GirlScript Summer of Code',
     location: 'India · Remote',
     duration: 'Jul 2025 - Present',
-    current: true,
+    current: false,
     description: [
       'Contributing to open-source projects as part of GirlScript Summer of Code',
       'One of India\'s largest open-source programs fostering developer community growth',
@@ -39,7 +64,7 @@ export const experienceData: ExperienceItem[] = [
     companyUrl: 'https://www.girlscript.tech/'
   },
   {
-    id: '2',
+    id: '3',
     type: 'work',
     title: 'Full Stack Web Developer',
     company: 'Freelancer.com',
@@ -68,30 +93,48 @@ export const experienceData: ExperienceItem[] = [
     companyUrl: 'https://www.freelancer.com/'
   },
   {
-    id: '3',
-    type: 'work',
-    title: 'Cashier',
-    company: 'DMart - Avenue Supermarts Ltd',
-    location: 'Raipur, Chhattisgarh, India · On-site',
-    duration: 'Sep 2022 - Mar 2023',
+    id: '4',
+    type: 'internship',
+    title: 'Software Developer',
+    company: 'Bhilai Steel Plant - SAIL',
+    location: 'Bhilai, Chhattisgarh, India · Hybrid',
+    duration: 'Dec 2025 - Mar 2026',
     current: false,
     description: [
-      'Efficiently processed customer transactions and handled payment operations',
-      'Provided excellent customer service and maintained positive customer relationships',
-      'Maintained accurate cash handling and ensured smooth checkout operations',
-      'Contributed to creating positive shopping experiences for customers',
-      'Worked collaboratively in fast-paced retail environment',
-      'Developed strong interpersonal and communication skills'
+      'Developed "BSP Rake Planning System", a full-stack application digitizing steel plate logistics and rake dispatch planning, replacing manual Excel workflows.',
+      'Architected scalable frontend using React (TypeScript) and backend with FastAPI (Python), featuring a centralized browser-accessible dashboard.',
+      'Implemented complex data processing for large steel order datasets, including automated calculation of loadable material and wagon requirements.',
+      'Built interactive dashboards with multi-dimensional filtering (destination, quality, region) for deep operational analysis.',
+      'Developed dynamic data visualizations (Bar, Pie, Treemaps) and Operational Matrices (Destination × Thickness) for logistics tracking.',
+      'Integrated secure JWT-based Role-Based Access Control (Admin, PMGM, CITGM, Viewer) and automated CSV export functionality.',
+      'Leveraged upstream API integration with caching to ensure real-time data availability while eliminating manual data handling.'
     ],
-    skills: ['Customer Relationship Management (CRM)', 'Customer Service', 'Cash Handling', 'Point of Sale (POS)', 'Team Collaboration', 'Communication Skills'],
+    skills: ['React', 'TypeScript', 'FastAPI', 'Python', 'JWT', 'Data Visualization', 'Full-Stack Development', 'Logistics Optimization'],
     achievements: [
-      'Maintained accurate transaction records with zero discrepancies',
-      'Consistently received positive customer feedback for service quality',
-      'Contributed to smooth daily operations and team efficiency',
-      'Developed strong work ethic and professional customer interaction skills'
+      'Reduced dispatch planning time by 90% (from 45 minutes to under 5 minutes)',
+      'Improved cross-departmental visibility and decision-making through centralized, automated data access',
+      'Digitized legacy Excel-based workflows into a scalable, browser-accessible enterprise solution'
     ],
-    companyUrl: 'https://www.dmart.in/'
-  }
+    companyUrl: 'https://www.sail.co.in/en/plant/bhilai-steel-plant'
+  },
+  {
+    id: '5',
+    type: 'internship',
+    title: 'Full Stack Developer',
+    company: 'eMilo Ventures Pvt. Ltd.',
+    location: 'Raipur, Chhattisgarh, India · On-site',
+    duration: 'Feb 2026 - Present',
+    current: true,
+    description: [
+      'Working on Full Stack Development'
+    ],
+    skills: ['React', 'TypeScript', 'NextJS', 'Python', 'Laravel', 'MongoDB', 'SQL', 'Full-Stack Development'],
+    achievements: [
+      'Working on Full Stack Development'
+    ],
+    companyUrl: 'https://www.emilo.in/'
+  },
+
 ];
 
 // Instructions for customizing:
