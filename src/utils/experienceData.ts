@@ -95,7 +95,7 @@ export const experienceData: ExperienceItem[] = [
   {
     id: '4',
     type: 'internship',
-    title: 'Software Developer',
+    title: 'Software Developer Intern',
     company: 'Bhilai Steel Plant - SAIL',
     location: 'Bhilai, Chhattisgarh, India · Hybrid',
     duration: 'Dec 2025 - Mar 2026',
@@ -119,7 +119,7 @@ export const experienceData: ExperienceItem[] = [
   },
   {
     id: '5',
-    type: 'internship',
+    type: 'work',
     title: 'Full Stack Developer',
     company: 'eMilo Ventures Pvt. Ltd.',
     location: 'Raipur, Chhattisgarh, India · On-site',

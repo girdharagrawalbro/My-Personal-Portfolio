@@ -18,16 +18,6 @@ export interface Education {
 export const educationData: Education[] = [
   {
     id: 1,
-    institution: "Rungta College of Engineering & Technology Kohka-Kurud Bhilai",
-    degree: "Master of Computer Applications (MCA)",
-    field: "Computer and Information Sciences and Support Services",
-    duration: "Jun 2024 - 2027",
-    location: "Bhilai, Chhattisgarh",
-    skills: ["Java", "Python (Programming Language)", "Data Structures", "Algorithms"],
-    logo: "🎓"
-  },
-  {
-    id: 2,
     institution: "Government Nagarjuna P.G. College of Science, Raipur",
     degree: "Bachelor in Computer Application (BCA)",
     field: "Computer Science",
@@ -37,5 +27,16 @@ export const educationData: Education[] = [
     achievements: ["🏆 1st Rank at College Level"],
     skills: ["Cascading Style Sheets (CSS)", "SQL", "JavaScript", "HTML", "PHP", "C Programming", "Database Management"],
     logo: "🎯"
+  },
+  {
+    id: 2,
+    institution: "Rungta College of Engineering & Technology Kohka-Kurud Bhilai",
+    degree: "Master of Computer Applications (MCA)",
+    field: "Computer and Information Sciences and Support Services",
+    duration: "Jun 2024 - July 2026",
+    location: "Bhilai, Chhattisgarh",
+    skills: ["Java", "Python (Programming Language)", "Data Structures", "Algorithms"],
+    grade: "78.1%",
+    logo: "🎓"
   }
 ];
