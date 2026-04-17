@@ -126,11 +126,11 @@ export const experienceData: ExperienceItem[] = [
     duration: 'Feb 2026 - Present',
     current: true,
     description: [
-      'Working on Full Stack Development'
+      'Working on Full Stack Projects'
     ],
     skills: ['React', 'TypeScript', 'NextJS', 'Python', 'Laravel', 'MongoDB', 'SQL', 'Full-Stack Development'],
     achievements: [
-      'Working on Full Stack Development'
+      'Working on Full Stack Projects'
     ],
     companyUrl: 'https://www.emilo.in/'
   },
