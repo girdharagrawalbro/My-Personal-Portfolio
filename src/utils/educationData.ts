@@ -5,7 +5,6 @@ export interface Education {
   field: string;
   duration: string;
   location: string;
-  grade?: string;
   achievements?: string[];
   skills: string[];
   logo?: string;
@@ -23,10 +22,9 @@ export const educationData: Education[] = [
     field: "Computer Science",
     duration: "Jun 2021 - Jun 2024",
     location: "Raipur, Chhattisgarh",
-    grade: "79.77%",
     achievements: ["🏆 1st Rank at College Level"],
-    skills: ["Cascading Style Sheets (CSS)", "SQL", "JavaScript", "HTML", "PHP", "C Programming", "Database Management"],
-    logo: "🎯"
+    skills: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "C Programming","C++", "Database Management" ],
+    logo: "🎓"
   },
   {
     id: 2,
@@ -35,8 +33,7 @@ export const educationData: Education[] = [
     field: "Computer and Information Sciences and Support Services",
     duration: "Jun 2024 - July 2026",
     location: "Bhilai, Chhattisgarh",
-    skills: ["Java", "Python (Programming Language)", "Data Structures", "Algorithms"],
-    grade: "78.1%",
+    skills: ["Java", "Python (Django)", "Data Structures", "Algorithms", "Microservices", "Caching", "System Architecture"],
     logo: "🎓"
   }
 ];
