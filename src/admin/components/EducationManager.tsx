@@ -17,7 +17,6 @@ const EducationForm = ({ education, onSave, onCancel }: EducationFormProps) => {
     field: '',
     duration: '',
     location: '',
-    grade: '',
     achievements: [],
     skills: [],
     logo: '🎓',
@@ -109,17 +108,6 @@ const EducationForm = ({ education, onSave, onCancel }: EducationFormProps) => {
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 placeholder="e.g., New Delhi, India"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-300 font-medium mb-2">Grade/Score</label>
-              <input
-                type="text"
-                value={formData.grade}
-                onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                placeholder="e.g., 8.5 CGPA, 85%"
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none"
               />
             </div>
@@ -334,12 +322,6 @@ const EducationManager = () => {
                     <h3 className="text-xl font-bold text-white">{education.degree}</h3>
                     <p className="text-indigo-300 font-medium">{education.institution}</p>
                   </div>
-                </div>
-                
-                <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
-                  <span>{education.duration}</span>
-                  {education.grade && <span>Grade: {education.grade}</span>}
-                  {education.location && <span>{education.location}</span>}
                 </div>
                 
                 <p className="text-gray-300 mb-4 line-clamp-3">{education.description}</p>
