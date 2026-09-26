@@ -100,16 +100,6 @@ const Education: React.FC = () => {
                             </div>
                           </div>
                         </div>
-
-                        {/* small details on the right for md+ */}
-                        <div className="hidden md:block text-sm text-gray-400">
-                          {edu.grade && (
-                            <div className="flex items-center gap-3">
-                              <BookOpen className="w-4 h-4 text-green-400" />
-                              <span className="text-green-400 font-semibold">Grade: {edu.grade}</span>
-                            </div>
-                          )}
-                        </div>
                       </div>
 
                       <div className="text-gray-300 mb-4 line-clamp-3">{edu.description}</div>
