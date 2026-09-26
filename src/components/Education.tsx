@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { type Education as EducationType } from '../utils/educationData';
 import { supabase } from '../lib/api';
-import { Calendar, MapPin, BookOpen } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 
 const Education: React.FC = () => {
   const [selected, setSelected] = useState<EducationType | null>(null);
