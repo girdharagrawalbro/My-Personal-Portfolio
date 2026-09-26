@@ -171,8 +171,65 @@ export const experienceData: ExperienceItem[] = [
     ],
     companyUrl: 'https://www.gimbooks.com/'
   },
-
-
+{
+  id: '5',
+  type: 'project',
+  title: 'Full-Stack Developer',
+  company: 'Social Square',
+  location: 'Remote · Personal Project',
+  duration: 'Dec 2024 - Sep 2026',
+  current: false,
+  description: [
+    'Designed and developed a full-stack social media platform from the ground up, covering frontend, backend, mobile, real-time communication, AI services, and deployment infrastructure',
+    'Built core social features including user profiles, posts, comments, likes, follows, stories, communities, notifications, conversations, sharing, collaboration, and content discovery',
+    'Developed secure authentication with JWT, OTP/2FA, Google OAuth, session management, device tracking, rate limiting, account protection, and privacy controls',
+    'Implemented real-time messaging, notifications, voice/video calling, live streaming, and collaborative features using Socket.IO, LiveKit, SSE, and event-driven services',
+    'Built AI-powered functionality including content generation, AI chatbot, post insights, mood detection, recommendation systems, content vectorization, moderation, and AI-driven engagement tracking',
+    'Implemented scalable backend services using Node.js, Express.js, MongoDB, Redis, NATS, BullMQ, and modular service architecture',
+    'Developed advanced feed and recommendation systems with content-based ranking, privacy filtering, cursor pagination, caching, interaction tracking, and real-time updates',
+    'Implemented media infrastructure integrating Cloudinary, Google Drive, Firebase, and media upload services with fallback handling and optimized delivery',
+    'Built web and Android/mobile experiences using React, Capacitor, Zustand, TanStack Query, and native Android project configuration',
+    'Implemented security and infrastructure improvements including CSP, CORS policies, rate limiting, secure cookies, encrypted content, Docker support, Vercel/Azure deployment configuration, and environment management',
+    'Optimized application performance through Redis caching, lazy loading, IndexedDB caching, offline support, memory optimization, query optimization, and background processing'
+  ],
+  skills: [
+    'React.js',
+    'Node.js',
+    'Express.js',
+    'MongoDB',
+    'Redis',
+    'Socket.IO',
+    'NATS',
+    'BullMQ',
+    'Zustand',
+    'TanStack Query',
+    'Capacitor',
+    'Android',
+    'JavaScript',
+    'REST APIs',
+    'WebSockets',
+    'LiveKit',
+    'AI/LLM Integration',
+    'NVIDIA NIM',
+    'Ollama',
+    'Cloudinary',
+    'Firebase',
+    'Docker',
+    'Vercel',
+    'Azure',
+    'Git',
+    'Web Security'
+  ],
+  achievements: [
+    'Developed the project continuously from December 2024 through September 2026',
+    'Built the platform across web, backend, and Android/mobile environments',
+    'Implemented a production-oriented real-time communication architecture',
+    'Built AI-powered content generation, chatbot, recommendation, moderation, and analytics capabilities',
+    'Implemented privacy, authentication, security, caching, and scalable backend infrastructure',
+    'Integrated multiple external services for AI, media storage, notifications, authentication, and real-time communication'
+  ],
+  link: 'https://github.com/girdharagrawalbro/Social-Square-Social-Media-Plateform'
+}
 ];
 
 // Instructions for customizing:
