@@ -161,7 +161,7 @@ export const experienceData: ExperienceItem[] = [
     company: 'GimBooks - CodeNicely',
     location: 'Raipur, Chhattisgarh, India · On-site',
     duration: 'Sep 2026 - Present',
-    current: false,
+    current: true,
     description: [
       'Working as a Software Engineer at CodeNicely, contributing to GimBooks, a business management and accounting platform.',
     ],
