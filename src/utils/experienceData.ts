@@ -101,14 +101,14 @@ export const experienceData: ExperienceItem[] = [
     duration: 'Dec 2025 - Mar 2026',
     current: false,
     description: [
-      'Developed a full-stack web application to digitize and optimize steel plate rake dispatch planning, replacing manual Excel-based workflows with a centralized dashboard.'
+      'Developed a full-stack web application to digitize and optimize steel plate rake dispatch planning, replacing manual Excel-based workflows with a centralized dashboard',
       'Built frontend using React + TypeScript and backend using FastAPI + Python',
       'Processed large datasets with data cleansing, filtering, and automated logistics calculations',
       'Developed interactive KPIs, charts, consignee summaries, and destination × thickness analysis',
       'Implemented JWT-based role authentication with Admin, PMGM, CITGM & Viewer roles',
       'Integrated upstream APIs with caching for near real-time order data',
       'Added CSV export for operational reporting',
-      'Reduced dispatch planning time from ~45 minutes to under 5 minutes, significantly improving operational efficiency and decision-making,
+      'Reduced dispatch planning time from ~45 minutes to under 5 minutes, significantly improving operational efficiency and decision-making',
 
       // old
       // 'Developed "BSP Rake Planning System", a full-stack application digitizing steel plate logistics and rake dispatch planning, replacing manual Excel workflows.',
@@ -144,7 +144,7 @@ export const experienceData: ExperienceItem[] = [
       'Integrated AWS S3 & Cloudflare R2 for media storage, video processing, and CDN delivery',
       'Integrated RAG-based AI tools and automated content moderation for administrative workflows',
     ],
-    skills: ['React', 'TypeScript', 'Node.js' 'PHP', 'Laravel', 'MongoDB', 'SQL', 'Full-Stack Development'],
+    skills: ['React', 'TypeScript', 'Node.js' , 'PHP', 'Laravel', 'MongoDB', 'SQL', 'Full-Stack Development'],
     achievements: [
       'Learned about Microservices Architecture',
       'Understand workers usecase',
